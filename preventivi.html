@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ForteamGroup - Preventivi</title>
+		<link rel="stylesheet" type="text/css" href="css/stylePreventivi.css">
+		<!-- carrello stylesheet -->
+		<link href="css/font-awesome.css" rel="stylesheet">
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+		 <link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+
+		<script src="js/modernizr.custom.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+
+		<div class="container" ng-app="myApp">
+
+		<div ng-controller="carrello">
+			<div class="cbp-af-header">
+				<div class="cbp-af-inner">
+					<!-- <a class="logo" href="index.html"><img id="" src="images/logo.png"></a> -->
+					<h1>Mook</h1>
+					<nav>
+						<a class="active menu" href="preventivi.html">Crea Preventivo</a>
+						<a class="menu" href="#news">Gestisci componenti</a>
+
+						<a href="#">Oranges</a>
+						<a href="#" ng-click="myFunction()" class="carrello" data-toggle="modal" data-target="#carrello" id="btnCarrello">
+							<img src="images/cart.png" alt="">
+						</a>
+					</nav>
+				</div>
+			</div>
+
+				<!-- Modal carrelo - start -->
+				<div  class="modal fade" id="carrello" tabindex="-1" role="dialog" aria-labelledby="carrelloLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-lg" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="carrelloLabel">Carrello</h5>
+				      </div>
+				      <div class="modal-body">
+						  <!-- carrello - distributore -->
+		  				<div class="card" id="cardCarrello">
+		  					<div class="card-header text-center" role="tab" id="headingOne">
+		  						<h5 class="mb-0"> <a style="text-decoration: none" data-toggle="collapse" href="#collapseDistributore" aria-expanded="true" aria-controls="collapseDistributore">Distributore</a></h5>
+		  					</div>
+		  				<div id="collapseDistributore" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+		  				  <div class="card-body">
+		  					<!-- body distributore -->
+		  					<div class="table-responsive">
+		  						<table class="table">
+		  							<thead>
+		  								<tr>
+		  									<th>Prodotto</th>
+											<th>Quantità</th>
+		  									<th>Prezzo</th>
+		  									<th>Totale</th>
+		  								</tr>
+		  							</thead>
+									<tbody id="cardDistributori">
+   									  <tr ng-repeat="x in distributore">
+   										 <td id="tipologia">{{x.Nome}}</td>
+   										 <td>{{x.Quantita}}</td>
+   										 <td>{{x.Prezzo_listino | currency:"€"}}</td>
+   										 <td>{{x.Prezzo_listino | currency:"€"}}</td>
+   									 </tr>
+   								 </tbody>
+
+   								 <tfoot>
+   									 <tr>
+   										 <th colspan="3">TOTALE</th>
+   										 <th id="priceCardDistributori" colspan="1">{{prezzoDistriCart | currency:"€"}}</th>
+   									 </tr>
+   								 </tfoot>
+		  						</table>
+		  				  </div>
+		  					<!-- /.table-responsive -->
+		  				</div>
+		  			</div>
+		  		</div>
+				<div class="card" id="cardCarrello">
+					<div class="card-header text-center" role="tab" id="headingTwo">
+						<h5 class="mb-0">
+						  <a style="text-decoration: none" class="collapsed" data-toggle="collapse" href="#collapseAccessori" aria-expanded="true" aria-controls="collapseAccessori">Accessori <span class="badge badge-secondary">{{numeroAccessori}}</span></a>
+						</h5>
+					</div>
+					<div id="collapseAccessori" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+						<div class="card-body" >
+						  <!-- body accessory -->
+						  <div class="table-responsive">
+							  <table class="table">
+								  <thead>
+									  <tr>
+										  <th>Prodotto</th>
+										  <th>Quantita</th>
+										  <th>Prezzo</th>
+										  <th>Totale</th>
+									  </tr>
+								  </thead>
+								  <tbody id="cardAccessori">
+									   <tr ng-repeat="x in accessori">
+										  <td id="tipologia">{{x.Nome}}</td>
+										  <td>{{x.Quantita}}</td>
+										  <td>{{x.Prezzo_listino | currency:"€"}}</td>
+										  <td>{{x.Totale | currency:"€"}}</td>
+								  	  </tr>
+								  </tbody>
+
+								  <tfoot>
+									  <tr>
+										  <th colspan="3">TOTALE</th>
+										  <th id="priceCardAccessori" colspan="1">{{totalAccessori | currency:"€"}}</th>
+									  </tr>
+								  </tfoot>
+							  </table>
+						  </div>
+						  <!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				<!-- carrello - software -->
+				<div class="card" id="cardCarrello">
+					<div class="card-header text-center" role="tab" id="headingThree">
+						<h5 class="mb-0">
+						  <a style="text-decoration: none" class="collapsed" data-toggle="collapse" href="#collapseSoftware" aria-expanded="false" aria-controls="collapseSoftware">Software <span class="badge badge-secondary">{{numeroSoftware}}</span></a>
+						</h5>
+					</div>
+					<div id="collapseSoftware" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Prodotto</th>
+											<th>Quantita</th>
+											<th>Prezzo</th>
+											<th>Totale</th>
+										</tr>
+									</thead>
+									<tbody id="cardSoftware">
+										 <tr ng-repeat="x in software">
+											<td id="tipologia">{{x.Tipologia}}</td>
+											<td>{{x.Quantita}}</td>
+											<td>{{x.Prezzo_listino | currency:"€"}}</td>
+											<td>{{x.Totale | currency:"€"}}</td>
+										</tr>
+									</tbody>
+
+									<tfoot>
+										<tr>
+											<th colspan="3">TOTALE</th>
+											<th id="priceCardSoftware" colspan="1">{{totalSoftware | currency:"€"}}</th>
+										</tr>
+									</tfoot>
+								</table>
+						  </div>
+							<!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				<!-- carrello - licenze -->
+				<div class="card" id="cardCarrello">
+					<div class="card-header text-center" role="tab" id="headingFour">
+						<h5 class="mb-0">
+							<a style="text-decoration: none" class="collapsed" data-toggle="collapse" href="#collapseLicenze" aria-expanded="false" aria-controls="collapseLicenze">Licenze <span class="badge badge-secondary">{{numeroLicenze}}</span></a>
+						</h5>
+					</div>
+					<div id="collapseLicenze" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+						<div class="card-body">
+							<!-- body licenze -->
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Prodotto</th>
+											<th>Quantita</th>
+											<th>Prezzo</th>
+											<th>Totale</th>
+										</tr>
+									</thead>
+									<tbody id="cardLicenze">
+										<tr ng-repeat="x in licenze">
+										   <td id="tipologia">{{x.Tipologia}}</td>
+										   <td>{{x.Quantita}}</td>
+										   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+										   <td>{{x.Totale | currency:"€"}}</td>
+									   </tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th colspan="3">TOTALE</th>
+											<th id="priceCardLicenze" colspan="1">{{totalLicenze | currency:"€"}}</th>
+										</tr>
+									</tfoot>
+								</table>
+						  </div>
+					<!-- /.table-responsive -->
+					  </div>
+				  </div>
+				</div>
+				<!-- carrello - servizi -->
+				<div class="card" id="cardCarrello">
+				  <div class="card-header text-center" role="tab" id="headingFive">
+					<h5 class="mb-0">
+					  <a style="text-decoration: none" class="collapsed" data-toggle="collapse" href="#collapseServizi" aria-expanded="false" aria-controls="collapseServizi">Servizi e Assistenza <span class="badge badge-secondary">{{numeroServizi}}</span></a>
+					</h5>
+				  </div>
+				  <div id="collapseServizi" class="collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion">
+					<div class="card-body" >
+					  <!-- body servizi -->
+					  <div class="table-responsive">
+						  <table class="table">
+							  <thead>
+								  <tr>
+									  <th>Prodotto</th>
+									  <th>Quantita</th>
+									  <th>Prezzo</th>
+									  <th>Totale</th>
+								  </tr>
+							  </thead>
+							  <tbody >
+								  <tr ng-repeat="x in servizi">
+									   <td id="tipologia">{{x.Tipologia}}</td>
+									   <td>{{x.Quantita}}</td>
+									   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+									   <td>{{x.Totale | currency:"€"}}</td>
+								   </tr>
+
+							  </tbody>
+							  <tfoot>
+								  <tr>
+									  <th colspan="3">TOTALE</th>
+									  <th id="priceCardServizi" colspan="1">{{totalServizi | currency:"€"}}</th>
+								  </tr>
+							  </tfoot>
+						  </table>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<!-- totale carrello -->
+					<div class="card" id="cardCarrello">
+					  <div class="card-header text-center" role="tab" id="headingFive">
+						<h5 class="mb-0">
+						  <a style="text-decoration: none" class="collapsed" data-toggle="collapse" href="#collapseTotale" aria-expanded="false" aria-controls="collapseTotale"> Totale Complessivo</a>
+						</h5>
+					  </div>
+					  <div id="collapseTotale" class="collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion">
+						<div class="card-body" >
+						  <!-- body totale -->
+						  <div class="table-responsive">
+
+							   <div class="text-center">
+								   <h2 style="color: #bc2131"> {{totalCart | currency: "€" }}</h2>
+							   </div>
+						  </div>
+					  <!-- /.table-responsive -->
+					</div>
+				  </div>
+				</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+				        <button type="button" class="btn btn-primary" ng-click="goToRiepilogo()">Vai al riepilogo</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- modal end -->
+	     	</div>
+			<!-- carrello end  -->
+
+			<!-- modal new element - start -->
+			<div ng-controller="newProduct">
+				<div class="modal fade" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<div>
+							<h5 class="modal-title" id="newElementModalLabel">Crea un prodotto personalizzato</h5>
+							<small class="form-text text-danger">Il prodotto creato sarà visibile per tutti i distributori disponibili</small>
+						</div>
+					  </div>
+					  <div class="modal-body">
+
+						<form name="newProductForm">
+							<div class="form-group">
+								<label>Selezionare la categoria del prodotto</label>
+								<select class="form-control custom-select" name="categoria" ng-model="categoria" required>
+									<option selected disabled value="">seleziona la categoria
+								 	<option value="accessori">Accessori
+									<option value="software">Software
+									<option value="licenze">Licenze
+									<option value="servizi">Servizi e Assistenza
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Codice prodotto</label>
+								<input type="text" id="newProductCodice" class="form-control"  placeholder="Codice" name="codiceProdotto" ng-model="codiceProdotto" required>
+								<small class="form-text text-muted">Inserire il codice del prodotto</small>
+							</div>
+							<div class="form-group">
+								<label>Nome / Tipologia prodotto</label>
+							   	<input type="text" class="form-control" placeholder="Nome / Tipologia" name="nomeOrTipologia" ng-model="nomeOrTipologia" required>
+							   	<small class="form-text text-muted">Inserire il nome o la tipologia del prodotto</small>
+							</div>
+							<div class="form-group">
+							   	<label>Descrizione prodotto</label>
+							   	<input type="text" class="form-control" placeholder="Descrizione" name="descrizioneProdotto" ng-model="descrizioneProdotto" required>
+							   	<small class="form-text text-muted">Inserire una breve descrizione sul prodotto</small>
+							</div>
+							<div class="form-group">
+							   	<label>Prezzo di acquisto</label>
+							   	<input type="number" class="form-control" placeholder="Prezzo acquisto" name="prezzoAcquistoProdotto" ng-model="prezzoAcquistoProdotto" required>
+							   	<small class="form-text text-muted">Inserire il prezzo con cui è stato acquistato Es.1234.56</small>
+							</div>
+							<div class="form-group">
+							   	<label>Prezzo di listino</label>
+							   	<input type="number" class="form-control" placeholder="Prezzo listino" name="prezzoListinoProdotto" ng-model="prezzoListinoProdotto" required>
+							   	<small class="form-text text-muted">Inserire il prezzo al quale viene venduto Es.1234.56</small>
+							</div>
+
+					  </div>
+
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+						<button type="submit" class="btn btn-primary" ng-click="saveCustomizedProduct()">Salva prodotto</button>
+					  </div>
+					  </form>
+					</div>
+				  </div>
+				</div>
+
+			<!-- modal new element - end -->
+
+
+            <div class="main">
+				<section >
+					<div><p>Dreamcatcher american apparel typewriter polaroid, Pinterest hoodie tousled vegan pickled gastropub iPhone VHS sartorial. Fanny pack vinyl fingerstache whatever, raw denim Carles literally next level fashion axe photo booth pour-over Echo Park.</p></div>
+				</section>
+				<section>
+					<form class="myForm" id="formName" name="myForm">
+						<div ng-controller="validation">
+
+							<div class="card" id="datiAziendaCard">
+							    <div class="card-header text-center" role="tab" id="headingOne">
+									<p class="lead" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Dati azienda richiedente preventivo</p>
+							    </div>
+							    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+							      <div class="card-body">
+									  <div class="input-group">
+											<span class="input-group-addon"><img src="images/azienda4.png" alt=""></span>
+											<input type="text" placeholder="Nome aziendale" minlength="5" class="form-control" ng-model="azienda" name="azienda" ng-change="change()" required>
+										</div>
+										<small ng-show="myForm.azienda.$invalid" style="color: #bc2131">Inserire il nome completo dell'azienda</small>
+
+										<div class="input-group">
+											<span class="input-group-addon"><img src="images/indirizzo2.png" alt=""></span>
+											<input type="text" minlength="5" placeholder="indirizzo stradale" class="form-control" name="indirizzo" ng-model="indirizzo" ng-change="change()" required>
+										</div>
+										<small ng-show="myForm.indirizzo.$invalid" style="color: #bc2131">Inserire l'indirizzo dell'azienda</small>
+
+										<div class="input-group">
+											<span class="input-group-addon"><img src="images/IVA.png" alt=""></span>
+											<input type="number" placeholder="Partita IVA" class="form-control" pattern=".{11,11}" ng-model="partitaIva" name="partitaIva" ng-change="change()" required>
+										</div>
+										<small ng-show="myForm.partitaIva.$invalid" style="color: #bc2131">Inserire il numero di Partita IVA dell'azienda richiedente il preventivo</small>
+
+										<div class="input-group">
+											<span class="input-group-addon"><img src="images/codFiscale.png" alt=""></span>
+											<input type="text" placeholder="Codice fiscale" class="form-control text-uppercase" maxlength="11" ng-model="codiceFiscale" name="codiceFiscale" ng-change="change()">
+										</div>
+										<small ng-show="myForm.codiceFiscale.$invalid" style="color: #bc2131">Inserire il codice fiscale di undici caratteri dell'azienda richiedente il preventivo</small>
+									</div>
+							      </div>
+							    </div>
+							  </div>
+
+
+
+						<div class="form-group" ng-controller="formSelectDistributore" id="distributore">
+							<div class="text-center lead selectDistriLabel">
+								<label id="labelDistri">Seleziona il distributore desiderato</label> <br>
+								<small style="color: #bc2131">Cambiando distributore i prodotti selezionati rimangono salvati</small>
+							</div>
+							<select class="form-control custom-select" id="selectDistributori" name="selectDistributore" ng-model="selectDistributore" ng-change="change()">
+								<option disabled value="">Seleziona un distributore</option>
+								<option ng-repeat="x in distributori" ng-model="selectedDistributore" value="{{x.Nome + ',' + x.Prezzo_listino + ',' + $index}}">
+									{{x.Nome}}
+								</option>
+							</select>
+						</div>
+
+						<div class="card" id="card">
+							<div class="card-header text-center">
+								<p class="lead" id="selectedDistributoreNome">{{selectedDistributoreNome}}</p>
+								<p class="lead" id="selectedDistributorePrezzo">{{selectedDistributorePrezzo | currency: '€'}}</p>
+							</div>
+							<div class="card-body">
+
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" id="accessori-tab" data-toggle="tab" href="#accessori" role="tab" aria-controls="home" aria-expanded="true">Accessori</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="software-tab" data-toggle="tab" href="#software" role="tab" aria-controls="software">Software</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="licenze-tab" data-toggle="tab" href="#licenze" role="tab" aria-controls="licenze">Licenze</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="servizi-tab" data-toggle="tab" href="#servizi" role="tab" aria-controls="servizi">Servizi e Assistenza</a>
+									</li>
+
+									<div class="d-inline-flex searchAndInsert">
+										<li>
+											<input class="form-control" type="text" placeholder="Cerca" aria-label="Search" ng-model="cercaProdotto">
+										</li>
+										<li>
+											<button type="button" class="btn btn-outline-primary insertNewItem" data-toggle="modal" data-target="#newElementModal">Prodotto personalizzato +</button>
+										</li>
+									</div>
+								</ul>
+
+								<div class="tab-content" id="myTabContent">
+									<div ng-controller="formTabAccessori" class="tab-pane fade show active" id="accessori" role="tabpanel" aria-labelledby="accessori-tab">
+										<table class="table table-hover" id="tabProdotti">
+										  <thead>
+										    <tr>
+												<th>Codice</th>
+												<th>Nome</th>
+												<th>Descrizione</th>
+												<th>Prezzo</th>
+												<th>Quantità</th>
+										    </tr>
+										  </thead>
+										  <tbody>
+										     <tr ng-repeat="x in accessori | filter:cercaProdotto">
+												<td>{{x.Codice}}</td>
+												<td>{{x.Nome}}</td>
+												<td>{{x.Descrizione}}</td>
+												<td>{{x.Prezzo_listino | currency:"€"}}</td>
+												<td><input type="number" placeholder="0" min="0" ng-model="incrementedRow" ng-change="change(x, incrementedRow, $index)"></td>
+										    </tr>
+										  </tbody>
+										</table>
+									</div>
+									<div ng-controller="formTabSoftware" class="tab-pane fade" id="software" role="tabpanel" aria-labelledby="software-tab">
+										<table class="table table-hover" id="tabProdotti">
+										  <thead>
+										    <tr>
+												<th>Codice</th>
+												<th>Tipologia</th>
+												<th>Descrizione</th>
+												<th>Prezzo</th>
+												<th>Quantità</th>
+										    </tr>
+										  </thead>
+										  <tbody>
+										    <tr ng-repeat="x in software | filter:cercaProdotto">
+												<td>{{x.Codice}}</td>
+												<td>{{x.Tipologia}}</td>
+												<td>{{x.Descrizione}}</td>
+												<td>{{x.Prezzo_listino | currency:"€"}}</td>
+												<td><input type="number" placeholder="0" min="0"  ng-model="incrementedRow" ng-change="change(x, incrementedRow, $index)"></td>
+										    </tr>
+										  </tbody>
+										</table>
+									</div>
+									<div ng-controller="formTabLicenze" class="tab-pane fade" id="licenze" role="tabpanel" aria-labelledby="licenze-tab">
+										<table class="table table-hover" id="tabProdotti">
+										  <thead>
+										    <tr>
+												<th>Codice</th>
+												<th>Tipologia</th>
+												<th>Descrizione</th>
+												<th>Prezzo</th>
+												<th>Quantità</th>
+										    </tr>
+										  </thead>
+										  <tbody>
+										    <tr ng-repeat="x in licenze | filter:cercaProdotto">
+												<td>{{x.Codice}}</td>
+												<td>{{x.Tipologia}}</td>
+												<td>{{x.Descrizione}}</td>
+												<td>{{x.Prezzo_listino | currency:"€"}}</td>
+												<td><input type="number" placeholder="0" min="0" ng-model="incrementedRow" ng-change="change(x, incrementedRow, $index)"></td>
+										    </tr>
+										  </tbody>
+										</table>
+									</div>
+									<div ng-controller="formTabServizi" class="tab-pane fade" id="servizi" role="tabpanel" aria-labelledby="servizi-tab">
+										<table class="table table-hover" id="tabProdotti">
+										  <thead>
+										    <tr>
+												<th>Codice</th>
+												<th>Tipologia</th>
+												<th>Descrizione</th>
+												<th>Prezzo</th>
+												<th>Quantità</th>
+										    </tr>
+										  </thead>
+										  <tbody>
+										    <tr ng-repeat="x in servizi | filter:cercaProdotto">
+												<td>{{x.Codice}}</td>
+												<td>{{x.Tipologia}}</td>
+												<td>{{x.Descrizione}}</td>
+												<td>{{x.Prezzo_listino | currency:"€"}}</td>
+												<td><input type="number" placeholder="0" min="0" ng-model="incrementedRow" ng-change="change(x, incrementedRow, $index)"></td>
+										    </tr>
+										  </tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+			</div>
+		</div>
+
+		<script src="js/scriptPreventivi.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/classie.js"></script>
+		<script src="js/cbpAnimatedHeader.min.js"></script>
+	</body>
+</html>

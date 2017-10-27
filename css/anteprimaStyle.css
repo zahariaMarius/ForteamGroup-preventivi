@@ -1,0 +1,36 @@
+.perdita{
+    color: red;
+}
+
+.guadagno{
+    color: green;
+}
+
+.headerLogo {
+	margin: 0 auto;
+	width: 85%;
+	text-align: center;
+	border-bottom: 3px solid #bc2131;
+	padding-bottom: 20px;
+}
+
+.col-9 {
+	margin: 0 auto;
+}
+
+.table {
+	margin-top: 20px;
+}
+
+.table thead th {
+	border-top: 0px;
+}
+
+#tableAzienda {
+	margin-top: 30px;
+	text-align: center;
+}
+
+#tableAzienda thead th {
+	text-align: center;
+}

@@ -1,0 +1,215 @@
+/*rimozione degli spinner sui input number*/
+/*label input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}*/
+
+/*table.fixed { table-layout:fixed; }
+table.fixed th { overflow: hidden; }
+table.fixed td { overflow: hidden; }*/
+
+.customeProductCodice {
+	border-color: red !important;
+}
+
+#inputIVA {
+	width: 20%;
+}
+
+#cardNoteAggiuntiveAzienda p {
+	padding: 0px;
+}
+
+#cardNoteAggiuntiveCliente p {
+	padding: 0px;
+}
+
+#cardAzienda{
+	margin-top: 70px;
+}
+
+#tabProdotti thead th {
+	text-align: left;
+}
+
+#tabProdotti tbody td{
+	text-align: left;
+}
+
+#tabProdottiRiepilogo input[type="number"]{
+	width: 75px;
+}
+
+#labelDistri{
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+#datiAziendaCard .card-header{
+	border: 0px;
+}
+
+#tabellaPreventivoCliente {
+	margin: 0 auto;
+	width: 90%;
+}
+
+.input-group {
+	margin-top: 15px;
+}
+
+.form-group {
+	margin-top: 20px;
+}
+
+.lead{
+	margin: 0 !important;
+}
+
+.card-header{
+	padding: 14px !important;
+}
+
+.btnSalvaPreventivo{
+	border: 1px solid #bc2131;
+	color: #bc2131;
+	background-color: transparent;
+	height: 50px;
+	border-radius: 5px;
+	margin-top: 15px;
+}
+
+.btnSalvaPreventivo:hover{
+	color: white;
+	background-color: #bc2131;
+
+}
+
+.perdita{
+    color: red;
+}
+
+.guadagno{
+    color: green;
+}
+
+#allTabDataFromPreventivi{
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 20px;
+}
+
+td{
+	text-align: center;
+}
+
+.cautionSmall{
+	color: red;
+}
+
+#tipologia{
+	width: 50%;
+}
+
+.myForm {
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 20px;
+}
+
+td input[type="number" ]{
+	width: 60px;
+	text-align: center;
+}
+
+.table {
+	margin-top: 10px;
+}
+
+.table thead th {
+	border-bottom: 0px;
+	border-top: 0px;
+	text-align: center;
+}
+
+.table tfoot tr th:first-child{
+	text-align: left;
+}
+
+.table tfoot tr th{
+	text-align: center;
+}
+/* navbar css start */
+.topnav {
+  overflow: hidden;
+  background-color: #404347;
+}
+
+#selectedDistributoreNome,
+#selectedDistributorePrezzo {
+	margin: 0 auto;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.topnav a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}
+
+.topnav a.active {
+    background-color: #bc2131;
+    color: white;
+}
+ /*nav bar css end */
+/* carrello css*/
+.carrello{
+	float: right;
+	height: 100%;
+	background-color: #bc2131;
+}
+.menu{
+	float: left;
+}
+.logo{
+ background-color: white;
+}
+
+.card{
+	margin-bottom: 20px;
+	transition-duration: 0.4s;
+}
+
+#cardCarrello {
+	margin-bottom: 5px;
+}
+
+#cardCarrello:hover {
+	box-shadow: 0 0px 0px 0 rgba(0,0,0,0), 0 0px 0px 0 rgba(0,0,0,0);
+}
+
+.card:hover {
+	box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2), 0 10px 24px 0 rgba(0,0,0,0.19);
+}
+
+.productFilter{
+	margin-left: 50px;
+}
+
+.searchAndInsert{
+	margin-left: 12%;
+}
+
+.insertNewItem{
+	margin-left: 30px;
+}
