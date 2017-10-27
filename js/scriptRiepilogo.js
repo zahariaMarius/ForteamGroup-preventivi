@@ -1,3 +1,15 @@
+/**
+ * @Author: Zaharia Laurentiu Jr Marius
+ * @Date:   2017-10-27T12:06:17+02:00
+ * @Email:  laurentiu.zaharia@edu.itspiemonte.it
+ * @Project: kebabCase
+ * @Filename: scriptRiepilogo.js
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-10-27T15:48:29+02:00
+ */
+
+
+
 var app = angular.module('myApp', []);
 //varibile contenente tutti i dati provenienti dalla pagina preventivo in formato {obj assoc}
 var allDataFromPreventivi = JSON.parse(localStorage.getItem("allDataFromPreventivi"));
@@ -28,6 +40,10 @@ var totale = {
 	Guadagno_totale : 0,
 	Guadagno_totale_percentuale:0
 }
+var noteAggiuntive = {
+	aziendali: "",
+	cliente: ""
+}
 
 //actionlistener sul link per andare all'anteprima
 var link = document.getElementById("linkToAnteprima");
@@ -37,7 +53,7 @@ if (link) {
 }
 
 function goToAnteprima() {
-	var allDataFromRiepilogo = {azienda, distributore, accessori, software, licenze, servizi, totale};
+	var allDataFromRiepilogo = {azienda, distributore, accessori, software, licenze, servizi, totale, noteAggiuntive};
 	localStorage.setItem("allDataFromRiepilogo", JSON.stringify(allDataFromRiepilogo));
 	var local = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
 	console.log(local);
@@ -340,5 +356,13 @@ app.controller('allTabDataFromPreventivi', function($scope) {
 	    totale.Ricavo_totale_iva = totale.Ricavo_totale + percentualeIva;
 		$scope.Percentuale_iva = totale.Percentuale_iva;
 		$scope.Ricavo_totale_iva = totale.Ricavo_totale_iva;
+	}
+
+	$scope.noteAggiuntiveAziendali = function() {
+		noteAggiuntive.aziendali = $scope.noteAziendali;
+	}
+
+	$scope.noteAggiuntiveCliente = function() {
+		noteAggiuntive.cliente = $scope.noteCliente;
 	}
 });

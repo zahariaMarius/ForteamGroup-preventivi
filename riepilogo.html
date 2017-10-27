@@ -362,7 +362,7 @@
 										</div>
 										<div id="noteAggiuntive" class="collapse" role="tabpanel" aria-labelledby="cardNoteAggiuntiveAzienda" data-parent="#accordion">
 											<div class="card-body">
-												<textarea class="form-control" rows="2" id="comment"></textarea>
+												<textarea class="form-control" rows="2" id="comment" name="noteAziendali" ng-model="noteAziendali" ng-change="noteAggiuntiveAziendali()"></textarea>
 											</div>
 										</div>
 									</div>
@@ -399,7 +399,7 @@
 									</div>
 								</div>
 								<div class="card" id="cardDistributoreCliente">
-									<div class="card-header text-center font-weight-bold lead">distributore</div>
+									<div class="card-header text-center font-weight-bold lead">Distributore</div>
 									<div class="card-body">
 										<table class="table table-hover">
 											<thead>
@@ -624,7 +624,7 @@
 									</div>
 									<div id="noteAggiuntiveCliente" class="collapse" role="tabpanel" aria-labelledby="cardNoteAggiuntiveCliente" data-parent="#accordion">
 										<div class="card-body">
-											<textarea class="form-control" rows="2" id="comment"></textarea>
+											<textarea class="form-control" rows="2" id="comment" name="noteCliente" ng-model="noteCliente" ng-change="noteAggiuntiveCliente()"></textarea>
 										</div>
 									</div>
 								</div>
