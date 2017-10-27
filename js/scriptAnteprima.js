@@ -5,9 +5,8 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-27T17:26:29+02:00
+ * @Last modified time: 2017-10-27T17:31:00+02:00
  */
-
 
 //richiamo di tutti i dati dalla pagina di riepilogo
 var dataFromRiepilogo = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
@@ -25,19 +24,14 @@ var noteAggiuntive = dataFromRiepilogo["noteAggiuntive"];
 //inizialmente tutte le tabelle dell'antepirma cliente non sono visibili
 document.querySelectorAll('[id=table-distributore]')[0].style.display = 'none';
 document.querySelectorAll('[id=table-distributore]')[1].style.display = 'none';
-
 document.querySelectorAll('[id=table-accessori]')[0].style.display = 'none';
 document.querySelectorAll('[id=table-accessori]')[1].style.display = 'none';
-
 document.querySelectorAll('[id=table-software]')[0].style.display = 'none';
 document.querySelectorAll('[id=table-software]')[1].style.display = 'none';
-
 document.querySelectorAll('[id=table-licenze]')[0].style.display = 'none';
 document.querySelectorAll('[id=table-licenze]')[1].style.display = 'none';
-
 document.querySelectorAll('[id=table-servizi]')[0].style.display = 'none';
 document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
-
 document.getElementById("tableCliente-note").style.display = 'none';
 document.getElementById("tableAzienda-note").style.display = 'none';
 
@@ -113,7 +107,11 @@ console.log(dataFromRiepilogo);
 	//scope dati totale complessivo cliente
 	$scope.Totale_imponibile = totali.Ricavo_totale;
 	$scope.Percentuale_iva = totali.Percentuale_iva;
-	$scope.Totale_preventivo = totali.Ricavo_totale_iva;
+	if (totali.Ricavo_totale_iva > totali.Ricavo_totale) {
+		$scope.Totale_preventivo = totali.Ricavo_totale + (totali.Ricavo_totale_iva - totali.Ricavo_totale);
+	}else {
+		$scope.Totale_preventivo = totali.Ricavo_totale
+	}
 
 	//scope note aggiuntive aziendali
 	if (noteAggiuntive.aziendali) {
