@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-27T18:27:19+02:00
+ * @Last modified time: 2017-10-28T18:33:40+02:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -126,8 +126,9 @@ console.log(dataFromRiepilogo);
 	}
 
 	$scope.db = function() {
-		var data = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
-		$http.post('DBMUpdate.php', { data: JSON.stringify(data)})
+		var data = localStorage.getItem("allDataFromRiepilogo");
+		console.log(azienda);
+		$http.post('DBMUpdate.php', {azienda: azienda, distributore: distributore, accessori: accessori, software: software, licenze: licenze, servizi: servizi, noteAggiuntive: noteAggiuntive})
 	    .then(function (response) {
 	     $scope.distributori = response.data;
 	    });

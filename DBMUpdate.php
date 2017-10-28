@@ -5,15 +5,32 @@
 # @Project: kebabCase
 # @Filename: DBMUpdate.php
 # @Last modified by:   Zaharia Laurentiu Jr Marius
-# @Last modified time: 2017-10-27T19:14:32+02:00
+# @Last modified time: 2017-10-28T17:44:08+02:00
+
+
 
 $postdata = file_get_contents("php://input");
+//$request = json_decode($postdata);
+
 $data = json_decode($postdata, true);
 
-//echo executeQuery($data);
+print_r($data);
 
-var_dump($data);
+//print_r($data->azienda);
 
+// foreach ($data["accessori"] as $key => $value) {
+// 	print_r($data["accessori"][$key]);
+// 	foreach ($data["accessori"][$key] as $key2 => $value) {
+// 		print_r($data["accessori"][$key][$key2]);
+// 	}
+// }
+
+foreach ($data['azienda'][0] as $key => $value) {
+	print_r($data['azienda'][0][$key]);
+	print_r($i);
+	$i++;
+}
+//print_r($data['azienda'][0]);
 
 	function executeQuery($data) {
 		$mysqli = new mysqli("localhost", "root", null, "preventivi_aziendali");
@@ -22,12 +39,11 @@ var_dump($data);
 			exit();
 		}
 
-		foreach ($data as $row) {
-			$query = "INSERT INTO aziende(Codice, Nome, Indirizzo, Partita_iva, Ricavo, Codice_fiscale)
-				      VALUES ('00258', '".$row[""]."')";
+		foreach ($data['azienda'][0] as $key => $value) {
+			print_r($data['azienda'][0][$key]);
+
+			$query = "INSERT INTO aziende()";
 		}
-
-
 
 	}
 ?>
