@@ -1,3 +1,15 @@
+/**
+ * @Author: Zaharia Laurentiu Jr Marius
+ * @Date:   2017-10-27T12:06:17+02:00
+ * @Email:  laurentiu.zaharia@edu.itspiemonte.it
+ * @Project: kebabCase
+ * @Filename: scriptPreventivi.js
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-10-28T18:35:25+02:00
+ */
+
+
+
 "use strict";
 //variabile contenente la select dei distributori
 var selectDistributori = document.getElementById('selectDistributori');
