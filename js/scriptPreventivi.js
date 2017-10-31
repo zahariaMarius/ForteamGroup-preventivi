@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptPreventivi.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-28T18:35:25+02:00
+ * @Last modified time: 2017-10-31T12:21:31+01:00
  */
 
 
@@ -59,8 +59,27 @@ var rowData = {};
 /** controller per la validazione dei dati dell'azienda richiedente preventivo*/
 app.controller('validation', function($scope, cartData) {
 	var user = {};
-
 	var flagEntrata = false;
+
+	//funzione che controlla la validità della partivaIVA
+	function ControllaPIVA(pi) {
+		if( pi == '' )  return true;
+		if( ! /^[0-9]{11}$/.test(pi) )
+		return "La partita IVA deve contenere 11 cifre.";
+		var s = 0;
+		for( i = 0; i <= 9; i += 2 )
+			s += pi.charCodeAt(i) - '0'.charCodeAt(0);
+			for(var i = 1; i <= 9; i += 2 ){
+				var c = 2*( pi.charCodeAt(i) - '0'.charCodeAt(0) );
+				if( c > 9 )  c = c - 9;
+					s += c;
+			}
+			var atteso = ( 10 - s%10 )%10;
+			if( atteso != pi.charCodeAt(10) - '0'.charCodeAt(0) )
+				return "La partita IVA non è valida:\n" +
+					"il codice di controllo non corrisponde.\n";
+			return true;
+	}
 
     $scope.change = function() {
 		if($scope.myForm.$valid) {

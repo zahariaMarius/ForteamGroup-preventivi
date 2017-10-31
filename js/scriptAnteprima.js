@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-28T18:33:40+02:00
+ * @Last modified time: 2017-10-31T12:16:31+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -35,6 +35,24 @@ document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
 document.getElementById("tableCliente-note").style.display = 'none';
 document.getElementById("tableAzienda-note").style.display = 'none';
 
+//funzione che genera un ID unico per il id del preventivo
+function generatePreventivoID() {
+	var currentDate = new Date();
+	var time = currentDate.getTime();
+	var day = currentDate.getDate();
+	var month = currentDate.getMonth()+1;
+	var year = currentDate.getFullYear();
+	day = day.toString();
+	month = month.toString();
+	year = year.toString();
+	console.log(time);
+	console.log(currentDate);
+	console.log(day);
+	console.log(month);
+	console.log(year.substring(2));
+}
+
+generatePreventivoID();
 
 var app = angular.module('myApp', []);
 
