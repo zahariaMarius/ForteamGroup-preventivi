@@ -4,8 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-28T18:33:40+02:00
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-10-31T19:09:53+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -35,7 +35,16 @@ document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
 document.getElementById("tableCliente-note").style.display = 'none';
 document.getElementById("tableAzienda-note").style.display = 'none';
 
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
 
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
 var app = angular.module('myApp', []);
 
 app.controller('stampa', function($scope, $http) {
@@ -133,5 +142,4 @@ console.log(dataFromRiepilogo);
 	     $scope.distributori = response.data;
 	    });
 	}
-
 });
