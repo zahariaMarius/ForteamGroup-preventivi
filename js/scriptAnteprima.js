@@ -4,8 +4,13 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
+<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
  * @Last modified time: 2017-10-31T12:16:31+01:00
+=======
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-10-31T19:09:53+01:00
+>>>>>>> 2bb4ae337ca013aa65e38bbd9232f20fc5ce73dd
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -35,6 +40,7 @@ document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
 document.getElementById("tableCliente-note").style.display = 'none';
 document.getElementById("tableAzienda-note").style.display = 'none';
 
+<<<<<<< HEAD
 //funzione che genera un ID unico per il id del preventivo
 function generatePreventivoID() {
 	var currentDate = new Date();
@@ -53,7 +59,18 @@ function generatePreventivoID() {
 }
 
 generatePreventivoID();
+=======
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+>>>>>>> 2bb4ae337ca013aa65e38bbd9232f20fc5ce73dd
 
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
 var app = angular.module('myApp', []);
 
 app.controller('stampa', function($scope, $http) {
@@ -151,5 +168,4 @@ console.log(dataFromRiepilogo);
 	     $scope.distributori = response.data;
 	    });
 	}
-
 });
