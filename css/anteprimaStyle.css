@@ -5,36 +5,8 @@
  * @Project: kebabCase
  * @Filename: anteprimaStyle.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-01T17:18:14+01:00
+ * @Last modified time: 2017-11-01T17:41:06+01:00
  */
-
- @font-face {
- 	font-family: 'icomoon';
- 	src:url('../fonts/icomoon/icomoon.eot');
- 	src:url('../fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
- 		url('../fonts/icomoon/icomoon.woff') format('woff'),
- 		url('../fonts/icomoon/icomoon.ttf') format('truetype'),
- 		url('../fonts/icomoon/icomoon.svg#icomoon') format('svg');
- 	font-weight: normal;
- 	font-style: normal;
- }
-
- /* Pseudo elements for icons */
-.btn:before,
-.icon-heart:after,
-.icon-star:after,
-.icon-plus:after,
-.icon-file:before {
-	font-family: 'icomoon';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	position: relative;
-	-webkit-font-smoothing: antialiased;
-}
 
 .icon-file-pdf:before {
   content: url(../images/file-pdf.png);
