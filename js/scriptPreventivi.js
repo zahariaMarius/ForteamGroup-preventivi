@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptPreventivi.js
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-01T18:28:15+01:00
+ * @Last modified time: 2017-11-01T21:51:12+01:00
  */
 
 "use strict";
@@ -513,7 +513,7 @@ app.controller('newProduct', function($scope) {
 
 });
 // angular end
-(function() {
+
 
     // detect if IE : from http://stackoverflow.com/a/16657946
     var ie = (function(){
@@ -614,19 +614,25 @@ app.controller('newProduct', function($scope) {
             toggle(1);
         }
     }
-
+ function openFormAzienda(){
+     console.log(" MOOK ");
+      noscroll = true;
+      disable_scroll();
+      classie.remove( container, 'modify' );
+     setTimeout( function() {
+         isRevealed = !isRevealed;
+         isAnimating = false;
+     }, 1200 );
+ }
     function toggle( reveal ) {
         isAnimating = true;
 
         if( reveal ) {
             classie.add( container, 'modify' );
         }
-        else {
-            noscroll = true;
-            disable_scroll();
-            classie.remove( container, 'modify' );
-        }
-
+            // noscroll = true;
+            // disable_scroll();
+            //classie.remove( container, 'modify' );
         // simulating the end of the transition:
         setTimeout( function() {
             isRevealed = !isRevealed;
@@ -652,4 +658,3 @@ app.controller('newProduct', function($scope) {
 
     window.addEventListener( 'scroll', scrollPage );
     trigger.addEventListener( 'click', function() { toggle( 'reveal' ); } );
-})();
