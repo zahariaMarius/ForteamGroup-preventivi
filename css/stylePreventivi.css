@@ -1,3 +1,15 @@
+/**
+ * @Author: Zaharia Laurentiu Jr Marius
+ * @Date:   2017-10-27T12:06:17+02:00
+ * @Email:  laurentiu.zaharia@edu.itspiemonte.it
+ * @Project: kebabCase
+ * @Filename: stylePreventivi.css
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-01T21:42:06+01:00
+ */
+
+
+
 /*rimozione degli spinner sui input number*/
 /*label input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -8,6 +20,16 @@ input::-webkit-inner-spin-button {
 /*table.fixed { table-layout:fixed; }
 table.fixed th { overflow: hidden; }
 table.fixed td { overflow: hidden; }*/
+
+.modal, .modal-backdrop {
+    position: absolute !important;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
 
 .customeProductCodice {
 	border-color: red !important;
