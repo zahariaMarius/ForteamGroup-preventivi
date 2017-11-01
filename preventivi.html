@@ -5,7 +5,6 @@
 		<title>ForteamGroup - Preventivi</title>
 		<link rel="stylesheet" type="text/css" href="css/stylePreventivi.css">
 		<!-- carrello stylesheet -->
-		<link rel="stylesheet" href="Swiper-4.0.3/dist/css/swiper.min.css">
 		<link href="css/font-awesome.css" rel="stylesheet">
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
 	    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
@@ -21,11 +20,14 @@
 	</head>
 
 	<body ng-app="myApp">
-
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-
+		<div id="container" class="containerPreventivi intro-effect-push">
+			<header class="header">
+				<div class="bg-img"><img src="images/7.jpg" alt="Background Image"/></div>
+				<div class="title">
+					<nav class="codrops-demos">
+						<a class="current-demo menu" href="preventivi.html">Crea Preventivo</a>
+   					    <a class="menu" href="#news">Gestisci componenti</a>
+					</nav>
 					<form class="myForm" id="formName" name="myForm">
 						<div ng-controller="validation">
 
@@ -37,31 +39,35 @@
 							      <div class="card-body">
 									  <div class="input-group">
 											<span class="input-group-addon"><img src="images/azienda4.png" alt=""></span>
-											<input type="text" placeholder="Nome aziendale" class="form-control is-invalid" ng-model="azienda" name="azienda" ng-change="change()" required>
+											<input type="text" placeholder="Nome aziendale" minlength="5" class="form-control" ng-model="azienda" name="azienda" ng-change="change()" required>
 										</div>
+										<small ng-show="myForm.azienda.$invalid" style="color: #bc2131">Inserire il nome completo dell'azienda</small>
 
 										<div class="input-group">
 											<span class="input-group-addon"><img src="images/indirizzo2.png" alt=""></span>
-											<input type="text" placeholder="indirizzo stradale" class="form-control is-invalid" name="indirizzo" ng-model="indirizzo" ng-change="change()" required>
+											<input type="text" minlength="5" placeholder="indirizzo stradale" class="form-control" name="indirizzo" ng-model="indirizzo" ng-change="change()" required>
 										</div>
+										<small ng-show="myForm.indirizzo.$invalid" style="color: #bc2131">Inserire l'indirizzo dell'azienda</small>
 
 										<div class="input-group">
 											<span class="input-group-addon"><img src="images/IVA.png" alt=""></span>
-											<input type="number" placeholder="Partita IVA" class="form-control is-invalid" ng-model="partitaIva" name="partitaIva" ng-change="change()" required>
+											<input type="number" placeholder="Partita IVA" class="form-control" pattern=".{11,11}" ng-model="partitaIva" name="partitaIva" ng-change="change()" required>
 										</div>
+										<small ng-show="myForm.partitaIva.$invalid" style="color: #bc2131">Inserire il numero di Partita IVA dell'azienda richiedente il preventivo</small>
 
 										<div class="input-group">
 											<span class="input-group-addon"><img src="images/codFiscale.png" alt=""></span>
-											<input type="text" placeholder="Codice fiscale" class="form-control" ng-model="codiceFiscale" name="codiceFiscale" ng-change="change()">
+											<input type="text" placeholder="Codice fiscale" class="form-control text-uppercase" maxlength="11" ng-model="codiceFiscale" name="codiceFiscale" ng-change="change()">
 										</div>
+										<small ng-show="myForm.codiceFiscale.$invalid" style="color: #bc2131">Inserire il codice fiscale di undici caratteri dell'azienda richiedente il preventivo</small>
 									</div>
 							      </div>
 							    </div>
 							  </div>
                         </form>
-					</div>
-
-	<div class="swiper-slide provaModal">
+			</header>
+			<button class="trigger"><span></span></button>
+			<div>
 				<div ng-controller="carrello">
 					<div class="topnav">
 					  <a class="logo" href="index.html"><img id="" src="images/logo.png"></a>
@@ -69,7 +75,7 @@
 					  <a class="menu" href="#news">Gestisci componenti</a>
 					  <button class="menu" onclick="openFormAzienda()"> Visualizza dati Azienda</button>
 					  <div>
-						<a ng-click="myFunction()" class="carrello" data-toggle="modal" id="btnCarrello"> Carrello </a>
+						<a ng-click="myFunction()" class="carrello" data-toggle="modal" data-target="#carrello" id="btnCarrello"> Carrello </a>
 			          </div>
 					</div>
 
@@ -310,9 +316,8 @@
 						</div>
 						<!-- modal end -->
 			     	</div>
-
-
-					<!-- model new element -start -->
+			</div>
+			<section class="related">
 				<div ng-controller="newProduct">
 					<div class="modal fade" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -513,12 +518,11 @@
 								</div>
 							</div>
 						</div>
+
 				</div>
-			</div>
-			</div>
-			<div class="swiper-pagination"></div>
+			</section>
 		</div><!-- /container -->
-		<script src="Swiper-4.0.3/dist/js/swiper.min.js"></script>
+
         <script src="js/classie.js"></script>
 		<script src="js/scriptPreventivi.js"></script>
 		<script src="js/bootstrap.js"></script>
