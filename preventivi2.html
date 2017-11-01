@@ -21,11 +21,14 @@
 	</head>
 
 	<body ng-app="myApp">
-
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-
+		<div id="container" class="containerPreventivi intro-effect-push">
+			<header class="header">
+				<div class="bg-img"><img src="images/7.jpg" alt="Background Image"/></div>
+				<div class="title">
+					<nav class="codrops-demos">
+						<a class="current-demo menu" href="preventivi.html">Crea Preventivo</a>
+   					    <a class="menu" href="#news">Gestisci componenti</a>
+					</nav>
 					<form class="myForm" id="formName" name="myForm">
 						<div ng-controller="validation">
 
@@ -59,16 +62,16 @@
 							    </div>
 							  </div>
                         </form>
-					</div>
-
-	<div class="swiper-slide provaModal">
+			</header>
+			<button class="trigger"><span></span></button>
+			<div>
 				<div ng-controller="carrello">
 					<div class="topnav">
 					  <a class="logo" href="index.html"><img id="" src="images/logo.png"></a>
 					  <a class="active menu" href="preventivi.html">Crea Preventivo</a>
 					  <a class="menu" href="#news">Gestisci componenti</a>
 					  <div>
-						<a ng-click="myFunction()" class="carrello" data-toggle="modal" id="btnCarrello"> Carrello </a>
+						<a ng-click="myFunction()" class="carrello" data-toggle="modal" data-target="#carrello" id="btnCarrello"> Carrello </a>
 			          </div>
 					</div>
 
@@ -309,9 +312,8 @@
 						</div>
 						<!-- modal end -->
 			     	</div>
-
-
-					<!-- model new element -start -->
+			</div>
+			<section class="related">
 				<div ng-controller="newProduct">
 					<div class="modal fade" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -512,10 +514,9 @@
 								</div>
 							</div>
 						</div>
+
 				</div>
-			</div>
-			</div>
-			<div class="swiper-pagination"></div>
+			</section>
 		</div><!-- /container -->
 		<script src="Swiper-4.0.3/dist/js/swiper.min.js"></script>
         <script src="js/classie.js"></script>
