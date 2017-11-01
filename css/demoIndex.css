@@ -1,3 +1,13 @@
+/**
+ * @Author: Toqir Nasir
+ * @Date:   2017-10-26T22:18:49+02:00
+ * @Email:  toqir.nasir@edu.itspiemonte.it
+ * @Filename: demoIndex.css
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-01T18:01:30+01:00
+ */
+
+
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,800|Lora:400italic|Playfair+Display:700);
 @font-face {
 	font-weight: normal;
@@ -25,19 +35,6 @@ body {
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
-}
-
-.demo-7 {
-	background: #f5f5f5;
-}
-
-.demo-5 {
-	background: #f8dab4;
-	color: #5c554c;
-}
-
-.demo-6 {
-	background: #f1f1f1;
 }
 
 .demo-1 {
@@ -124,7 +121,7 @@ a:hover, a:focus {
 }
 
 .codrops-demos {
-	padding: 0 0 1em;
+	padding: 2% 40%;
 	position: relative;
 }
 
