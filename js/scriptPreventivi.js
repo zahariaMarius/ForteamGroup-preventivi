@@ -5,10 +5,8 @@
  * @Project: kebabCase
  * @Filename: scriptPreventivi.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-31T12:21:31+01:00
+ * @Last modified time: 2017-11-01T13:39:34+01:00
  */
-
-
 
 "use strict";
 //variabile contenente la select dei distributori
@@ -24,9 +22,57 @@ if (selectDistributori) {
   selectDistributori.addEventListener('change', showTables, false);
 }
 
+//funzione che mostra le tabelle con gli accessori ecc....
 function showTables() {
   document.getElementById("btnCarrello").style.visibility = "visible";
   var card = document.getElementById('card').style.display = 'block';
+}
+
+//funzione che controlla la validità della partivaIVA
+function controlIfPartitaIVAisValid(pi) {
+	if( pi == '' )  return true;
+	if( ! /^[0-9]{11}$/.test(pi) )
+	return "La partita IVA deve contenere 11 cifre.";
+	var s = 0;
+	for( i = 0; i <= 9; i += 2 )
+		s += pi.charCodeAt(i) - '0'.charCodeAt(0);
+		for(var i = 1; i <= 9; i += 2 ){
+			var c = 2*( pi.charCodeAt(i) - '0'.charCodeAt(0) );
+			if( c > 9 )  c = c - 9;
+				s += c;
+		}
+		var atteso = ( 10 - s%10 )%10;
+		if( atteso != pi.charCodeAt(10) - '0'.charCodeAt(0) )
+			return "La partita IVA non è valida:\n" +
+				"il codice di controllo non corrisponde.\n";
+		return true;
+}
+
+//funzione che controlla se il codice fiscale inserito è valido
+function controlIfCodiceFiscaleIsValid(cf) {
+	cf = cf.toUpperCase();
+	if( cf == '' )  return true;
+	if( ! /^[0-9A-Z]{16}$/.test(cf) )
+		return "Il codice fiscale deve contenere 16 tra lettere e cifre.";
+	var map = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17,
+		19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23];
+	var s = 0;
+	for(var i = 0; i < 15; i++){
+		var c = cf.charCodeAt(i);
+		if( c < 65 )
+			c = c - 48;
+		else
+			c = c - 55;
+		if( i % 2 == 0 )
+			s += map[c];
+		else
+			s += c < 10? c : c - 10;
+	}
+	var atteso = String.fromCharCode(65 + s % 26);
+	if( atteso != cf.charAt(15) )
+		return "Il codice fiscale non è valido:\n" +
+			"il codice di controllo non corrisponde.\n";
+	return true;
 }
 
 // angular start
@@ -61,28 +107,13 @@ app.controller('validation', function($scope, cartData) {
 	var user = {};
 	var flagEntrata = false;
 
-	//funzione che controlla la validità della partivaIVA
-	function ControllaPIVA(pi) {
-		if( pi == '' )  return true;
-		if( ! /^[0-9]{11}$/.test(pi) )
-		return "La partita IVA deve contenere 11 cifre.";
-		var s = 0;
-		for( i = 0; i <= 9; i += 2 )
-			s += pi.charCodeAt(i) - '0'.charCodeAt(0);
-			for(var i = 1; i <= 9; i += 2 ){
-				var c = 2*( pi.charCodeAt(i) - '0'.charCodeAt(0) );
-				if( c > 9 )  c = c - 9;
-					s += c;
-			}
-			var atteso = ( 10 - s%10 )%10;
-			if( atteso != pi.charCodeAt(10) - '0'.charCodeAt(0) )
-				return "La partita IVA non è valida:\n" +
-					"il codice di controllo non corrisponde.\n";
-			return true;
-	}
-
     $scope.change = function() {
-		if($scope.myForm.$valid) {
+		var partitaIva = $scope.partitaIva;
+		var codiceFiscale = $scope.codiceFiscale;
+		partitaIva = partitaIva.toString();
+		var checkIfPartitaIVAisValid = controlIfPartitaIVAisValid(partitaIva);
+		var checkIfCodiceFiscaleIsValid = controlIfCodiceFiscaleIsValid(codiceFiscale);
+		if($scope.myForm.$valid && checkIfPartitaIVAisValid && checkIfCodiceFiscaleIsValid) {
 			if(!flagEntrata){
 				$('#collapseOne').collapse("hide");
 			}

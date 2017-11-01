@@ -353,7 +353,7 @@
 
 							<div class="card" id="datiAziendaCard">
 							    <div class="card-header text-center" role="tab" id="headingOne">
-									<p class="lead" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Dati azienda richiedente preventivo</p>
+									<p class="lead" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Dati cliente richiedente preventivo</p>
 							    </div>
 							    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
 							      <div class="card-body">
@@ -361,25 +361,25 @@
 											<span class="input-group-addon"><img src="images/azienda4.png" alt=""></span>
 											<input type="text" placeholder="Nome aziendale" minlength="5" class="form-control" ng-model="azienda" name="azienda" ng-change="change()" required>
 										</div>
-										<small ng-show="myForm.azienda.$invalid" style="color: #bc2131">Inserire il nome completo dell'azienda</small>
+										<small ng-show="myForm.azienda.$invalid" style="color: #bc2131">Inserire il nome completo del cliente</small>
 
 										<div class="input-group">
 											<span class="input-group-addon"><img src="images/indirizzo2.png" alt=""></span>
 											<input type="text" minlength="5" placeholder="indirizzo stradale" class="form-control" name="indirizzo" ng-model="indirizzo" ng-change="change()" required>
 										</div>
-										<small ng-show="myForm.indirizzo.$invalid" style="color: #bc2131">Inserire l'indirizzo dell'azienda</small>
+										<small ng-show="myForm.indirizzo.$invalid" style="color: #bc2131">Inserire l'indirizzo del cliente</small>
 
 										<div class="input-group">
 											<span class="input-group-addon"><img src="images/IVA.png" alt=""></span>
 											<input type="number" placeholder="Partita IVA" class="form-control" pattern=".{11,11}" ng-model="partitaIva" name="partitaIva" ng-change="change()" required>
 										</div>
-										<small ng-show="myForm.partitaIva.$invalid" style="color: #bc2131">Inserire il numero di Partita IVA dell'azienda richiedente il preventivo</small>
+										<small ng-show="myForm.partitaIva.$invalid" style="color: #bc2131">Inserire il numero di Partita IVA del cliente</small>
 
 										<div class="input-group">
 											<span class="input-group-addon"><img src="images/codFiscale.png" alt=""></span>
 											<input type="text" placeholder="Codice fiscale" class="form-control text-uppercase" maxlength="11" ng-model="codiceFiscale" name="codiceFiscale" ng-change="change()">
 										</div>
-										<small ng-show="myForm.codiceFiscale.$invalid" style="color: #bc2131">Inserire il codice fiscale di undici caratteri dell'azienda richiedente il preventivo</small>
+										<small ng-show="myForm.codiceFiscale.$invalid" style="color: #bc2131">Inserire il codice fiscale di undici caratteri del cliente</small>
 									</div>
 							      </div>
 							    </div>
