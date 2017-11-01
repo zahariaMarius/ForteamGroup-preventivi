@@ -4,7 +4,7 @@
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: componentIndex.css
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-01T17:26:49+01:00
+ * @Last modified time: 2017-11-01T17:40:33+01:00
  */
 
 
@@ -12,11 +12,11 @@
 	font-weight: normal;
 	font-style: normal;
 	font-family: 'icomoon';
-	src:url('../fonts/icomoon/icomoon.eot?-ee0u0f');
-	src:url('../fonts/icomoon/icomoon.eot?#iefix-ee0u0f') format('embedded-opentype'),
-		url('../fonts/icomoon/icomoon.woff?-ee0u0f') format('woff'),
-		url('../fonts/icomoon/icomoon.ttf?-ee0u0f') format('truetype'),
-		url('../fonts/icomoon/icomoon.svg?-ee0u0f#icomoon') format('svg');
+	src:url('../fonts/icomoonPreventivi/icomoon.eot?-ee0u0f');
+	src:url('../fonts/icomoonPreventivi/icomoon.eot?#iefix-ee0u0f') format('embedded-opentype'),
+		url('../fonts/icomoonPreventivi/icomoon.woff?-ee0u0f') format('woff'),
+		url('../fonts/icomoonPreventivi/icomoon.ttf?-ee0u0f') format('truetype'),
+		url('../fonts/icomoonPreventivi/icomoon.svg?-ee0u0f#icomoon') format('svg');
 }
 
 html, body, .container, .header {
