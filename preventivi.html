@@ -26,49 +26,23 @@
 
 		<div id="container" class="containerPreventivi intro-effect-push">
 			<header class="header">
-				<div class="bg-img"><img src="images/7.jpg" alt="Background Image"/></div>
+				<div class="bg-img"><img src="images/10.jpg" alt="Background Image"/></div>
+				<!-- <img src="images/10.jpg" alt=""> -->
 				<div class="title">
-					<nav class="codrops-demos">
-						<a class="current-demo menu" href="preventivi.html">Crea Preventivo</a>
-   					    <a class="menu" href="#news">Gestisci componenti</a>
-					</nav>
-					<form class="myForm" id="formName" name="myForm">
-						<div ng-controller="validation">
-
-							<div class="card" id="datiAziendaCard">
-							    <div class="card-header text-center bg-primary text-white" role="tab" id="headingOne">
-									<p class="lead" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Dati azienda richiedente preventivo</p>
-							    </div>
-							    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-							      <div class="card-body">
-
-									  <span class="input input--minoru">
-					  					<input class="input__field input__field--minoru" type="text" id="input-13" />
-					  					<label class="input__label input__label--minoru" for="input-13">
-					  						<span class="input__label-content input__label-content--minoru">First Name</span>
-					  					</label>
-					  				</span>
-
-
-									</div>
-							      </div>
-							    </div>
-							  </div>
-                        </form>
+					<h1>Crea il tuo preventivo in semplici passi</h1>
 			</header>
-			<button class="trigger"><span></span></button>
+			<button class="trigger arrow"><span></span></button>
 			<div>
 				<div ng-controller="carrello">
 					<div class="topnav">
 					  <a class="logo" href="index.html"><img id="" src="images/logo.png"></a>
 					  <a class="active menu" href="preventivi.html">Crea Preventivo</a>
 					  <a class="menu" href="#news">Gestisci componenti</a>
-					  <button class="menu" onclick="openFormAzienda()"> Visualizza dati Azienda</button>
+					  <!-- <button class="menu" onclick="openFormAzienda()"> Visualizza dati Azienda</button> -->
 					  <div>
 						<a ng-click="myFunction()" class="carrello" data-toggle="modal" data-target="#carrello" id="btnCarrello"> Carrello </a>
 			          </div>
 					</div>
-
 						<!-- Modal carrelo - start -->
 						<div  class="modal fade" id="carrello" tabindex="-1" role="dialog" aria-labelledby="carrelloLabel" aria-hidden="true">
 						  <div class="modal-dialog modal-lg" role="document">
@@ -308,6 +282,8 @@
 			     	</div>
 			</div>
 			<section class="related">
+
+
 				<div ng-controller="newProduct">
 					<div class="modal fade" id="newElementModal" tabindex="-1" role="dialog" aria-labelledby="newElementModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -371,6 +347,33 @@
 				<!-- modal new element - end -->
 
 
+				<div ng-controller="validation">
+					<div class="card" id="datiAziendaCard">
+						<div class="card-header text-center" role="tab" id="headingOne">
+							<p class="lead" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Dati cliente richiedente preventivo</p>
+						</div>
+						<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+							<div class="card-body">
+								<div class="input-group">
+									<span class="input-group-addon"><img src="images/azienda4.png" alt=""></span>
+									<input type="text" placeholder="Nome aziendale" class="form-control" ng-model="azienda" name="azienda" ng-change="change()" required>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon"><img src="images/indirizzo2.png" alt=""></span>
+									<input type="text" placeholder="indirizzo stradale" class="form-control" name="indirizzo" ng-model="indirizzo" ng-change="change()" required>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon"><img src="images/IVA.png" alt=""></span>
+									<input type="text" placeholder="Partita IVA" class="form-control" ng-model="partitaIva" name="partitaIva" ng-change="change()" required>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon"><img src="images/codFiscale.png" alt=""></span>
+									<input type="text" placeholder="Codice fiscale" class="form-control" ng-model="codiceFiscale" name="codiceFiscale" ng-change="change()">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 						<div class="form-group" ng-controller="formSelectDistributore" id="distributore">
 							<div class="text-center lead selectDistriLabel">

@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptPreventivi.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-01T23:33:56+01:00
+ * @Last modified time: 2017-11-02T14:08:20+01:00
  */
 
 "use strict";
@@ -15,7 +15,7 @@ var selectDistributori = document.getElementById('selectDistributori');
 var card = document.getElementById('card').style.display = 'none';
 //variabile conntenete il bottone del carrello
 var btnCarrello = document.getElementById("btnCarrello").style.visibility  = "hidden";
-var distri = document.getElementById("distributore").style.visibility = "visible";
+//var distri = document.getElementById("distributore").style.visibility = "visible";
 
 
 if (selectDistributori) {
@@ -75,6 +75,24 @@ function controlIfCodiceFiscaleIsValid(cf) {
 	return true;
 }
 
+//controllo se il nome non è troppo corto
+function controlIfNomeAziendaIsValid(nome) {
+	if (nome.length > 5) {
+		return true
+	}else {
+		return "Inserire il nome completo del cliente";
+	}
+}
+
+//funzione che controlla se l'indirizzo inserito non è abbastanza corto
+function controlIfIndirizzoIsValid(indirizzo) {
+	if(indirizzo.length > 5) {
+		return true;
+	}else {
+		return "Inserire l'indirizzo completo del cliente";
+	}
+}
+
 // angular start
 var app = angular.module('myApp', []);
 /**
@@ -106,13 +124,19 @@ var rowData = {};
 app.controller('validation', function($scope, cartData) {
 	var user = {};
 	var flagEntrata = false;
+
     $scope.change = function() {
+		var nomeAzienda = $scope.azienda;
+		var indirizzoAzienda = $scope.indirizzo;
 		var partitaIva = $scope.partitaIva;
 		var codiceFiscale = $scope.codiceFiscale;
-		partitaIva = partitaIva.toString();
-		var checkIfPartitaIVAisValid = controlIfPartitaIVAisValid(partitaIva);
-		var checkIfCodiceFiscaleIsValid = controlIfCodiceFiscaleIsValid(codiceFiscale);
-		if($scope.myForm.$valid && checkIfPartitaIVAisValid && checkIfCodiceFiscaleIsValid) {
+
+		if (nomeAzienda){var checkIfNomeIsValid = controlIfNomeAziendaIsValid(nomeAzienda);}
+		if (indirizzoAzienda){var checkIfIndirizzoIsValid = controlIfIndirizzoIsValid(indirizzoAzienda);}
+		if(partitaIva){var checkIfPartitaIVAisValid = controlIfPartitaIVAisValid(partitaIva);}
+		if (codiceFiscale){var checkIfCodiceFiscaleIsValid = controlIfCodiceFiscaleIsValid(codiceFiscale);}
+
+		if((checkIfNomeIsValid == true) && (checkIfIndirizzoIsValid) && (checkIfPartitaIVAisValid == true)) {
 			if(!flagEntrata){
 				$('#collapseOne').collapse("hide");
 			}
@@ -658,42 +682,3 @@ app.controller('newProduct', function($scope) {
 
     window.addEventListener( 'scroll', scrollPage );
     trigger.addEventListener( 'click', function() { toggle( 'reveal' ); } );
-
-
-var textInput = document.querySelector('input');
-var inputWrap = textInput.parentElement ;
-var inputWidth = parseInt(getComputedStyle(inputWrap).width);
-var svgText = Snap('.line');
-var qCurve = inputWidth / 2;  // For correct curving on diff screen sizes
-var textPath = svgText.path("M0 0 " + inputWidth + " 0");
-var textDown = function(){
-    textPath.animate({d:"M0 0 Q" + qCurve + " 40 " + inputWidth + " 0"},150,mina.easeout);
-};
-var textUp = function(){
-  textPath.animate({d:"M0 0 Q" + qCurve + " -30 " + inputWidth + " 0"},150,mina.easeout);
-};
-var textSame = function(){
-  textPath.animate({d:"M0 0 " + inputWidth + " 0"},200,mina.easein);
-};
-var textRun = function(){
-  setTimeout(textDown, 200 );
-  setTimeout(textUp, 400 );
-  setTimeout(textSame, 600 );
-};
-
-(function(){
-    textInput.addEventListener('focus', function(){
-      var parentDiv = this.parentElement;
-      parentDiv.classList.add('active');
-      textRun();
-      this.addEventListener('blur', function(){
-        var rg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.]{3,9})+\.([A-Za-z]{2,4})$/;
-        this.value == 0 ? parentDiv.classList.remove('active') : null;
-        !rg.test(this.value) && this.value != 0 ?
-         (parentDiv.classList.remove('valid'), parentDiv.classList.add('invalid'), parentDiv.style.transformOrigin="center")
-         : rg.test(this.value) && this.value != 0 ?
-        (parentDiv.classList.add('valid'), parentDiv.classList.remove('invalid'), parentDiv.style.transformOrigin="bottom") :null;
-        });
-     parentDiv.classList.remove('valid', 'invalid')
-    });
-})();

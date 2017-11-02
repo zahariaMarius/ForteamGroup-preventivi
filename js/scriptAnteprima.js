@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-01T15:00:01+01:00
+ * @Last modified time: 2017-11-02T14:40:20+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -53,8 +53,12 @@ app.controller('stampa', function($scope, $http) {
 
 console.log(dataFromRiepilogo);
 
+
 	// scope dati azienda
-	$scope.azienda = azienda;
+	if (azienda[0].Codice_fiscale === undefined) {
+		azienda[0].Codice_fiscale = "NON FORNITO";
+		$scope.azienda = azienda;
+	}
 
 	// scope dati distributore
 	if (distributore[0].Codice != null) {
@@ -68,42 +72,50 @@ console.log(dataFromRiepilogo);
 
 	// scope dati accessori
 	if (accessori) {
-		document.querySelectorAll('[id=table-accessori]')[0].style.display = 'table';
-		document.querySelectorAll('[id=table-accessori]')[1].style.display = 'table';
-		$scope.accessori = accessori;
-		$scope.Ricavo_accessori = totali.Ricavo_accessori;
-		$scope.Guadagno_accessori = totali.Guadagno_accessori;
-		$scope.Guadagno_accessori_percentuale = totali.Guadagno_accessori_percentuale;
+		if (Object.keys(accessori).length != 0) {
+			document.querySelectorAll('[id=table-accessori]')[0].style.display = 'table';
+			document.querySelectorAll('[id=table-accessori]')[1].style.display = 'table';
+			$scope.accessori = accessori;
+			$scope.Ricavo_accessori = totali.Ricavo_accessori;
+			$scope.Guadagno_accessori = totali.Guadagno_accessori;
+			$scope.Guadagno_accessori_percentuale = totali.Guadagno_accessori_percentuale;
+		}
 	}
 
 	// scope dati software
 	if (software) {
-		document.querySelectorAll('[id=table-software]')[0].style.display = 'table';
-		document.querySelectorAll('[id=table-software]')[1].style.display = 'table';
-		$scope.software = software;
-		$scope.Ricavo_software = totali.Ricavo_software;
-		$scope.Guadagno_software = totali.Guadagno_software;
-		$scope.Guadagno_software_percentuale = totali.Guadagno_software_percentuale;
+		if (Object.keys(software).length) {
+			document.querySelectorAll('[id=table-software]')[0].style.display = 'table';
+			document.querySelectorAll('[id=table-software]')[1].style.display = 'table';
+			$scope.software = software;
+			$scope.Ricavo_software = totali.Ricavo_software;
+			$scope.Guadagno_software = totali.Guadagno_software;
+			$scope.Guadagno_software_percentuale = totali.Guadagno_software_percentuale;
+		}
 	}
 
 	// scope dati licenze
 	if (licenze) {
-		document.querySelectorAll('[id=table-licenze]')[0].style.display = 'table';
-		document.querySelectorAll('[id=table-licenze]')[1].style.display = 'table';
-		$scope.licenze = licenze
-		$scope.Ricavo_licenze = totali.Ricavo_licenze;
-		$scope.Guadagno_licenze = totali.Guadagno_licenze;
-		$scope.Guadagno_licenze_percentuale = totali.Guadagno_licenze_percentuale;
+		if (Object.keys(licenze).length) {
+			document.querySelectorAll('[id=table-licenze]')[0].style.display = 'table';
+			document.querySelectorAll('[id=table-licenze]')[1].style.display = 'table';
+			$scope.licenze = licenze
+			$scope.Ricavo_licenze = totali.Ricavo_licenze;
+			$scope.Guadagno_licenze = totali.Guadagno_licenze;
+			$scope.Guadagno_licenze_percentuale = totali.Guadagno_licenze_percentuale;
+		}
 	}
 
 	// scope dati servizi
 	if (servizi) {
-		document.querySelectorAll('[id=table-servizi]')[0].style.display = 'table';
-		document.querySelectorAll('[id=table-servizi]')[1].style.display = 'table';
-		$scope.servizi = servizi
-		$scope.Ricavo_servizi = totali.Ricavo_servizi;
-		$scope.Guadagno_servizi = totali.Guadagno_servizi;
-		$scope.Guadagno_servizi_percentuale = totali.Guadagno_servizi_percentuale;
+		if (Object.keys(servizi).length) {
+			document.querySelectorAll('[id=table-servizi]')[0].style.display = 'table';
+			document.querySelectorAll('[id=table-servizi]')[1].style.display = 'table';
+			$scope.servizi = servizi
+			$scope.Ricavo_servizi = totali.Ricavo_servizi;
+			$scope.Guadagno_servizi = totali.Guadagno_servizi;
+			$scope.Guadagno_servizi_percentuale = totali.Guadagno_servizi_percentuale;
+		}
 	}
 
 	// scope dati totale complessivo azienda

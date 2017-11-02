@@ -3,10 +3,19 @@
  * @Date:   2017-10-31T17:31:40+01:00
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: component.css
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-10-31T19:00:18+01:00
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-02T14:39:35+01:00
  */
 
+
+.footer {
+	text-align: center;
+}
+
+.footer p{
+	font-size: 12px !important;
+	padding: 0px !important;
+}
 
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
