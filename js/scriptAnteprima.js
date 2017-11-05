@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-02T14:40:20+01:00
+ * @Last modified time: 2017-11-02T17:51:23+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
