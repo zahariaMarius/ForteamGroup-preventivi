@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-06T11:45:39+01:00
+ * @Last modified time: 2017-11-06T22:16:13+01:00
  */
 "use strict";
 /**
@@ -48,12 +48,28 @@ var canoniSelected = [];
  * @type {Array}
  */
 var totalItemsSelected = [];
+//all totalItemsSelected distributore variables
 totalItemsSelected["totalDistributoreSelected"] = 0;
+totalItemsSelected["distributoreSelectedRevenue"] = 0;
+totalItemsSelected["distributoreSelectedPercentageRevenue"] = 0;
+//all totalItemsSelected prodottiHardware variables
 totalItemsSelected["totalProdottiHardwareSelected"] = 0;
+totalItemsSelected["prodottiHardwareSelectedRevenue"] = 0;
+totalItemsSelected["prodottiHardwareSelectedPercentageRevenue"] = 0;
+//all totalItemsSelected licenze variables
 totalItemsSelected["totalLicenzeSelected"] = 0;
+totalItemsSelected["licenzeSelectedRevenue"] = 0;
+totalItemsSelected["licenzeSelectedPercentageRevenue"] = 0;
+//all totalItemsSelected local variables
 totalItemsSelected["totalLocalSelected"] = 0;
+totalItemsSelected["localSelectedRevenue"] = 0;
+totalItemsSelected["localSelectedPercentageRevenue"] = 0;
+//all totalItemsSelected canoni variables
 totalItemsSelected["totalCanoniSelected"] = 0;
-totalItemsSelected["totalAllItemsSelected"] = 0;
+totalItemsSelected["canoniSelectedRevenue"] = 0;
+totalItemsSelected["canoniSelectedPercentageRevenue"] = 0;
+//totalItemsSelected overall total variable
+totalItemsSelected["overallTotalAllItemsSelected"] = 0;
 
 
 /**
@@ -140,8 +156,12 @@ function checkIfCodiceFiscaleClienteIsValid(cf) {
  * @param  {[Object]} item [item selected from table]
  * @return {[type]}      [description]
  */
-function calculatePrezzoListinoForQuantity(item) {
+function calculatePrezzoListinoForQuantityAndRevenueAndPercentageRevenue(item) {
 	item.Prezzo_listino_quantita = item.Prezzo_listino * item.Quantita;
+	item.Ricavo = (item.Prezzo_listino - item.Prezzo_acquisto) * item.Quantita;
+	item.Ricavo_percentuale = (item.Ricavo * 100) / item.Prezzo_listino_quantita;
+	item.Sconto = 0;
+	console.log(item);
 }
 
 /**
@@ -183,18 +203,40 @@ function calculateTotalItemsSelected(items) {
 }
 
 /**
- * [calculateTotalAllItemsSelected calculate all items selected complessive total]
- * @return {[Number]} [complessive total]
+ * [calculateRevenueItemsSelected calculate revenue of all selected items]
+ * @param  {[Array]} items [array of items selected]
+ * @return {[Number]}       [return total revenue]
  */
-function calculateTotalAllItemsSelected() {
+function calculateRevenueItemsSelected(items) {
 	var total = 0;
-	totalItemsSelected["totalAllItemsSelected"] = 0;
-	for (var key in totalItemsSelected) {
-		if (totalItemsSelected.hasOwnProperty(key)) {
-			total += totalItemsSelected[key];
-		}
+	for (var i = 0; i < items.length; i++) {
+		total += items[i].Ricavo;
 	}
 	return total;
+}
+
+/**
+ * [calculatePercentageRevenueItemsSelected calculate percentage revenue of all selected items]
+ * @param  {[Number]} totalItemsSelectedRevenue [total of all revenue items selected]
+ * @param  {[Number]} totalItemsSelected        [total items selected]
+ * @return {[Number]}                           [return total percentage revenue]
+ */
+function calculatePercentageRevenueItemsSelected(totalItemsSelectedRevenue, totalItemsSelected) {
+	var total = 0;
+	total = (totalItemsSelectedRevenue * 100) / totalItemsSelected;
+	return total;
+}
+
+/**
+ * [calculateTotalAllItemsSelected calculate all items selected overall total]
+ * @return {[Number]} [overall total]
+ */
+function calculateOverallTotalAllItemsSelected() {
+	totalItemsSelected["overallTotalAllItemsSelected"] = 0;
+	totalItemsSelected["overallTotalAllItemsSelected"] = totalItemsSelected["totalDistributoreSelected"] +
+	totalItemsSelected["totalProdottiHardwareSelected"] + totalItemsSelected["totalLicenzeSelected"] +
+	totalItemsSelected["totalLocalSelected"] + totalItemsSelected["totalCanoniSelected"];
+	return totalItemsSelected["overallTotalAllItemsSelected"];
 }
 
 /**
@@ -217,6 +259,13 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 		distributoreSelected.splice(0, 1);
 		totalItemsSelected["totalDistributoreSelected"] = 0;
 	}
+
+	distributore.Ricavo = distributore.Prezzo_listino - distributore.Prezzo_acquisto;
+	distributore.Ricavo_percentuale = (distributore.Ricavo * 100) / distributore.Prezzo_listino;
+	distributore.Sconto = 0;
+	totalItemsSelected["distributoreSelectedRevenue"] = distributore.Ricavo;
+	totalItemsSelected["distributoreSelectedPercentageRevenue"] = distributore.Ricavo_percentuale;
+	console.log(totalItemsSelected);
 }
 
 /**
@@ -345,9 +394,10 @@ app.controller('preventivoController', function($scope, $http) {
 		$scope.cartDistributoreSelected = distributoreSelected;
 		//assign to in cart total scope all total
 		$scope.cartTotalDistributoreSelected = totalItemsSelected["totalDistributoreSelected"];
-		//calculate and assign the complessive total of all items selected
-		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
-		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
+		//calculate and assign the overall total of all items selected
+		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
+		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		console.log(distributore);
 	}
 
 	/**
@@ -360,17 +410,22 @@ app.controller('preventivoController', function($scope, $http) {
 		quantita = checkIfQuantitaIsNumber(quantita);
 		//create new Object property "quantita"
 		prodottoHardware.Quantita = quantita;
-		calculatePrezzoListinoForQuantity(prodottoHardware);
+		calculatePrezzoListinoForQuantityAndRevenueAndPercentageRevenue(prodottoHardware);
 		addRemoveItemsFromArrayOfSelectedItem(prodottiHardwareSelected, prodottoHardware);
 		//assign to in cart items scope all items selected
 		$scope.cartProdottiHardwareSelected = prodottiHardwareSelected;
-		//calculate and assign to array the total complessive of selected items
+		//calculate and assign to array the overall total of selected items
 		totalItemsSelected["totalProdottiHardwareSelected"] = calculateTotalItemsSelected(prodottiHardwareSelected);
+		//calculate and assign to array the total revenue of selected items
+		totalItemsSelected["prodottiHardwareSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		//calculate and assign to array the total percentage revenue of selected items
+		totalItemsSelected["prodottiHardwareSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["prodottiHardwareSelectedRevenue"], totalItemsSelected["totalProdottiHardwareSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalProdottiHardwareSelected = totalItemsSelected["totalProdottiHardwareSelected"];
-		//calculate and assign the complessive total of all items selected
-		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
-		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
+		//calculate and assign the overall total of all items selected
+		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
+		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		console.log(totalItemsSelected);
 	}
 
 	/**
@@ -383,17 +438,22 @@ app.controller('preventivoController', function($scope, $http) {
 		quantita = checkIfQuantitaIsNumber(quantita);
 		//create new Object property "quantita"
 		licenza.Quantita = quantita;
-		calculatePrezzoListinoForQuantity(licenza)
+		calculatePrezzoListinoForQuantityAndRevenueAndPercentageRevenue(licenza);
 		addRemoveItemsFromArrayOfSelectedItem(licenzeSelected, licenza);
 		//assign to in cart items scope all items selected
 		$scope.cartLicenzeSelected = licenzeSelected;
-		//calculate and assign to array the total complessive of selected items
+		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalLicenzeSelected"] = calculateTotalItemsSelected(licenzeSelected);
+		//calculate and assign to array the total revenue of selected items
+		totalItemsSelected["licenzeSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		//calculate and assign to array the total percentage revenue of selected items
+		totalItemsSelected["licenzeSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["licenzeSelectedRevenue"], totalItemsSelected["totalLicenzeSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalLicenzeSelected = totalItemsSelected["totalLicenzeSelected"];
-		//calculate and assign the complessive total of all items selected
-		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
-		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
+		//calculate and assign the overall total of all items selected
+		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
+		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		console.log(totalItemsSelected);
 	}
 
 	/**
@@ -406,17 +466,22 @@ app.controller('preventivoController', function($scope, $http) {
 		quantita = checkIfQuantitaIsNumber(quantita);
 		//create new Object property "quantita"
 		local.Quantita = quantita;
-		calculatePrezzoListinoForQuantity(local)
+		calculatePrezzoListinoForQuantityAndRevenueAndPercentageRevenue(local);
 		addRemoveItemsFromArrayOfSelectedItem(localSelected, local);
 		//assign to in cart items scope all items selected
 		$scope.cartLocalSelected = localSelected;
-		//calculate and assign to array the total complessive of selected items
+		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalLocalSelected"] = calculateTotalItemsSelected(localSelected);
+		//calculate and assign to array the total revenue of selected items
+		totalItemsSelected["localSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		//calculate and assign to array the total percentage revenue of selected items
+		totalItemsSelected["localSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["localSelectedRevenue"], totalItemsSelected["totalLocalSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalLocalSelected = totalItemsSelected["totalLocalSelected"];
-		//calculate and assign the complessive total of all items selected
-		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
-		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
+		//calculate and assign the overall total of all items selected
+		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
+		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		console.log(totalItemsSelected);
 	}
 
 	/**
@@ -429,16 +494,21 @@ app.controller('preventivoController', function($scope, $http) {
 		quantita = checkIfQuantitaIsNumber(quantita);
 		//create new Object property "quantita"
 		canone.Quantita = quantita;
-		calculatePrezzoListinoForQuantity(canone)
+		calculatePrezzoListinoForQuantityAndRevenueAndPercentageRevenue(canone);
 		addRemoveItemsFromArrayOfSelectedItem(canoniSelected, canone);
 		//assign to in cart items scope all items selected
 		$scope.cartCanoniSelected = canoniSelected;
-		//calculate and assign to array the total complessive of selected items
+		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalCanoniSelected"] = calculateTotalItemsSelected(canoniSelected);
+		//calculate and assign to array the total revenue of selected items
+		totalItemsSelected["canoniSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		//calculate and assign to array the total percentage revenue of selected items
+		totalItemsSelected["canoniSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["canoniSelectedRevenue"], totalItemsSelected["totalCanoniSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalCanoniSelected = totalItemsSelected["totalCanoniSelected"];
-		//calculate and assign the complessive total of all items selected
-		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
-		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
+		//calculate and assign the overall total of all items selected
+		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
+		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		console.log(totalItemsSelected);
 	}
 });
