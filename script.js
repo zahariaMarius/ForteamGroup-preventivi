@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-05T23:16:06+01:00
+ * @Last modified time: 2017-11-06T11:45:39+01:00
  */
 "use strict";
 /**
@@ -48,6 +48,13 @@ var canoniSelected = [];
  * @type {Array}
  */
 var totalItemsSelected = [];
+totalItemsSelected["totalDistributoreSelected"] = 0;
+totalItemsSelected["totalProdottiHardwareSelected"] = 0;
+totalItemsSelected["totalLicenzeSelected"] = 0;
+totalItemsSelected["totalLocalSelected"] = 0;
+totalItemsSelected["totalCanoniSelected"] = 0;
+totalItemsSelected["totalAllItemsSelected"] = 0;
+
 
 /**
  * [checkIfNomeClienteIsValid control if nome cliente inserted is valid]
@@ -164,13 +171,28 @@ function addRemoveItemsFromArrayOfSelectedItem(selectedItems, item) {
 
 /**
  * [calculateTotalItemsSelected calculate the total of specified items in cart]
- * @param  {[Array]} items [items array og items]
+ * @param  {[Array]} items [items array of item]
  * @return {[Number]}       [return the total of specified selectedItems]
  */
 function calculateTotalItemsSelected(items) {
 	var total = 0;
 	for (var i = 0; i < items.length; i++) {
 		total += items[i].Prezzo_listino_quantita;
+	}
+	return total;
+}
+
+/**
+ * [calculateTotalAllItemsSelected calculate all items selected complessive total]
+ * @return {[Number]} [complessive total]
+ */
+function calculateTotalAllItemsSelected() {
+	var total = 0;
+	totalItemsSelected["totalAllItemsSelected"] = 0;
+	for (var key in totalItemsSelected) {
+		if (totalItemsSelected.hasOwnProperty(key)) {
+			total += totalItemsSelected[key];
+		}
 	}
 	return total;
 }
@@ -190,7 +212,7 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 		}else {
 			distributoreSelected.push(distributore);
 		}
-		totalItemsSelected["totalDistributoreSelected"] = distributore.Prezzo_listino;
+		totalItemsSelected["totalDistributoreSelected"] = Number(distributore.Prezzo_listino);
 	}else {
 		distributoreSelected.splice(0, 1);
 		totalItemsSelected["totalDistributoreSelected"] = 0;
@@ -323,6 +345,9 @@ app.controller('preventivoController', function($scope, $http) {
 		$scope.cartDistributoreSelected = distributoreSelected;
 		//assign to in cart total scope all total
 		$scope.cartTotalDistributoreSelected = totalItemsSelected["totalDistributoreSelected"];
+		//calculate and assign the complessive total of all items selected
+		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
+		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
 	}
 
 	/**
@@ -343,6 +368,9 @@ app.controller('preventivoController', function($scope, $http) {
 		totalItemsSelected["totalProdottiHardwareSelected"] = calculateTotalItemsSelected(prodottiHardwareSelected);
 		//assign to in cart total scope all total
 		$scope.cartTotalProdottiHardwareSelected = totalItemsSelected["totalProdottiHardwareSelected"];
+		//calculate and assign the complessive total of all items selected
+		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
+		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
 	}
 
 	/**
@@ -363,6 +391,9 @@ app.controller('preventivoController', function($scope, $http) {
 		totalItemsSelected["totalLicenzeSelected"] = calculateTotalItemsSelected(licenzeSelected);
 		//assign to in cart total scope all total
 		$scope.cartTotalLicenzeSelected = totalItemsSelected["totalLicenzeSelected"];
+		//calculate and assign the complessive total of all items selected
+		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
+		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
 	}
 
 	/**
@@ -383,6 +414,9 @@ app.controller('preventivoController', function($scope, $http) {
 		totalItemsSelected["totalLocalSelected"] = calculateTotalItemsSelected(localSelected);
 		//assign to in cart total scope all total
 		$scope.cartTotalLocalSelected = totalItemsSelected["totalLocalSelected"];
+		//calculate and assign the complessive total of all items selected
+		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
+		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
 	}
 
 	/**
@@ -403,5 +437,8 @@ app.controller('preventivoController', function($scope, $http) {
 		totalItemsSelected["totalCanoniSelected"] = calculateTotalItemsSelected(canoniSelected);
 		//assign to in cart total scope all total
 		$scope.cartTotalCanoniSelected = totalItemsSelected["totalCanoniSelected"];
+		//calculate and assign the complessive total of all items selected
+		totalItemsSelected["totalAllItemsSelected"] = calculateTotalAllItemsSelected();
+		$scope.cartTotalAllItemsSelected = totalItemsSelected["totalAllItemsSelected"];
 	}
 });
