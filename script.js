@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-06T23:01:59+01:00
+ * @Last modified time: 2017-11-06T23:41:39+01:00
  */
 "use strict";
 /**
@@ -269,12 +269,20 @@ function calculateOverallTotalAllItemsSelected() {
 	return totalItemsSelected["overallTotalAllItemsSelected"];
 }
 
+/**
+ * [calculateOverallRevenueAllItemsSelected calculate all items selected overall revenue total]
+ * @return {[type]} [description]
+ */
 function calculateOverallRevenueAllItemsSelected() {
 	totalItemsSelected["overallRevenueAllItemsSelected"] = totalItemsSelected["distributoreSelectedRevenue"] +
 	totalItemsSelected["prodottiHardwareSelectedRevenue"] + totalItemsSelected["licenzeSelectedRevenue"] +
 	totalItemsSelected["localSelectedRevenue"] + totalItemsSelected["canoniSelectedRevenue"];
 }
 
+/**
+ * [calculateOverllPercentageRevenueAllItemsSelected calculate all items selected overall percentage revenue total]
+ * @return {[type]} [description]
+ */
 function calculateOverllPercentageRevenueAllItemsSelected() {
 	totalItemsSelected["overallPercentageRevenueAllItemsSelected"] = (totalItemsSelected["overallRevenueAllItemsSelected"] * 100) / totalItemsSelected["overallTotalAllItemsSelected"];
 }
@@ -408,6 +416,8 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign the overall total of all items selected
 		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
 		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(distributore);
 	}
 
@@ -435,6 +445,8 @@ app.controller('preventivoController', function($scope, $http) {
 		$scope.cartTotalProdottiHardwareSelected = totalItemsSelected["totalProdottiHardwareSelected"];
 		//calculate and assign the overall total of all items selected
 		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 
@@ -455,13 +467,15 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalLicenzeSelected"] = calculateTotalItemsSelected(licenzeSelected);
 		//calculate and assign to array the total revenue of selected items
-		totalItemsSelected["licenzeSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		totalItemsSelected["licenzeSelectedRevenue"] = calculateRevenueItemsSelected(licenzeSelected);
 		//calculate and assign to array the total percentage revenue of selected items
 		totalItemsSelected["licenzeSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["licenzeSelectedRevenue"], totalItemsSelected["totalLicenzeSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalLicenzeSelected = totalItemsSelected["totalLicenzeSelected"];
 		//calculate and assign the overall total of all items selected
 		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 
@@ -482,13 +496,15 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalLocalSelected"] = calculateTotalItemsSelected(localSelected);
 		//calculate and assign to array the total revenue of selected items
-		totalItemsSelected["localSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		totalItemsSelected["localSelectedRevenue"] = calculateRevenueItemsSelected(localSelected);
 		//calculate and assign to array the total percentage revenue of selected items
 		totalItemsSelected["localSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["localSelectedRevenue"], totalItemsSelected["totalLocalSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalLocalSelected = totalItemsSelected["totalLocalSelected"];
 		//calculate and assign the overall total of all items selected
 		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 
@@ -509,13 +525,15 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalCanoniSelected"] = calculateTotalItemsSelected(canoniSelected);
 		//calculate and assign to array the total revenue of selected items
-		totalItemsSelected["canoniSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		totalItemsSelected["canoniSelectedRevenue"] = calculateRevenueItemsSelected(canoniSelected);
 		//calculate and assign to array the total percentage revenue of selected items
 		totalItemsSelected["canoniSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["canoniSelectedRevenue"], totalItemsSelected["totalCanoniSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalCanoniSelected = totalItemsSelected["totalCanoniSelected"];
 		//calculate and assign the overall total of all items selected
 		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 });
