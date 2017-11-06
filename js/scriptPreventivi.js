@@ -4,8 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptPreventivi.js
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-01T21:51:12+01:00
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-02T14:08:20+01:00
  */
 
 "use strict";
@@ -15,7 +15,7 @@ var selectDistributori = document.getElementById('selectDistributori');
 var card = document.getElementById('card').style.display = 'none';
 //variabile conntenete il bottone del carrello
 var btnCarrello = document.getElementById("btnCarrello").style.visibility  = "hidden";
-var distri = document.getElementById("distributore").style.visibility = "visible";
+//var distri = document.getElementById("distributore").style.visibility = "visible";
 
 
 if (selectDistributori) {
@@ -75,6 +75,24 @@ function controlIfCodiceFiscaleIsValid(cf) {
 	return true;
 }
 
+//controllo se il nome non è troppo corto
+function controlIfNomeAziendaIsValid(nome) {
+	if (nome.length > 5) {
+		return true
+	}else {
+		return "Inserire il nome completo del cliente";
+	}
+}
+
+//funzione che controlla se l'indirizzo inserito non è abbastanza corto
+function controlIfIndirizzoIsValid(indirizzo) {
+	if(indirizzo.length > 5) {
+		return true;
+	}else {
+		return "Inserire l'indirizzo completo del cliente";
+	}
+}
+
 // angular start
 var app = angular.module('myApp', []);
 /**
@@ -106,13 +124,19 @@ var rowData = {};
 app.controller('validation', function($scope, cartData) {
 	var user = {};
 	var flagEntrata = false;
+
     $scope.change = function() {
+		var nomeAzienda = $scope.azienda;
+		var indirizzoAzienda = $scope.indirizzo;
 		var partitaIva = $scope.partitaIva;
 		var codiceFiscale = $scope.codiceFiscale;
-		partitaIva = partitaIva.toString();
-		var checkIfPartitaIVAisValid = controlIfPartitaIVAisValid(partitaIva);
-		var checkIfCodiceFiscaleIsValid = controlIfCodiceFiscaleIsValid(codiceFiscale);
-		if($scope.myForm.$valid && checkIfPartitaIVAisValid && checkIfCodiceFiscaleIsValid) {
+
+		if (nomeAzienda){var checkIfNomeIsValid = controlIfNomeAziendaIsValid(nomeAzienda);}
+		if (indirizzoAzienda){var checkIfIndirizzoIsValid = controlIfIndirizzoIsValid(indirizzoAzienda);}
+		if(partitaIva){var checkIfPartitaIVAisValid = controlIfPartitaIVAisValid(partitaIva);}
+		if (codiceFiscale){var checkIfCodiceFiscaleIsValid = controlIfCodiceFiscaleIsValid(codiceFiscale);}
+
+		if((checkIfNomeIsValid == true) && (checkIfIndirizzoIsValid) && (checkIfPartitaIVAisValid == true)) {
 			if(!flagEntrata){
 				$('#collapseOne').collapse("hide");
 			}

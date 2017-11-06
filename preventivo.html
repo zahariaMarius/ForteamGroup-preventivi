@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ForteamGroup - Preventivi</title>
+		<!-- CDN packages Bootstrap  -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+		<!-- CDN packages Bootstrap  -->
+		<!-- CDN packages Angularjs -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<!-- CDN packages Angularjs -->
+	</head>
+	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
+		<div class="container-fluid">
+
+			<!-- login input - start-->
+			<div class="row">
+				<div class="col">
+					<input type="text" name="username" placeholder="username" ng-model="usernameLogin">
+					<input type="text" name="password" placeholder="password" ng-model="passwordLogin">
+					<button type="button" name="buttonLogin" ng-click="userLoginAutentication()">Login</button>
+				</div>
+			</div>
+			<!-- Login input - end -->
+
+			<!-- input dati del cliente - start -->
+			<div class="row">
+				<div class="col">
+					<div class="" id="divInputDatiCliente">
+						<form class="" name="clienteForm">
+							<input type="text" name="nomeCliente" placeholder="Nome">
+							<input type="email" name="emailCliente" placeholder="Email">
+							<input type="text" name="indirizzoCliente" placeholder="Indirizzo">
+							<input type="text" name="partitaIVACliente" placeholder="Partiva IVA">
+							<input type="text" name="codiceFiscaleCliente" placeholder="Codice fiscale">
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- input dati del cliente - end -->
+
+			<!-- select del distributore desiderato - start -->
+			<div class="row">
+				<div class="col">
+					<div class="" id="divSelectDistributore">
+						<select class="" name="selectDistributore" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
+							<option value="">NESSUN DISTRIBUTORE</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- select del distributore desiderato - end -->
+
+			<!-- tabelle che contengono i componenti selezionabili - start -->
+			<div class="row">
+				<div class="col">
+					<!-- optional inputs field - start -->
+					<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
+					<button type="button" name="createcustomizedItem">Crea prodotto personalizzato</button>
+					<!-- optional inputs field - end -->
+
+					<!-- tabella prodotti hardware - start -->
+					<div class="" id="divContenenteTabellaProdottiHardware">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Nome</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in prodottiHardware | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Nome}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella prodotti hardware - end -->
+					<!-- tabella licenze - start -->
+					<div class="" id="divContenenteTabellaLicenze">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Tipologia</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in licenze | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Tipologia}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella licenze - end -->
+					<!-- tabella prodotti local - start -->
+					<div class="" id="divContenenteTabellaProdottiLocal">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Tipologia</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in local | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Tipologia}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella prodotti local - end -->
+					<!-- tabella canoni - start -->
+					<div class="" id="divContenenteTabellaCanoni">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Tipologia</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in canoni | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Tipologia}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella canoni - end -->
+				</div>
+			</div>
+			<!-- tabelle che contengono i componenti selezionabili - end -->
+		</div>
+
+		<!-- carrello - start -->
+		<div class="container-fluid">
+			<!-- tabella distributore - start -->
+			<div class="row">
+				<div class="col">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th>Prodotto</th>
+								<th>Quantità</th>
+								<th>Prezzo listino</th>
+								<th>Totale</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in cartDistributoreSelected">
+								<td>{{x.Nome}}</td>
+								<td>{{x.Quantita}}</td>
+								<td>{{x.Prezzo_listino | currency:"€"}}</td>
+								<td>{{x.Prezzo_listino | currency:"€"}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3">TOTALE</th>
+								<th>{{cartTotalDistributoreSelected | currency:"€"}}</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+			<!-- tabella distributore - end -->
+			<!-- tabella prodottiHardware - start -->
+			<div class="row">
+				<div class="col">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th>Prodotto</th>
+								<th>Quantità</th>
+								<th>Prezzo listino</th>
+								<th>Totale</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in cartProdottiHardwareSelected">
+								<td>{{x.Nome}}</td>
+								<td>{{x.Quantita}}</td>
+								<td>{{x.Prezzo_listino | currency:"€"}}</td>
+								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3">TOTALE</th>
+								<th>{{cartTotalProdottiHardwareSelected | currency:"€"}}</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+			<!-- tabella prodottiHardware - end -->
+			<!-- tabella licenze - start -->
+			<div class="row">
+				<div class="col">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th>Prodotto</th>
+								<th>Quantità</th>
+								<th>Prezzo listino</th>
+								<th>Totale</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in cartLicenzeSelected">
+								<td>{{x.Tipologia}}</td>
+								<td>{{x.Quantita}}</td>
+								<td>{{x.Prezzo_listino | currency:"€"}}</td>
+								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3">TOTALE</th>
+								<th>{{cartTotalLicenzeSelected | currency:"€"}}</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+			<!-- tabella licenze - end -->
+			<!-- tabella local - start -->
+			<div class="row">
+				<div class="col">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th>Prodotto</th>
+								<th>Quantità</th>
+								<th>Prezzo listino</th>
+								<th>Totale</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in cartLocalSelected">
+								<td>{{x.Tipologia}}</td>
+								<td>{{x.Quantita}}</td>
+								<td>{{x.Prezzo_listino | currency:"€"}}</td>
+								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3">TOTALE</th>
+								<th>{{cartTotalLocalSelected | currency:"€"}}</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+			<!-- tabella local - end -->
+			<!-- tabella canoni - start -->
+			<div class="row">
+				<div class="col">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th>Prodotto</th>
+								<th>Quantità</th>
+								<th>Prezzo listino</th>
+								<th>Totale</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in cartCanoniSelected">
+								<td>{{x.Tipologia}}</td>
+								<td>{{x.Quantita}}</td>
+								<td>{{x.Prezzo_listino | currency:"€"}}</td>
+								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3">TOTALE</th>
+								<th>{{cartTotalCanoniSelected | currency:"€"}}</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+			<!-- tabella canoni - end -->
+			<!-- totale complessivo del carrello - start -->
+			<h2>{{cartOverallTotalAllItemsSelected | currency:"€"}}</h2>
+			<!-- totale complessivo del carrello - end -->
+		</div>
+		<!-- carrello - end -->
+
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>
