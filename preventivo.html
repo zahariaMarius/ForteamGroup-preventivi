@@ -14,9 +14,8 @@
 		<!-- CDN packages Angularjs -->
 	</head>
 	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
+		<!-- login input - start-->
 		<div class="container-fluid">
-
-			<!-- login input - start-->
 			<div class="row">
 				<div class="col">
 					<input type="text" name="username" placeholder="username" ng-model="usernameLogin">
@@ -24,8 +23,10 @@
 					<button type="button" name="buttonLogin" ng-click="userLoginAutentication()">Login</button>
 				</div>
 			</div>
-			<!-- Login input - end -->
+		</div>
+		<!-- Login input - end -->
 
+		<div class="container-fluid">
 			<!-- input dati del cliente - start -->
 			<div class="row">
 				<div class="col">
@@ -59,7 +60,7 @@
 				<div class="col">
 					<!-- optional inputs field - start -->
 					<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
-					<button type="button" name="createcustomizedItem">Crea prodotto personalizzato</button>
+					<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
 					<!-- optional inputs field - end -->
 
 					<!-- tabella prodotti hardware - start -->
@@ -320,6 +321,29 @@
 			<!-- totale complessivo del carrello - end -->
 		</div>
 		<!-- carrello - end -->
+
+		<!-- prodotto personalizzato - start -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+					<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct">
+						<option disabled selected value="">Seleziona una categoria</option>
+						<option value="0">Prodotti Hardware</option>
+						<option value="1">Licenze</option>
+						<option value="2">Local</option>
+						<option value="3">Canoni</option>
+					</select>
+					<input type="text" name="codice" placeholder="Codice" ng-model="codiceCustomizedProduct">
+					<input type="text" name="nome" placeholder="Nome/Tipologia" ng-model="nomeCustomizedProduct">
+					<input type="text" name="descrizione" placeholder="Descrizione" ng-model="descrizioneCustomizedProduct">
+					<input type="number" name="prezzoAcquisto" placeholder="Prezzo di acquisto" ng-model="prezzoAcquistoCustomizedProduct">
+					<input type="number" name="prezzoListino" placeholder="Prezzo di listino" ng-model="prezzoListinoCustomizedProduct">
+					<button type="button" name="closeCustomizedProduct" ng-click="closeCustomizedProduct()">Annulla</button>
+					<button type="button" name="createCustomizedProduct" ng-click="createCustomizedProduct()">Crea</button>
+				</div>
+			</div>
+		</div>
+		<!-- prodotto personalizzato - end -->
 
 		<script type="text/javascript" src="script.js"></script>
 	</body>

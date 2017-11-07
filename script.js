@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-06T23:41:39+01:00
+ * @Last modified time: 2017-11-07T22:39:21+01:00
  */
 "use strict";
 /**
@@ -301,6 +301,57 @@ function checkIfQuantitaIsNumber(qnt) {
 }
 
 /**
+ * [checkUserPrivilegeForCustomizedProduct check if the user is qualified to create an customized product]
+ * @param  {[Object]} user [user that is logged in]
+ * @return {[Bool]}      [true or false]
+ */
+function checkUserPrivilegeForCustomizedProduct(user) {
+	var flag = false
+	if (user.Privilegi == "Amministratore") {flag = true;}
+	return flag;
+}
+
+/**
+ * [checkIfCodiceCustomizedProductAlreadyExist Check if inserted codice already exist]
+ * @param  {[Char]} categoriaCustomizedProduct [char of selected category]
+ * @param  {[String]} codiceCustomizedProduct    [codice inserted]
+ * @return {[Bool]}                            [return true or false]
+ */
+function checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, codiceCustomizedProduct, allCategory) {
+	function checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategoryProducts) {
+		var flag = false;
+		console.log(codiceCustomizedProduct);
+		console.log(allCategoryProducts);
+		for (var i = 0; i < allCategoryProducts.length; i++) {
+			if (codiceCustomizedProduct == allCategoryProducts[i].Codice) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+	//declar return variable
+	var flag;
+
+	console.log(categoriaCustomizedProduct);
+
+	switch (categoriaCustomizedProduct) {
+		case '0':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[0]);
+			break;
+		case '1':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[1]);
+			break;
+		case '2':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[2]);
+			break;
+		case '3':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[3]);
+			break;
+	}
+	return flag;
+}
+
+/**
  * [angular app module]
  * @type {[Object]}
  */
@@ -348,7 +399,7 @@ app.controller('preventivoController', function($scope, $http) {
 		var password = $scope.passwordLogin;
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
 		$http.post('DBM.php', {query: queryUserLogin}).then(function (response) {
-			sessionStorage.setItem("user", JSON.stringify(response.data));
+			sessionStorage.setItem("user", JSON.stringify(response.data[0]));
 		});
 	}
 
@@ -515,6 +566,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @return {[type]}          [description]
 	 */
 	$scope.getCanoniQuantita = function(quantita, canone) {
+		console.log(canone);
 		quantita = checkIfQuantitaIsNumber(quantita);
 		//create new Object property "quantita"
 		canone.Quantita = quantita;
@@ -535,5 +587,80 @@ app.controller('preventivoController', function($scope, $http) {
 		calculateOverallRevenueAllItemsSelected();
 		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
+	}
+
+	/**
+	 * [openCustomizedProduct open the create customized product form]
+	 * @return {[type]} [description]
+	 */
+	$scope.openCustomizedProduct = function() {
+		//save user into variable from sessionStorage
+		user = JSON.parse(sessionStorage.getItem("user"));
+		//check if user is qualified to craete a customized product
+		if (checkUserPrivilegeForCustomizedProduct(user)) {
+			//open the create new element form
+			console.log("User qualified");
+		}else {
+			//open the login form
+			console.log("user not qualified");
+		}
+		console.log(user);
+	}
+
+	/**
+	 * [createCustomizedProduct scope insert into table the new customized product]
+	 * @return {[type]} [description]
+	 */
+	$scope.createCustomizedProduct = function() {
+		//get all Object items from sessionStorage
+		var prodottiHardware = $scope.prodottiHardware;
+		var licenze = $scope.licenze;
+		var local = $scope.local;
+		var canoni = $scope.canoni;
+		//get all input data from input form
+		var categoriaCustomizedProduct = $scope.categoriaCustomizedProduct;
+		var codiceCustomizedProduct = $scope.codiceCustomizedProduct;
+		var nomeCustomizedProduct = $scope.nomeCustomizedProduct;
+		var descrizioneCustomizedProduct = $scope.descrizioneCustomizedProduct;
+		var prezzoAcquistoCustomizedProduct = $scope.prezzoAcquistoCustomizedProduct;
+		var prezzoListinoCustomizedProduct = $scope.prezzoListinoCustomizedProduct;
+		//insert all input data into array
+		var allCategory = [prodottiHardware, licenze, local, canoni];
+		var customizedProductData = [categoriaCustomizedProduct, codiceCustomizedProduct, nomeCustomizedProduct, descrizioneCustomizedProduct, prezzoAcquistoCustomizedProduct, prezzoListinoCustomizedProduct]
+		//check if codice already exist
+		if (!checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, codiceCustomizedProduct, allCategory)) {
+			//create the new customized product
+			var customizedProduct = {
+				Codice: customizedProductData[1],
+				Descrizione: customizedProductData[3],
+				Prezzo_acquisto: customizedProductData[4],
+				Prezzo_listino: customizedProductData[5]
+			}
+
+			//push the new customized product into specified table
+			switch (customizedProductData[0]) {
+				case '0':
+					customizedProduct.Nome = customizedProductData[2];
+					$scope.prodottiHardware.push(customizedProduct);
+					break;
+				case '1':
+					customizedProduct.Tipologia = customizedProductData[2];
+					$scope.licenze.push(customizedProduct);
+					break;
+				case '2':
+					customizedProduct.Tipologia = customizedProductData[2];
+					$scope.local.push(customizedProduct);
+					break;
+				case '3':
+					customizedProduct.Tipologia = customizedProductData[2];
+					$scope.canoni.push(customizedProduct);
+					var a = $scope.canoni;
+					console.log(a);
+					break;
+			}
+		}else {
+			//messaggio di errore che il codice esiste già
+			console.log("esiste");
+		}
 	}
 });
