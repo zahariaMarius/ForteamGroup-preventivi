@@ -4,11 +4,21 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: anteprimaStyle.css
+<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
  * @Last modified time: 2017-11-09T15:32:58+01:00
  */
 
 
+=======
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-09T15:16:47+01:00
+ */
+ @media print {
+    thead {display: table-header-group;}
+    tfoot {display: table-footer-group;}
+ }
+>>>>>>> c6c35c47d6aaf148af505993c0f5503c2042977d
 .icon-file-pdf:before {
   content: url(../images/file-pdf.png);
 }

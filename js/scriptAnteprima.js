@@ -4,15 +4,15 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T12:54:45+01:00
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-09T13:50:46+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
 var dataFromRiepilogo = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
 
 //salavataggio di tutti i dati in varie variabili
-var azienda = dataFromRiepilogo["azienda"];
+//var azienda = dataFromRiepilogo["azienda"];
 var distributore = dataFromRiepilogo["distributore"];
 var accessori = dataFromRiepilogo["accessori"];
 var software = dataFromRiepilogo["software"];
@@ -55,10 +55,10 @@ console.log(dataFromRiepilogo);
 
 
 	// scope dati azienda
-	if (azienda[0].Codice_fiscale === undefined) {
-		azienda[0].Codice_fiscale = "NON FORNITO";
-		$scope.azienda = azienda;
-	}
+	// if (azienda[0].Codice_fiscale === undefined) {
+	// 	azienda[0].Codice_fiscale = "NON FORNITO";
+	// 	$scope.azienda = azienda;
+	//}
 
 	// scope dati distributore
 	if (distributore[0].Codice != null) {
