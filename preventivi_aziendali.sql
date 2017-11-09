@@ -1,9 +1,21 @@
+/**
+ * @Author: Zaharia Laurentiu Jr Marius
+ * @Date:   2017-10-27T12:06:17+02:00
+ * @Email:  laurentiu.zaharia@edu.itspiemonte.it
+ * @Project: kebabCase
+ * @Filename: preventivi_aziendali.sql
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-09T16:55:38+01:00
+ */
+
+
+
 -- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 16, 2017 alle 22:57
+-- Creato il: Nov 09, 2017 alle 16:54
 -- Versione del server: 10.1.26-MariaDB
 -- Versione PHP: 7.1.9
 
@@ -55,6 +67,26 @@ INSERT INTO `accessori` (`Codice`, `Nome`, `Descrizione`, `Prezzo_acquisto`, `Pr
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `aziende`
+--
+
+CREATE TABLE `aziende` (
+  `Nome` varchar(255) NOT NULL,
+  `Indirizzo` varchar(255) NOT NULL,
+  `Partita_iva` int(11) NOT NULL,
+  `Codice_fiscale` varchar(16) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `aziende`
+--
+
+INSERT INTO `aziende` (`Nome`, `Indirizzo`, `Partita_iva`, `Codice_fiscale`) VALUES
+('tttg', 'rtrrtrr', 0, '44rr4r43r3r444');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `distributori`
 --
 
@@ -76,8 +108,7 @@ INSERT INTO `distributori` (`Codice`, `Nome`, `Descrizione`, `Prezzo_acquisto`, 
 ('C', 'FESTIVAL MEAL', 'MEAL - 60 Coperti', '10000.00', '10300.00'),
 ('D', 'FESTIVAL GREEN 40S', 'DPI - 40 tipologie di articoli', '6400.00', '6750.00'),
 ('E', 'TANGO DPI', 'DPI - 50 selezioni ', '5500.00', '5750.00'),
-('F', 'SMART DPI USATO', 'DPI - 10 tipologie di articoli ', '5000.00', '5550.00'),
-('null', 'NESSUN DISTRIBUTORE', 'null', '0.00', '0.00');
+('F', 'SMART DPI USATO', 'DPI - 10 tipologie di articoli ', '5000.00', '5550.00');
 
 -- --------------------------------------------------------
 
@@ -115,12 +146,35 @@ INSERT INTO `licenze` (`Codice`, `Tipologia`, `Descrizione`, `Prezzo_acquisto`, 
 CREATE TABLE `preventivi` (
   `Codice` varchar(255) NOT NULL,
   `Data` date NOT NULL,
-  `Totale` decimal(60,3) NOT NULL,
-  `Ricavo_totale` decimal(60,3) NOT NULL,
+  `Totale_vendita_accessori` decimal(60,2) DEFAULT NULL,
+  `Ricavo_accessori` decimal(60,2) DEFAULT NULL,
+  `Ricavo_accessori_percentuale` decimal(60,3) DEFAULT NULL,
+  `Totale_vendita_software` decimal(60,2) DEFAULT NULL,
+  `Ricavo_software` decimal(60,2) DEFAULT NULL,
+  `Ricavo_software_percentuale` decimal(60,3) DEFAULT NULL,
+  `Totale_vendita_licenze` decimal(60,2) DEFAULT NULL,
+  `Ricavo_licenze` decimal(60,2) DEFAULT NULL,
+  `Ricavo_licenze_percentuale` decimal(60,2) DEFAULT NULL,
+  `Totale_vendita_servizi` decimal(60,2) DEFAULT NULL,
+  `Ricavo_servizi` decimal(60,2) DEFAULT NULL,
+  `Ricavo_servizi_percentuale` decimal(60,3) DEFAULT NULL,
+  `Prezzo_finale` decimal(60,2) NOT NULL,
+  `Iva` int(3) DEFAULT NULL,
+  `Prezzo_finale_iva` decimal(60,2) NOT NULL,
+  `Ricavo_totale` decimal(60,2) NOT NULL,
   `Ricavo_totale_percentuale` decimal(60,3) NOT NULL,
-  `Note` varchar(255) DEFAULT NULL,
-  `Codice_distributore` varchar(255) NOT NULL
+  `Note_aziendali` varchar(5000) DEFAULT NULL,
+  `Note_cliente` varchar(5000) DEFAULT NULL,
+  `Codice_distributore` varchar(255) NOT NULL,
+  `Codice_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `preventivi`
+--
+
+INSERT INTO `preventivi` (`Codice`, `Data`, `Totale_vendita_accessori`, `Ricavo_accessori`, `Ricavo_accessori_percentuale`, `Totale_vendita_software`, `Ricavo_software`, `Ricavo_software_percentuale`, `Totale_vendita_licenze`, `Ricavo_licenze`, `Ricavo_licenze_percentuale`, `Totale_vendita_servizi`, `Ricavo_servizi`, `Ricavo_servizi_percentuale`, `Prezzo_finale`, `Iva`, `Prezzo_finale_iva`, `Ricavo_totale`, `Ricavo_totale_percentuale`, `Note_aziendali`, `Note_cliente`, `Codice_distributore`, `Codice_cliente`) VALUES
+('8854', '2017-10-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '55.00', 20, '660.00', '9987.00', '35355.000', 'gfbggfbdder', NULL, 'C', 0);
 
 -- --------------------------------------------------------
 
@@ -131,11 +185,20 @@ CREATE TABLE `preventivi` (
 CREATE TABLE `preventivi_accessori` (
   `Codice_preventivo` varchar(255) NOT NULL,
   `Codice_accessorio` varchar(255) NOT NULL,
-  `Sconto` int(2) NOT NULL,
-  `Prezzo_scontato` decimal(60,2) NOT NULL,
+  `Sconto` int(2) DEFAULT NULL,
+  `Totale_vendita` decimal(60,2) NOT NULL,
   `Ricavo` decimal(60,3) NOT NULL,
-  `Ricavo_percentuale` decimal(60,3) NOT NULL
+  `Ricavo_percentuale` decimal(60,3) NOT NULL,
+  `Quantita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `preventivi_accessori`
+--
+
+INSERT INTO `preventivi_accessori` (`Codice_preventivo`, `Codice_accessorio`, `Sconto`, `Totale_vendita`, `Ricavo`, `Ricavo_percentuale`, `Quantita`) VALUES
+('8854', 'NVVC0', 0, '555.00', '677.000', '4554.000', 2),
+('8854', 'L520K', NULL, '444.00', '5555.000', '7777.000', 7);
 
 -- --------------------------------------------------------
 
@@ -147,9 +210,10 @@ CREATE TABLE `preventivi_licenze` (
   `Codice_preventivo` varchar(255) NOT NULL,
   `Codice_licenza` varchar(255) NOT NULL,
   `Sconto` int(2) DEFAULT NULL,
-  `Prezzo_scontato` decimal(60,2) NOT NULL,
+  `Totale_vendita` decimal(60,2) NOT NULL,
   `Ricavo` decimal(60,3) NOT NULL,
-  `Ricavo_percentuale` decimal(60,3) NOT NULL
+  `Ricavo_percentuale` decimal(60,3) NOT NULL,
+  `Quantita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -162,9 +226,10 @@ CREATE TABLE `preventivi_servizi` (
   `Codice_preventivo` varchar(255) NOT NULL,
   `Codice_servizio` varchar(255) NOT NULL,
   `Sconto` int(2) DEFAULT NULL,
-  `Prezzo_scontato` decimal(60,2) NOT NULL,
+  `Totale_vendita` decimal(60,2) NOT NULL,
   `Ricavo` decimal(60,3) NOT NULL,
-  `Ricavo_percentuale` decimal(60,3) NOT NULL
+  `Ricavo_percentuale` decimal(60,3) NOT NULL,
+  `Quantita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -177,9 +242,10 @@ CREATE TABLE `preventivi_software` (
   `Codice_preventivo` varchar(255) NOT NULL,
   `Codice_software` varchar(255) NOT NULL,
   `Sconto` int(2) DEFAULT NULL,
-  `Prezzo_scontato` decimal(60,2) NOT NULL,
+  `Totale_vendita` decimal(60,2) NOT NULL,
   `Ricavo` decimal(60,3) NOT NULL,
-  `Ricavo_percentuale` decimal(60,3) NOT NULL
+  `Ricavo_percentuale` decimal(60,3) NOT NULL,
+  `Quantita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -236,12 +302,21 @@ INSERT INTO `software` (`Codice`, `Tipologia`, `Descrizione`, `Prezzo_acquisto`,
 --
 
 CREATE TABLE `utenti` (
-  `Codice` int(11) NOT NULL,
-  `Nome` varchar(255) NOT NULL,
-  `Indirizzo` varchar(255) NOT NULL,
-  `Partita_iva` int(11) NOT NULL,
-  `Codice_fiscale` varchar(16) NOT NULL
+  `Codice` varchar(10) NOT NULL,
+  `Username` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Nome` varchar(50) NOT NULL,
+  `Cognome` varchar(50) NOT NULL,
+  `Privilegi` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `utenti`
+--
+
+INSERT INTO `utenti` (`Codice`, `Username`, `Password`, `Nome`, `Cognome`, `Privilegi`) VALUES
+('AB2278Z', 'admin1', 'admin', 'Admin', 'Amministratore', 'Amministratore'),
+('AG7OO3', 'admin2', 'admin', 'Admin', 'Ordinario', 'Ordinario');
 
 --
 -- Indici per le tabelle scaricate
@@ -252,6 +327,12 @@ CREATE TABLE `utenti` (
 --
 ALTER TABLE `accessori`
   ADD PRIMARY KEY (`Codice`);
+
+--
+-- Indici per le tabelle `aziende`
+--
+ALTER TABLE `aziende`
+  ADD PRIMARY KEY (`Partita_iva`);
 
 --
 -- Indici per le tabelle `distributori`
@@ -270,7 +351,8 @@ ALTER TABLE `licenze`
 --
 ALTER TABLE `preventivi`
   ADD PRIMARY KEY (`Codice`),
-  ADD KEY `Cod_Distributore` (`Codice_distributore`);
+  ADD KEY `Cod_Distributore` (`Codice_distributore`),
+  ADD KEY `Codice_cliente` (`Codice_cliente`);
 
 --
 -- Indici per le tabelle `preventivi_accessori`
@@ -319,16 +401,6 @@ ALTER TABLE `utenti`
   ADD PRIMARY KEY (`Codice`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
---
-
---
--- AUTO_INCREMENT per la tabella `utenti`
---
-ALTER TABLE `utenti`
-  MODIFY `Codice` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Limiti per le tabelle scaricate
 --
 
@@ -336,7 +408,8 @@ ALTER TABLE `utenti`
 -- Limiti per la tabella `preventivi`
 --
 ALTER TABLE `preventivi`
-  ADD CONSTRAINT `preventivi_ibfk_1` FOREIGN KEY (`Codice_distributore`) REFERENCES `distributori` (`Codice`);
+  ADD CONSTRAINT `preventivi_ibfk_1` FOREIGN KEY (`Codice_distributore`) REFERENCES `distributori` (`Codice`),
+  ADD CONSTRAINT `preventivi_ibfk_2` FOREIGN KEY (`Codice_cliente`) REFERENCES `aziende` (`Partita_iva`);
 
 --
 -- Limiti per la tabella `preventivi_accessori`
