@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T17:41:54+01:00
+ * @Last modified time: 2017-11-09T18:07:01+01:00
  */
 "use strict";
 /**
@@ -677,5 +677,10 @@ app.controller('preventivoController', function($scope, $http) {
 			//messaggio di errore che il codice esiste già
 			console.log("esiste");
 		}
+	}
+
+	$scope.checkClienteForm = function() {
+		var nomeCliente = $scope.nomeCliente;
+		var emailClienet = $scope.emailCliente;
 	}
 });
