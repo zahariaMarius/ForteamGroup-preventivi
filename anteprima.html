@@ -369,14 +369,26 @@
 				                    <table class="table table-responsive" id="table-distributore">
 				                        <thead>
 											<tr>
-												<th>
+												<th colspan="8">
 													<div class="headerLogo text-center">
 									                        <img src="images/Logo.png" alt="logo azienda">
 									                </div>
 												</th>
 											</tr>
+											<tr>
+				                                <th colspan="2">NOME</th>
+				                                <th colspan="2">INDIRIZZO</th>
+				                                <th colspan="2">PARTITA IVA</th>
+				                                <th colspan="2">CODICE FISCALE</th>
+				                            </tr>
+											<tr ng-repeat="x in azienda">
+				                                <td colspan="2" style="width: 25%">{{x.Nome_azienda | uppercase}}</td>
+				                                <td colspan="2" style="width: 25%">{{x.Indirizzo | uppercase}}</td>
+				                                <td colspan="2" style="width: 25%">{{x.Partita_iva | uppercase}}</td>
+				                                <td colspan="2" style="width: 25%">{{x.Codice_fiscale | uppercase}}</td>
+				                            </tr>
 				                            <tr>
-				                                <th>Codice</th>
+				                                <th style="width: 5%">Codice</th>
 				                                <th>Prodotto</th>
 				                                <th>Descrizione</th>
 				                                <th>Quantità</th>
@@ -386,17 +398,7 @@
 				                                <th>Totale scontato</th>
 				                            </tr>
 				                        </thead>
-										<tfoot>
-											<tr>
-												<th>
-													<div class="footer">
-														<p>FOTREAM GROUP SRL</p>
-														<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
-														<p>Telefono: +39 011 0015516 | Partita IVA & Codice fiscale: 03601010048-N | REA: CN-302892</p>
-													</div>
-												</th>
-											</tr>
-										</tfoot>
+
 				                        <tbody>
 				                            <tr ng-repeat="x in distributore">
 				                                <td>{{x.Codice}}</td>
@@ -449,6 +451,27 @@
 				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
 				                        </tbody>
+										<tfoot>
+											<tr>
+				                                <th>Totale imponibile</th>
+				                                <th>Percentuale IVA</th>
+				                                <th>Totale preventivo</th>
+				                            </tr>
+											<tr>
+				                                <td style="width: 33%"><h2>{{Totale_imponibile | currency:'€'}}</h2></td>
+				                                <td style="width: 33%"><h2>%{{Percentuale_iva | number}}</h2></td>
+				                                <td style="width: 33%"><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
+				                            </tr>
+											<tr>
+												<td colspan="8" id="footerTd">
+													<div class="footer">
+														<p>FOTREAM GROUP SRL</p>
+														<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
+														<p>Telefono: +39 011 0015516 | Partita IVA & Codice fiscale: 03601010048-N | REA: CN-302892</p>
+													</div>
+												</td>
+											</tr>
+										</tfoot>
 				                    </table>
 				                </div>
 				            </div>
@@ -471,7 +494,7 @@
 				                </div>
 				            </div> -->
 
-				            <div class="row">
+				            <!-- <div class="row">
 				                <div class="col col-9">
 				                    <table class="table table-totali">
 				                        <thead>
@@ -490,7 +513,7 @@
 				                        </tbody>
 				                    </table>
 				                </div>
-				            </div>
+				            </div> -->
 				        </div>
 					</div>
 					<!-- <input type="button" name="db" value="db" ng-click="db()"> -->

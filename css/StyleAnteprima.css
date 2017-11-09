@@ -4,29 +4,22 @@
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: component.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-07T23:56:34+01:00
+ * @Last modified time: 2017-11-09T16:10:09+01:00
  */
 .centerFooter{
 	width: 100%;
 	margin: 2% auto;
 }
 
-@media screen {
-    header.onlyprint, footer.onlyprint{
-        display: none; /* Hide from screen */
-    }
-}
 
-@media print {
-    header.onlyprint {
-        position: fixed; /* Display only on print page (each) */
-        top: 0; /* Because it's header */
+
+/*@media screen {
+    header.onlyprint, footer.onlyprint{
+        display: none;
     }
-    footer.onlyprint {
-        position: fixed;
-        bottom: 0; /* Because it's footer */
-    }
-}
+}*/
+
+
 
 
  /*@media print {
@@ -46,8 +39,12 @@
     margin: 10mm 10mm 10mm 10mm;
   }*/
 
+#footerTd{
+	border-top: 0px !important;
+}
 .footer {
 	text-align: center;
+	padding-top: 4%;
 }
 
 .footer p{

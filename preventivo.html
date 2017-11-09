@@ -319,6 +319,10 @@
 			<!-- totale complessivo del carrello - start -->
 			<h2>{{cartOverallTotalAllItemsSelected | currency:"€"}}</h2>
 			<!-- totale complessivo del carrello - end -->
+			<!-- pulsanti chiusura - e passaggio a riepilogo - sart-->
+			<button type="button" name="closeCart" ng-model="closeCart()">Chiudi</button>
+			<button type="button" name="goToRiepilogo" ng-model="goToRiepilogo()">Vai al riepilogo</button>
+			<!-- pulsanti chiusura - e passaggio a riepilogo - end-->
 		</div>
 		<!-- carrello - end -->
 
