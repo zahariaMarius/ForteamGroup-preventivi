@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-08T16:51:30+01:00
+ * @Last modified time: 2017-11-09T17:31:06+01:00
  */
 "use strict";
 /**
@@ -352,6 +352,20 @@ function checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, 
 }
 
 /**
+ * [checkIfInsertedUserExist function taht control if the username inserted exist]
+ * @param  {[Object]} user [user returned from DB]
+ * @return {[type]}      [description]
+ */
+function checkIfInsertedUserExist(user) {
+	if (user) {
+		//continua con l'app
+		console.log("esiste");
+	}else {
+		//messaggio errore su text field
+	}
+}
+
+/**
  * [angular app module]
  * @type {[Object]}
  */
@@ -400,6 +414,8 @@ app.controller('preventivoController', function($scope, $http) {
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
 		$http.post('DBM.php', {query: queryUserLogin}).then(function (response) {
 			sessionStorage.setItem("user", JSON.stringify(response.data[0]));
+			console.log(response.data[0]);
+			checkIfInsertedUserExist(response.data[0]);
 		});
 	}
 
