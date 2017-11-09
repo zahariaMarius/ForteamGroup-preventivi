@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T18:15:40+01:00
+ * @Last modified time: 2017-11-09T18:18:29+01:00
  */
 "use strict";
 /**
@@ -682,5 +682,6 @@ app.controller('preventivoController', function($scope, $http) {
 	$scope.checkClienteForm = function() {
 		var nomeCliente = $scope.nomeCliente;
 		var emailClienet = $scope.emailCliente;
+		
 	}
 });
