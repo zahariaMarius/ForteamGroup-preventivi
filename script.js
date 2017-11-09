@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T17:31:06+01:00
+ * @Last modified time: 2017-11-09T17:41:54+01:00
  */
 "use strict";
 /**
@@ -362,6 +362,7 @@ function checkIfInsertedUserExist(user) {
 		console.log("esiste");
 	}else {
 		//messaggio errore su text field
+		console.log("username or password sbagliati");
 	}
 }
 
