@@ -15,7 +15,7 @@
 	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
 		<!-- login input - start-->
 
-			<form action="#">
+			<div>
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				  <input class="mdl-textfield__input" id="sample3" type="text" name="username" ng-model="usernameLogin">
 				  <label class="mdl-textfield__label" for="sample3">Username</label>
@@ -23,9 +23,9 @@
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 			      <input class="mdl-textfield__input" id="sample3" type="text" name="password" ng-model="passwordLogin">
 			      <label class="mdl-textfield__label" for="sample3">Password</label>
-			  </div>
+			    </div>
 				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" name="buttonLogin" ng-click="userLoginAutentication()">Login</button>
-			</form>
+			</div>
 
 
 		<!-- Login input - end -->
@@ -36,7 +36,10 @@
 				<div class="col">
 					<div class="" id="divInputDatiCliente">
 						<form class="" name="clienteForm">
-							<input type="text" name="nomeCliente" placeholder="Nome">
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							  <input class="mdl-textfield__input" id="sample3" type="text" name="nomeCliente">
+							  <label class="mdl-textfield__label" for="sample3">Username</label>
+							</div>
 							<input type="email" name="emailCliente" placeholder="Email">
 							<input type="text" name="indirizzoCliente" placeholder="Indirizzo">
 							<input type="text" name="partitaIVACliente" placeholder="Partiva IVA">
