@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-07T23:22:10+01:00
+ * @Last modified time: 2017-11-09T12:54:45+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -32,7 +32,7 @@ document.querySelectorAll('[id=table-licenze]')[0].style.display = 'none';
 //document.querySelectorAll('[id=table-licenze]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-servizi]')[0].style.display = 'none';
 //document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
-document.getElementById("tableCliente-note").style.display = 'none';
+//document.getElementById("tableCliente-note").style.display = 'none';
 document.getElementById("tableAzienda-note").style.display = 'none';
 
 function printDiv(divName) {
@@ -144,7 +144,7 @@ console.log(dataFromRiepilogo);
 
 	//scope note aggiuntive cliente
 	if (noteAggiuntive.cliente) {
-		document.getElementById("tableCliente-note").style.display = 'table';
+		//document.getElementById("tableCliente-note").style.display = 'table';
 		$scope.Note_aggiuntive_cliente = noteAggiuntive.cliente;
 	}
 

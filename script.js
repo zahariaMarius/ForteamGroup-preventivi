@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-07T22:39:21+01:00
+ * @Last modified time: 2017-11-08T16:51:30+01:00
  */
 "use strict";
 /**
@@ -654,8 +654,6 @@ app.controller('preventivoController', function($scope, $http) {
 				case '3':
 					customizedProduct.Tipologia = customizedProductData[2];
 					$scope.canoni.push(customizedProduct);
-					var a = $scope.canoni;
-					console.log(a);
 					break;
 			}
 		}else {
