@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T18:07:01+01:00
+ * @Last modified time: 2017-11-09T18:15:40+01:00
  */
 "use strict";
 /**
@@ -413,7 +413,7 @@ app.controller('preventivoController', function($scope, $http) {
 		var username = $scope.usernameLogin;
 		var password = $scope.passwordLogin;
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
-		$http.post('DBM.php', {query: queryUserLogin}).then(function (response) {
+		$http.post('DataBase/DBM.php', {query: queryUserLogin}).then(function (response) {
 			sessionStorage.setItem("user", JSON.stringify(response.data[0]));
 			console.log(response.data[0]);
 			checkIfInsertedUserExist(response.data[0]);
@@ -425,7 +425,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @param  {[Object]} response [response data from DB]
 	 * @return {[type]}          [description]
 	 */
-	$http.post('DBM.php', {query: queryDistributori}).then(function (response) {
+	$http.post('DataBase/DBM.php', {query: queryDistributori}).then(function (response) {
 		sessionStorage.setItem("distributori", JSON.stringify(response.data));
 		$scope.distributori = response.data;
 	});
@@ -435,7 +435,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @param  {[Object]} response [response data from DB]
 	 * @return {[type]}          [description]
 	 */
-	 $http.post('DBM.php', {query: queryProdottiHardware}).then(function (response) {
+	 $http.post('DataBase/DBM.php', {query: queryProdottiHardware}).then(function (response) {
 		 sessionStorage.setItem("prodottiHardware", JSON.stringify(response.data));
 		 $scope.prodottiHardware = response.data;
 	 });
@@ -445,7 +445,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @param  {[Object]} response [response data from DB]
 	 * @return {[type]}          [description]
 	 */
-	$http.post('DBM.php', {query: queryLicenze}).then(function (response) {
+	$http.post('DataBase/DBM.php', {query: queryLicenze}).then(function (response) {
 		sessionStorage.setItem("licenze", JSON.stringify(response.data));
 		$scope.licenze = response.data;
 	});
@@ -455,7 +455,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @param  {[Object]} response [response data from DB]
 	 * @return {[type]}          [description]
 	 */
-	$http.post('DBM.php', {query: queryLocal}).then(function (response) {
+	$http.post('DataBase/DBM.php', {query: queryLocal}).then(function (response) {
 		sessionStorage.setItem("local", JSON.stringify(response.data));
 		$scope.local = response.data;
 	});
@@ -465,7 +465,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @param  {[Object]} response [response data from DB]
 	 * @return {[type]}          [description]
 	 */
-	$http.post('DBM.php', {query: queryCanoni}).then(function (response) {
+	$http.post('DataBase/DBM.php', {query: queryCanoni}).then(function (response) {
 		sessionStorage.setItem("canoni", JSON.stringify(response.data));
 		$scope.canoni = response.data;
 	});
