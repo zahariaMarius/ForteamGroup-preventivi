@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ForteamGroup - Preventivi</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="css/preventivo/cssPreventivo.css" />
+		<!-- css -->
 		<!-- CDN packages Angularjs -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<!-- CDN packages Angularjs -->
@@ -34,27 +37,26 @@
 					<div class="" id="divInputDatiCliente">
 						<form class="" name="clienteForm">
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" minlength="5" id="nomeCliente" type="text" name="nomeCliente" ng-model="nomeCliente" ng-change="checkClienteForm()" required>
+							  <input class="mdl-textfield__input" minlength="5" id="nomeCliente" type="text" name="nomeCliente" ng-model="nomeCliente" required>
 							  <label class="mdl-textfield__label" for="nomeCliente">Nome</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<input class="mdl-textfield__input" minlength="5" id="indirizzoCliente" type="text" name="indirizzoCliente" ng-model="indirizzoCliente" ng-change="checkClienteForm()" required>
+								<input class="mdl-textfield__input" minlength="5" id="indirizzoCliente" type="text" name="indirizzoCliente" ng-model="indirizzoCliente" required>
 								<label class="mdl-textfield__label" for="indirizzoCliente">Indirizzo</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="emailCliente" type="email" name="emailCliente" ng-model="emailCliente" ng-change="checkClienteForm()" required>
+							  <input class="mdl-textfield__input" id="emailCliente" type="email" name="emailCliente" ng-model="emailCliente"required>
 							  <label class="mdl-textfield__label" for="emailCliente">E-mail</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="partitaIVACliente" type="text" name="partitaIVACliente" ng-model="partitaIVACliente" ng-change="checkClienteForm()" my-directive>
-							  <label class="mdl-textfield__label" for="partitaIVACliente">Partiva IVA</label>
+							  <input class="mdl-textfield__input" id="partitaIVACliente" type="text" name="partitaIVACliente" ng-model="partitaIVACliente" ng-change="checkClientePartitaIva()" required my-partita-iva>
+							  <label class="mdl-textfield__label" id="partitaIVAClienteLabel" for="partitaIVACliente">Partiva IVA</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="codiceFiscaleCliente" type="text" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente">
-							  <label class="mdl-textfield__label" for="codiceFiscaleCliente">Codice Fiscale</label>
+							  <input class="mdl-textfield__input" id="codiceFiscaleCliente" type="text" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" ng-change="checkClientePartitaIva()" my-codfiscale>
+							  <label class="mdl-textfield__label" id="codiceFiscaleClienteLabel" for="codiceFiscaleCliente">Codice Fiscale</label>
 							</div>
 						</form>
-						<h1>{{clienteForm.partitaIVACliente.$valid}}</h1>
 					</div>
 			<!-- input dati del cliente - end -->
 

@@ -4,8 +4,13 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
+<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
  * @Last modified time: 2017-11-09T21:52:44+01:00
+=======
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-09T23:13:35+01:00
+>>>>>>> 86d5600d4f33890129e87c404e277dfd657cd308
  */
 "use strict";
 /**
@@ -98,59 +103,6 @@ function checkIfIndirizzoClienteIsValid(address) {
 		flag = true;
 	}
 	return flag;
-}
-
-/**
- * [checkIfPartitaIvaClienteIsValid control if partitaIVA inserted is valid]
- * @param  {[String]} pi [pi inserted into input field]
- * @return {[Bool]}    [return true or false]
- */
-function checkIfPartitaIvaClienteIsValid(pi) {
-	if( pi == '' )  return true;
-	if( ! /^[0-9]{11}$/.test(pi) )
-	return false;
-	var s = 0;
-	for( i = 0; i <= 9; i += 2 )
-		s += pi.charCodeAt(i) - '0'.charCodeAt(0);
-		for(var i = 1; i <= 9; i += 2 ){
-			var c = 2*( pi.charCodeAt(i) - '0'.charCodeAt(0) );
-			if( c > 9 )  c = c - 9;
-				s += c;
-		}
-		var atteso = ( 10 - s%10 )%10;
-		if( atteso != pi.charCodeAt(10) - '0'.charCodeAt(0) )
-			return false;
-		return true;
-}
-
-/**
- * [checkIfCodiceFiscaleClienteIsValid control if codice fisacle inserted is valid]
- * @param  {[String]} cf [codice fiscale inserted into input field]
- * @return {[Bool]}    [return true or false]
- */
-function checkIfCodiceFiscaleClienteIsValid(cf) {
-	cf = cf.toUpperCase();
-	if( cf == '' )  return true;
-	if( ! /^[0-9A-Z]{16}$/.test(cf) )
-		return false;
-	var map = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17,
-		19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23];
-	var s = 0;
-	for(var i = 0; i < 15; i++){
-		var c = cf.charCodeAt(i);
-		if( c < 65 )
-			c = c - 48;
-		else
-			c = c - 55;
-		if( i % 2 == 0 )
-			s += map[c];
-		else
-			s += c < 10? c : c - 10;
-	}
-	var atteso = String.fromCharCode(65 + s % 26);
-	if( atteso != cf.charAt(15) )
-		return false;
-	return true;
 }
 
 /**
@@ -372,19 +324,67 @@ function checkIfInsertedUserExist(user) {
  */
 var app = angular.module('preventivoAngularApp', []);
 
-app.directive('myDirective', function() {
+app.directive('myPartitaIva', function() {
 return {
 	require: 'ngModel',
 	link: function(scope, element, attr, mCtrl) {
-		function myValidation(value) {
-			if (value.indexOf("e") > -1) {
-				mCtrl.$setValidity('charE', true);
-			} else {
-				mCtrl.$setValidity('charE', false);
+		function checkIfPartitaIvaClienteIsValid(value) {
+			if( value == '' ){
+				mCtrl.$setValidity('iva', true);
 			}
-			return value;
+			if( ! /^[0-9]{11}$/.test(value) ){
+				mCtrl.$setValidity('iva', false);
+			}
+			var s = 0;
+			for( i = 0; i <= 9; i += 2 )
+				s += value.charCodeAt(i) - '0'.charCodeAt(0);
+				for(var i = 1; i <= 9; i += 2 ){
+					var c = 2*( value.charCodeAt(i) - '0'.charCodeAt(0) );
+					if( c > 9 )  c = c - 9;
+						s += c;
+				}
+				var atteso = ( 10 - s%10 )%10;
+				if( atteso != value.charCodeAt(10) - '0'.charCodeAt(0) ){
+					mCtrl.$setValidity('iva', false);
+				}else{
+					mCtrl.$setValidity('iva', true);
+				}
+				return value;
 		}
-		mCtrl.$parsers.push(myValidation);
+		mCtrl.$parsers.push(checkIfPartitaIvaClienteIsValid);
+	}
+};
+});
+
+app.directive('myCodfiscale', function() {
+return {
+	require: 'ngModel',
+	link: function(scope, element, attr, mCtrl) {
+		function checkIfCodiceFiscaleClienteIsValid(value) {
+			value = value.toUpperCase();
+			if( value == '' )  mCtrl.$setValidity('codFiscale', true);
+			if( ! /^[0-9A-Z]{16}$/.test(value) )
+				mCtrl.$setValidity('codFiscale', false);
+			var map = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17,
+				19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23];
+			var s = 0;
+			for(var i = 0; i < 15; i++){
+				var c = value.charCodeAt(i);
+				if( c < 65 )
+					c = c - 48;
+				else
+					c = c - 55;
+				if( i % 2 == 0 )
+					s += map[c];
+				else
+					s += c < 10? c : c - 10;
+			}
+			var atteso = String.fromCharCode(65 + s % 26);
+			if( atteso != value.charAt(15) )
+				mCtrl.$setValidity('codFiscale', false);
+			mCtrl.$setValidity('codFiscale', true);
+		}
+		mCtrl.$parsers.push(checkIfCodiceFiscaleClienteIsValid);
 	}
 };
 });
@@ -697,13 +697,20 @@ app.controller('preventivoController', function($scope, $http) {
 		}
 	}
 
-	$scope.checkClienteForm = function() {
+	/**
+	 * [scope checkClientePartitaIva get every change input and controll if is valid]
+	 * @return {[type]} [description]
+	 */
+	$scope.checkClientePartitaIva = function() {
+		//get if inout is valid
 		var partitaIVA = $scope.clienteForm.partitaIVACliente.$valid;
-		var myButtonClasses = document.getElementById("partitaIVACliente").classList;
+		//if is valid input get value colors else get error colors
 		if (partitaIVA) {
+			document.getElementById("partitaIVACliente").classList.remove('textfield_input_error');
+			document.getElementById("partitaIVAClienteLabel").classList.remove('textfield_floatinglabel_error');
 		}else {
-			myButtonClasses.add("mdl-textfield.is-invalid");
-			console.log(partitaIVA);
+			document.getElementById("partitaIVACliente").classList.add('textfield_input_error');
+			document.getElementById("partitaIVAClienteLabel").classList.add('textfield_floatinglabel_error');
 		}
 	}
 
