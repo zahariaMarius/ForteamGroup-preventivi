@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-06T22:16:13+01:00
+ * @Last modified time: 2017-11-08T16:51:30+01:00
  */
 "use strict";
 /**
@@ -70,6 +70,8 @@ totalItemsSelected["canoniSelectedRevenue"] = 0;
 totalItemsSelected["canoniSelectedPercentageRevenue"] = 0;
 //totalItemsSelected overall total variable
 totalItemsSelected["overallTotalAllItemsSelected"] = 0;
+totalItemsSelected["overallRevenueAllItemsSelected"] = 0;
+totalItemsSelected["overallPercentageRevenueAllItemsSelected"] = 0;
 
 
 /**
@@ -190,6 +192,35 @@ function addRemoveItemsFromArrayOfSelectedItem(selectedItems, item) {
 }
 
 /**
+* [addRemoveDistributoreFromDistributoriSelected add or remove the distubutore selected]
+* @param {[Object]} distributore [distributore selected from select]
+*/
+function addRemoveDistributoreFromDistributoriSelected(distributore) {
+	//control if distributore is null
+	if (distributore) {
+		//create new Object property "quantita"
+		distributore.Quantita = 1;
+		if (distributoreSelected.length > 0) {
+			distributoreSelected.splice(0, 1);
+			distributoreSelected.push(distributore);
+		}else {
+			distributoreSelected.push(distributore);
+		}
+		totalItemsSelected["totalDistributoreSelected"] = Number(distributore.Prezzo_listino);
+	}else {
+		distributoreSelected.splice(0, 1);
+		totalItemsSelected["totalDistributoreSelected"] = 0;
+	}
+
+	distributore.Ricavo = distributore.Prezzo_listino - distributore.Prezzo_acquisto;
+	distributore.Ricavo_percentuale = (distributore.Ricavo * 100) / distributore.Prezzo_listino;
+	distributore.Sconto = 0;
+	totalItemsSelected["distributoreSelectedRevenue"] = distributore.Ricavo;
+	totalItemsSelected["distributoreSelectedPercentageRevenue"] = distributore.Ricavo_percentuale;
+	console.log(totalItemsSelected);
+}
+
+/**
  * [calculateTotalItemsSelected calculate the total of specified items in cart]
  * @param  {[Array]} items [items array of item]
  * @return {[Number]}       [return the total of specified selectedItems]
@@ -232,7 +263,6 @@ function calculatePercentageRevenueItemsSelected(totalItemsSelectedRevenue, tota
  * @return {[Number]} [overall total]
  */
 function calculateOverallTotalAllItemsSelected() {
-	totalItemsSelected["overallTotalAllItemsSelected"] = 0;
 	totalItemsSelected["overallTotalAllItemsSelected"] = totalItemsSelected["totalDistributoreSelected"] +
 	totalItemsSelected["totalProdottiHardwareSelected"] + totalItemsSelected["totalLicenzeSelected"] +
 	totalItemsSelected["totalLocalSelected"] + totalItemsSelected["totalCanoniSelected"];
@@ -240,32 +270,21 @@ function calculateOverallTotalAllItemsSelected() {
 }
 
 /**
- * [addRemoveDistributoreFromDistributoriSelected add or remove the distubutore selected]
- * @param {[Object]} distributore [distributore selected from select]
+ * [calculateOverallRevenueAllItemsSelected calculate all items selected overall revenue total]
+ * @return {[type]} [description]
  */
-function addRemoveDistributoreFromDistributoriSelected(distributore) {
-	//control if distributore is null
-	if (distributore) {
-		//create new Object property "quantita"
-		distributore.Quantita = 1;
-		if (distributoreSelected.length > 0) {
-			distributoreSelected.splice(0, 1);
-			distributoreSelected.push(distributore);
-		}else {
-			distributoreSelected.push(distributore);
-		}
-		totalItemsSelected["totalDistributoreSelected"] = Number(distributore.Prezzo_listino);
-	}else {
-		distributoreSelected.splice(0, 1);
-		totalItemsSelected["totalDistributoreSelected"] = 0;
-	}
+function calculateOverallRevenueAllItemsSelected() {
+	totalItemsSelected["overallRevenueAllItemsSelected"] = totalItemsSelected["distributoreSelectedRevenue"] +
+	totalItemsSelected["prodottiHardwareSelectedRevenue"] + totalItemsSelected["licenzeSelectedRevenue"] +
+	totalItemsSelected["localSelectedRevenue"] + totalItemsSelected["canoniSelectedRevenue"];
+}
 
-	distributore.Ricavo = distributore.Prezzo_listino - distributore.Prezzo_acquisto;
-	distributore.Ricavo_percentuale = (distributore.Ricavo * 100) / distributore.Prezzo_listino;
-	distributore.Sconto = 0;
-	totalItemsSelected["distributoreSelectedRevenue"] = distributore.Ricavo;
-	totalItemsSelected["distributoreSelectedPercentageRevenue"] = distributore.Ricavo_percentuale;
-	console.log(totalItemsSelected);
+/**
+ * [calculateOverllPercentageRevenueAllItemsSelected calculate all items selected overall percentage revenue total]
+ * @return {[type]} [description]
+ */
+function calculateOverllPercentageRevenueAllItemsSelected() {
+	totalItemsSelected["overallPercentageRevenueAllItemsSelected"] = (totalItemsSelected["overallRevenueAllItemsSelected"] * 100) / totalItemsSelected["overallTotalAllItemsSelected"];
 }
 
 /**
@@ -279,6 +298,57 @@ function checkIfQuantitaIsNumber(qnt) {
 		qnt = 0;
 	}
 	return qnt;
+}
+
+/**
+ * [checkUserPrivilegeForCustomizedProduct check if the user is qualified to create an customized product]
+ * @param  {[Object]} user [user that is logged in]
+ * @return {[Bool]}      [true or false]
+ */
+function checkUserPrivilegeForCustomizedProduct(user) {
+	var flag = false
+	if (user.Privilegi == "Amministratore") {flag = true;}
+	return flag;
+}
+
+/**
+ * [checkIfCodiceCustomizedProductAlreadyExist Check if inserted codice already exist]
+ * @param  {[Char]} categoriaCustomizedProduct [char of selected category]
+ * @param  {[String]} codiceCustomizedProduct    [codice inserted]
+ * @return {[Bool]}                            [return true or false]
+ */
+function checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, codiceCustomizedProduct, allCategory) {
+	function checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategoryProducts) {
+		var flag = false;
+		console.log(codiceCustomizedProduct);
+		console.log(allCategoryProducts);
+		for (var i = 0; i < allCategoryProducts.length; i++) {
+			if (codiceCustomizedProduct == allCategoryProducts[i].Codice) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+	//declar return variable
+	var flag;
+
+	console.log(categoriaCustomizedProduct);
+
+	switch (categoriaCustomizedProduct) {
+		case '0':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[0]);
+			break;
+		case '1':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[1]);
+			break;
+		case '2':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[2]);
+			break;
+		case '3':
+			flag = checkIfCodiceCustomizedProductIsEqual(codiceCustomizedProduct, allCategory[3]);
+			break;
+	}
+	return flag;
 }
 
 /**
@@ -329,7 +399,7 @@ app.controller('preventivoController', function($scope, $http) {
 		var password = $scope.passwordLogin;
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
 		$http.post('DBM.php', {query: queryUserLogin}).then(function (response) {
-			sessionStorage.setItem("user", JSON.stringify(response.data));
+			sessionStorage.setItem("user", JSON.stringify(response.data[0]));
 		});
 	}
 
@@ -397,6 +467,8 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign the overall total of all items selected
 		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
 		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(distributore);
 	}
 
@@ -423,8 +495,9 @@ app.controller('preventivoController', function($scope, $http) {
 		//assign to in cart total scope all total
 		$scope.cartTotalProdottiHardwareSelected = totalItemsSelected["totalProdottiHardwareSelected"];
 		//calculate and assign the overall total of all items selected
-		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
-		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 
@@ -445,14 +518,15 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalLicenzeSelected"] = calculateTotalItemsSelected(licenzeSelected);
 		//calculate and assign to array the total revenue of selected items
-		totalItemsSelected["licenzeSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		totalItemsSelected["licenzeSelectedRevenue"] = calculateRevenueItemsSelected(licenzeSelected);
 		//calculate and assign to array the total percentage revenue of selected items
 		totalItemsSelected["licenzeSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["licenzeSelectedRevenue"], totalItemsSelected["totalLicenzeSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalLicenzeSelected = totalItemsSelected["totalLicenzeSelected"];
 		//calculate and assign the overall total of all items selected
-		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
-		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 
@@ -473,14 +547,15 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalLocalSelected"] = calculateTotalItemsSelected(localSelected);
 		//calculate and assign to array the total revenue of selected items
-		totalItemsSelected["localSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		totalItemsSelected["localSelectedRevenue"] = calculateRevenueItemsSelected(localSelected);
 		//calculate and assign to array the total percentage revenue of selected items
 		totalItemsSelected["localSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["localSelectedRevenue"], totalItemsSelected["totalLocalSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalLocalSelected = totalItemsSelected["totalLocalSelected"];
 		//calculate and assign the overall total of all items selected
-		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
-		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
 	}
 
@@ -491,6 +566,7 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @return {[type]}          [description]
 	 */
 	$scope.getCanoniQuantita = function(quantita, canone) {
+		console.log(canone);
 		quantita = checkIfQuantitaIsNumber(quantita);
 		//create new Object property "quantita"
 		canone.Quantita = quantita;
@@ -501,14 +577,88 @@ app.controller('preventivoController', function($scope, $http) {
 		//calculate and assign to array the total overall of selected items
 		totalItemsSelected["totalCanoniSelected"] = calculateTotalItemsSelected(canoniSelected);
 		//calculate and assign to array the total revenue of selected items
-		totalItemsSelected["canoniSelectedRevenue"] = calculateRevenueItemsSelected(prodottiHardwareSelected);
+		totalItemsSelected["canoniSelectedRevenue"] = calculateRevenueItemsSelected(canoniSelected);
 		//calculate and assign to array the total percentage revenue of selected items
 		totalItemsSelected["canoniSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["canoniSelectedRevenue"], totalItemsSelected["totalCanoniSelected"]);
 		//assign to in cart total scope all total
 		$scope.cartTotalCanoniSelected = totalItemsSelected["totalCanoniSelected"];
 		//calculate and assign the overall total of all items selected
-		totalItemsSelected["overallTotalAllItemsSelected"] = calculateOverallTotalAllItemsSelected();
-		$scope.cartOverallTotalAllItemsSelected = totalItemsSelected["overallTotalAllItemsSelected"];
+		$scope.cartOverallTotalAllItemsSelected = calculateOverallTotalAllItemsSelected();
+		calculateOverallRevenueAllItemsSelected();
+		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(totalItemsSelected);
+	}
+
+	/**
+	 * [openCustomizedProduct open the create customized product form]
+	 * @return {[type]} [description]
+	 */
+	$scope.openCustomizedProduct = function() {
+		//save user into variable from sessionStorage
+		user = JSON.parse(sessionStorage.getItem("user"));
+		//check if user is qualified to craete a customized product
+		if (checkUserPrivilegeForCustomizedProduct(user)) {
+			//open the create new element form
+			console.log("User qualified");
+		}else {
+			//open the login form
+			console.log("user not qualified");
+		}
+		console.log(user);
+	}
+
+	/**
+	 * [createCustomizedProduct scope insert into table the new customized product]
+	 * @return {[type]} [description]
+	 */
+	$scope.createCustomizedProduct = function() {
+		//get all Object items from sessionStorage
+		var prodottiHardware = $scope.prodottiHardware;
+		var licenze = $scope.licenze;
+		var local = $scope.local;
+		var canoni = $scope.canoni;
+		//get all input data from input form
+		var categoriaCustomizedProduct = $scope.categoriaCustomizedProduct;
+		var codiceCustomizedProduct = $scope.codiceCustomizedProduct;
+		var nomeCustomizedProduct = $scope.nomeCustomizedProduct;
+		var descrizioneCustomizedProduct = $scope.descrizioneCustomizedProduct;
+		var prezzoAcquistoCustomizedProduct = $scope.prezzoAcquistoCustomizedProduct;
+		var prezzoListinoCustomizedProduct = $scope.prezzoListinoCustomizedProduct;
+		//insert all input data into array
+		var allCategory = [prodottiHardware, licenze, local, canoni];
+		var customizedProductData = [categoriaCustomizedProduct, codiceCustomizedProduct, nomeCustomizedProduct, descrizioneCustomizedProduct, prezzoAcquistoCustomizedProduct, prezzoListinoCustomizedProduct]
+		//check if codice already exist
+		if (!checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, codiceCustomizedProduct, allCategory)) {
+			//create the new customized product
+			var customizedProduct = {
+				Codice: customizedProductData[1],
+				Descrizione: customizedProductData[3],
+				Prezzo_acquisto: customizedProductData[4],
+				Prezzo_listino: customizedProductData[5]
+			}
+
+			//push the new customized product into specified table
+			switch (customizedProductData[0]) {
+				case '0':
+					customizedProduct.Nome = customizedProductData[2];
+					$scope.prodottiHardware.push(customizedProduct);
+					break;
+				case '1':
+					customizedProduct.Tipologia = customizedProductData[2];
+					$scope.licenze.push(customizedProduct);
+					break;
+				case '2':
+					customizedProduct.Tipologia = customizedProductData[2];
+					$scope.local.push(customizedProduct);
+					break;
+				case '3':
+					customizedProduct.Tipologia = customizedProductData[2];
+					$scope.canoni.push(customizedProduct);
+					break;
+			}
+		}else {
+			//messaggio di errore che il codice esiste già
+			console.log("esiste");
+		}
 	}
 });

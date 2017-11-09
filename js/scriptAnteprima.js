@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9e445c28e436d987d9ff6aa46533c88af69984e1
 /**
  * @Author: Zaharia Laurentiu Jr Marius
  * @Date:   2017-10-27T12:06:17+02:00
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
+<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
  * @Last modified time: 2017-11-09T13:34:35+01:00
+=======
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-09T12:54:45+01:00
+>>>>>>> 9e445c28e436d987d9ff6aa46533c88af69984e1
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -26,14 +34,14 @@ var noteAggiuntive = dataFromRiepilogo["noteAggiuntive"];
 document.querySelectorAll('[id=table-distributore]')[0].style.display = 'none';
 document.querySelectorAll('[id=table-distributore]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-accessori]')[0].style.display = 'none';
-document.querySelectorAll('[id=table-accessori]')[1].style.display = 'none';
+//document.querySelectorAll('[id=table-accessori]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-software]')[0].style.display = 'none';
-document.querySelectorAll('[id=table-software]')[1].style.display = 'none';
+//document.querySelectorAll('[id=table-software]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-licenze]')[0].style.display = 'none';
-document.querySelectorAll('[id=table-licenze]')[1].style.display = 'none';
+//document.querySelectorAll('[id=table-licenze]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-servizi]')[0].style.display = 'none';
-document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
-document.getElementById("tableCliente-note").style.display = 'none';
+//document.querySelectorAll('[id=table-servizi]')[1].style.display = 'none';
+//document.getElementById("tableCliente-note").style.display = 'none';
 document.getElementById("tableAzienda-note").style.display = 'none';
 
 function printDiv(divName) {
@@ -75,7 +83,7 @@ console.log(dataFromRiepilogo);
 	if (accessori) {
 		if (Object.keys(accessori).length != 0) {
 			document.querySelectorAll('[id=table-accessori]')[0].style.display = 'table';
-			document.querySelectorAll('[id=table-accessori]')[1].style.display = 'table';
+			//document.querySelectorAll('[id=table-accessori]')[1].style.display = 'table';
 			$scope.accessori = accessori;
 			$scope.Ricavo_accessori = totali.Ricavo_accessori;
 			$scope.Guadagno_accessori = totali.Guadagno_accessori;
@@ -87,7 +95,7 @@ console.log(dataFromRiepilogo);
 	if (software) {
 		if (Object.keys(software).length) {
 			document.querySelectorAll('[id=table-software]')[0].style.display = 'table';
-			document.querySelectorAll('[id=table-software]')[1].style.display = 'table';
+			//document.querySelectorAll('[id=table-software]')[1].style.display = 'table';
 			$scope.software = software;
 			$scope.Ricavo_software = totali.Ricavo_software;
 			$scope.Guadagno_software = totali.Guadagno_software;
@@ -99,7 +107,7 @@ console.log(dataFromRiepilogo);
 	if (licenze) {
 		if (Object.keys(licenze).length) {
 			document.querySelectorAll('[id=table-licenze]')[0].style.display = 'table';
-			document.querySelectorAll('[id=table-licenze]')[1].style.display = 'table';
+			//document.querySelectorAll('[id=table-licenze]')[1].style.display = 'table';
 			$scope.licenze = licenze
 			$scope.Ricavo_licenze = totali.Ricavo_licenze;
 			$scope.Guadagno_licenze = totali.Guadagno_licenze;
@@ -111,7 +119,7 @@ console.log(dataFromRiepilogo);
 	if (servizi) {
 		if (Object.keys(servizi).length) {
 			document.querySelectorAll('[id=table-servizi]')[0].style.display = 'table';
-			document.querySelectorAll('[id=table-servizi]')[1].style.display = 'table';
+			//document.querySelectorAll('[id=table-servizi]')[1].style.display = 'table';
 			$scope.servizi = servizi
 			$scope.Ricavo_servizi = totali.Ricavo_servizi;
 			$scope.Guadagno_servizi = totali.Guadagno_servizi;
@@ -145,7 +153,7 @@ console.log(dataFromRiepilogo);
 
 	//scope note aggiuntive cliente
 	if (noteAggiuntive.cliente) {
-		document.getElementById("tableCliente-note").style.display = 'table';
+		//document.getElementById("tableCliente-note").style.display = 'table';
 		$scope.Note_aggiuntive_cliente = noteAggiuntive.cliente;
 	}
 
