@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T18:18:29+01:00
+ * @Last modified time: 2017-11-09T20:49:24+01:00
  */
 "use strict";
 /**
@@ -372,6 +372,23 @@ function checkIfInsertedUserExist(user) {
  */
 var app = angular.module('preventivoAngularApp', []);
 
+app.directive('myDirective', function() {
+return {
+	require: 'ngModel',
+	link: function(scope, element, attr, mCtrl) {
+		function myValidation(value) {
+			if (value.indexOf("e") > -1) {
+				mCtrl.$setValidity('charE', true);
+			} else {
+				mCtrl.$setValidity('charE', false);
+			}
+			return value;
+		}
+		mCtrl.$parsers.push(myValidation);
+	}
+};
+});
+
 /**
  * [description]
  * @param  {[Object]} $scope [description]
@@ -680,8 +697,13 @@ app.controller('preventivoController', function($scope, $http) {
 	}
 
 	$scope.checkClienteForm = function() {
-		var nomeCliente = $scope.nomeCliente;
-		var emailClienet = $scope.emailCliente;
-		
+		var partitaIVA = $scope.clienteForm.partitaIVACliente.$valid;
+		var myButtonClasses = document.getElementById("partitaIVACliente").classList;
+		if (partitaIVA) {
+		}else {
+			myButtonClasses.add("mdl-textfield.is-invalid");
+			console.log(partitaIVA);
+		}
 	}
+
 });

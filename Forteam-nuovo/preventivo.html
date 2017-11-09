@@ -17,12 +17,12 @@
 		<!-- login input - start-->
 			<div class="">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				  <input class="mdl-textfield__input" id="sample3" type="text" name="username" ng-model="usernameLogin">
-				  <label class="mdl-textfield__label" for="sample3">Username</label>
+				  <input class="mdl-textfield__input" id="username" type="text" name="username" ng-model="usernameLogin">
+				  <label class="mdl-textfield__label" for="username">Username</label>
 				</div>
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			      <input class="mdl-textfield__input" id="sample3" type="text" name="password" ng-model="passwordLogin">
-			      <label class="mdl-textfield__label" for="sample3">Password</label>
+			      <input class="mdl-textfield__input" id="password" type="password" name="password" ng-model="passwordLogin">
+			      <label class="mdl-textfield__label" for="password">Password</label>
 			    </div>
 				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" name="buttonLogin" ng-click="userLoginAutentication()">Login</button>
 			</div>
@@ -33,28 +33,29 @@
 			<div class="row">
 				<div class="col">
 					<div class="" id="divInputDatiCliente">
-						<form class="" name="clienteForm" >
+						<form class="" name="clienteForm">
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="sample3" type="text" name="nomeCliente" ng-model="nomeCliente" ng-chage="checkClienteForm()">
-							  <label class="mdl-textfield__label" for="sample3">Nome</label>
+							  <input class="mdl-textfield__input" minlength="5" id="nomeCliente" type="text" name="nomeCliente" ng-model="nomeCliente" ng-change="checkClienteForm()" required>
+							  <label class="mdl-textfield__label" for="nomeCliente">Nome</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="sample3" type="email" name="emailCliente" ng-model="emailCliente" ng-chage="checkClienteForm()">
-							  <label class="mdl-textfield__label" for="sample3">E-mail</label>
+								<input class="mdl-textfield__input" minlength="5" id="indirizzoCliente" type="text" name="indirizzoCliente" ng-model="indirizzoCliente" ng-change="checkClienteForm()" required>
+								<label class="mdl-textfield__label" for="indirizzoCliente">Indirizzo</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="sample3" type="text" name="indirizzoCliente" ng-model="indirizzoCliente">
-							  <label class="mdl-textfield__label" for="sample3">Indirizzo</label>
+							  <input class="mdl-textfield__input" id="emailCliente" type="email" name="emailCliente" ng-model="emailCliente" ng-change="checkClienteForm()" required>
+							  <label class="mdl-textfield__label" for="emailCliente">E-mail</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="sample3" type="text" name="partitaIVACliente" ng-model="partitaIVACliente">
-							  <label class="mdl-textfield__label" for="sample3">Partiva IVA</label>
+							  <input class="mdl-textfield__input" id="partitaIVACliente" type="text" name="partitaIVACliente" ng-model="partitaIVACliente" ng-change="checkClienteForm()" my-directive>
+							  <label class="mdl-textfield__label" for="partitaIVACliente">Partiva IVA</label>
 							</div>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="sample3" type="text" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente">
-							  <label class="mdl-textfield__label" for="sample3">Codice Fiscale</label>
+							  <input class="mdl-textfield__input" id="codiceFiscaleCliente" type="text" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente">
+							  <label class="mdl-textfield__label" for="codiceFiscaleCliente">Codice Fiscale</label>
 							</div>
 						</form>
+						<h1>{{clienteForm.partitaIVACliente.$valid}}</h1>
 					</div>
 				</div>
 			</div>
