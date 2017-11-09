@@ -1,27 +1,18 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 9e445c28e436d987d9ff6aa46533c88af69984e1
 /**
  * @Author: Zaharia Laurentiu Jr Marius
  * @Date:   2017-10-27T12:06:17+02:00
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
-<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-09T13:34:35+01:00
-=======
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T12:54:45+01:00
->>>>>>> 9e445c28e436d987d9ff6aa46533c88af69984e1
+ * @Last modified time: 2017-11-09T13:50:46+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
 var dataFromRiepilogo = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
 
 //salavataggio di tutti i dati in varie variabili
-var azienda = dataFromRiepilogo["azienda"];
+//var azienda = dataFromRiepilogo["azienda"];
 var distributore = dataFromRiepilogo["distributore"];
 var accessori = dataFromRiepilogo["accessori"];
 var software = dataFromRiepilogo["software"];
@@ -64,10 +55,10 @@ console.log(dataFromRiepilogo);
 
 
 	// scope dati azienda
-	if (azienda[0].Codice_fiscale === undefined) {
-		azienda[0].Codice_fiscale = "NON FORNITO";
-		$scope.azienda = azienda;
-	}
+	// if (azienda[0].Codice_fiscale === undefined) {
+	// 	azienda[0].Codice_fiscale = "NON FORNITO";
+	// 	$scope.azienda = azienda;
+	//}
 
 	// scope dati distributore
 	if (distributore[0].Codice != null) {

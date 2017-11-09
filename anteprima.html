@@ -386,17 +386,7 @@
 				                                <th>Totale scontato</th>
 				                            </tr>
 				                        </thead>
-										<tfoot>
-											<tr>
-												<th>
-													<div class="footer">
-														<p>FOTREAM GROUP SRL</p>
-														<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
-														<p>Telefono: +39 011 0015516 | Partita IVA & Codice fiscale: 03601010048-N | REA: CN-302892</p>
-													</div>
-												</th>
-											</tr>
-										</tfoot>
+
 				                        <tbody>
 				                            <tr ng-repeat="x in distributore">
 				                                <td>{{x.Codice}}</td>
@@ -449,6 +439,17 @@
 				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
 				                        </tbody>
+										<tfoot>
+											<tr>
+												<th>
+													<div class="footer">
+														<p>FOTREAM GROUP SRL</p>
+														<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
+														<p>Telefono: +39 011 0015516 | Partita IVA & Codice fiscale: 03601010048-N | REA: CN-302892</p>
+													</div>
+												</th>
+											</tr>
+										</tfoot>
 				                    </table>
 				                </div>
 				            </div>
