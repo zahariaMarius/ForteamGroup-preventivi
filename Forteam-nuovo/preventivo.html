@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 		<!-- CDN packages Material- end-->
+
 	</head>
 	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
 		<!-- login input - start-->
@@ -30,8 +31,6 @@
 
 		<div class="container-fluid">
 			<!-- input dati del cliente - start -->
-			<div class="row">
-				<div class="col">
 					<div class="" id="divInputDatiCliente">
 						<form class="" name="clienteForm">
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -57,130 +56,139 @@
 						</form>
 						<h1>{{clienteForm.partitaIVACliente.$valid}}</h1>
 					</div>
-				</div>
-			</div>
 			<!-- input dati del cliente - end -->
 
 			<!-- select del distributore desiderato - start -->
-			<div class="row">
-				<div class="col">
-					<div class="" id="divSelectDistributore">
-						<select class="" name="selectDistributore" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
-							<option value="">NESSUN DISTRIBUTORE</option>
-						</select>
-					</div>
-				</div>
-			</div>
+
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"  id="divSelectDistributore">
+				<span> Seleziona il distributore:</span>
+				  <select class="mdl-textfield__input" id="octane" name="octane" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
+						<option value="">NESSUN DISTRIBUTORE</option>
+				  </select>
+            </div>
 			<!-- select del distributore desiderato - end -->
+			<!-- optional inputs field - start -->
+			<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
+			<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
+			<!-- optional inputs field - end -->
 
-			<!-- tabelle che contengono i componenti selezionabili - start -->
-			<div class="row">
-				<div class="col">
-					<!-- optional inputs field - start -->
-					<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
-					<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
-					<!-- optional inputs field - end -->
-
-					<!-- tabella prodotti hardware - start -->
-					<div class="" id="divContenenteTabellaProdottiHardware">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Nome</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in prodottiHardware | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Nome}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella prodotti hardware - end -->
-					<!-- tabella licenze - start -->
-					<div class="" id="divContenenteTabellaLicenze">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Tipologia</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in licenze | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Tipologia}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella licenze - end -->
-					<!-- tabella prodotti local - start -->
-					<div class="" id="divContenenteTabellaProdottiLocal">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Tipologia</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in local | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Tipologia}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella prodotti local - end -->
-					<!-- tabella canoni - start -->
-					<div class="" id="divContenenteTabellaCanoni">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Tipologia</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in canoni | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Tipologia}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella canoni - end -->
-				</div>
+			<!-- tabbed view- start -->
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+	<div class="mdl-tabs__tab-bar">
+		<a href="#hardware" class="mdl-tabs__tab mdl-js-ripple-effect is-active">Prodotti Hardware</a>
+		<a href="#licenzeWeb" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze (Webserver)</a>
+		<a href="#canoni" class="mdl-tabs__tab mdl-js-ripple-effect">Canoni collegamento e aggiornamenti web</a>
+	    <a href="#licenzeLocal" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze Local Usage</a>
+	</div>
+	  <div class="mdl-tabs__panel is-active" id="hardware">
+			<!-- tabella prodotti hardware - start -->
+			<div id="divContenenteTabellaProdottiHardware">
+				<table class="mdl-data-table mdl-js-data-table">
+					<thead>
+						<tr>
+							<th>Codice</th>
+							<th class="mdl-data-table__cell--non-numeric">Nome</th>
+							<th class="mdl-data-table__cell--non-numeric">Descrizione</th>
+							<th>Prezzo listino</th>
+							<th>Quantità</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in prodottiHardware | filter:searchItem">
+						   <td>{{x.Codice}}</td>
+						   <td class="mdl-data-table__cell--non-numeric">{{x.Nome}}</td>
+						   <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
+						   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+						   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
+					   </tr>
+					</tbody>
+				</table>
 			</div>
-			<!-- tabelle che contengono i componenti selezionabili - end -->
-		</div>
+			<!-- tabella prodotti hardware - end -->
+	  </div>
+	  <div class="mdl-tabs__panel" id="licenzeWeb">
+		  <!-- tabella licenze - start -->
+		  <div id="divContenenteTabellaLicenze">
+			  <table class="mdl-data-table mdl-js-data-table">
+				  <thead>
+					  <tr>
+						  <th>Codice</th>
+						  <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
+						  <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
+						  <th>Prezzo listino</th>
+						  <th>Quantità</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr ng-repeat="x in licenze | filter:searchItem">
+						 <td>{{x.Codice}}</td>
+						 <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
+						 <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
+						 <td>{{x.Prezzo_listino | currency:"€"}}</td>
+						 <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
+					 </tr>
+				  </tbody>
+			  </table>
+		  </div>
+		  <!-- tabella licenze - end -->
+	  </div>
+	  <div class="mdl-tabs__panel" id="canoni">
+		  <!-- tabella canoni - start -->
+		   <div class="" id="divContenenteTabellaCanoni">
+			   <table class="mdl-data-table mdl-js-data-table">
+				   <thead>
+					   <tr>
+						   <th>Codice</th>
+						   <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
+						   <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
+						   <th>Prezzo listino</th>
+						   <th>Quantità</th>
+					   </tr>
+				   </thead>
+				   <tbody>
+					   <tr ng-repeat="x in canoni | filter:searchItem">
+						  <td>{{x.Codice}}</td>
+						  <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
+						  <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
+						  <td>{{x.Prezzo_listino | currency:"€"}}</td>
+						  <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
+					  </tr>
+				   </tbody>
+			   </table>
+		   </div>
+		   <!-- tabella canoni - end -->
+	  </div>
+	  <div class="mdl-tabs__panel" id="licenzeLocal">
+		  <!-- tabella prodotti local - start -->
+ 		 <div class="" id="divContenenteTabellaProdottiLocal">
+ 			 <table class="mdl-data-table mdl-js-data-table">
+ 				 <thead>
+ 					 <tr>
+ 						 <th>Codice</th>
+ 						 <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
+ 						 <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
+ 						 <th>Prezzo listino</th>
+ 						 <th>Quantità</th>
+ 					 </tr>
+ 				 </thead>
+ 				 <tbody>
+ 					 <tr ng-repeat="x in local | filter:searchItem">
+ 						<td>{{x.Codice}}</td>
+ 						<td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
+ 						<td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
+ 						<td>{{x.Prezzo_listino | currency:"€"}}</td>
+ 						<td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+ 					</tr>
+ 				 </tbody>
+ 			 </table>
+ 		 </div>
+ 		 <!-- tabella prodotti local - end -->
+	  </div>
+  </div>
+  <!-- tabbed view- end -->
+	</div>
+			<!-- container-->
+
 
 		<!-- carrello - start -->
 		<div class="container-fluid">

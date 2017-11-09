@@ -4,8 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T20:49:24+01:00
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-09T21:52:44+01:00
  */
 "use strict";
 /**
@@ -504,6 +504,7 @@ app.controller('preventivoController', function($scope, $http) {
 		calculateOverallRevenueAllItemsSelected();
 		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(distributore);
+		console.log("mamma puttana");
 	}
 
 	/**
