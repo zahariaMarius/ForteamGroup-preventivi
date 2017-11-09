@@ -85,23 +85,23 @@
 	  <div class="mdl-tabs__panel is-active" id="hardware">
 			<!-- tabella prodotti hardware - start -->
 			<div id="divContenenteTabellaProdottiHardware">
-				<table class="mdl-data-table mdl-js-data-table">
+				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 					<thead>
 						<tr>
-							<th>Codice</th>
+							<th class="mdl-data-table__cell--non-numeric">Codice</th>
 							<th class="mdl-data-table__cell--non-numeric">Nome</th>
 							<th class="mdl-data-table__cell--non-numeric">Descrizione</th>
-							<th>Prezzo listino</th>
-							<th>Quantità</th>
+							<th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
+							<th class="mdl-data-table__cell--non-numeric">Quantità</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="x in prodottiHardware | filter:searchItem">
-						   <td>{{x.Codice}}</td>
+						   <td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
 						   <td class="mdl-data-table__cell--non-numeric">{{x.Nome}}</td>
 						   <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
-						   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-						   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
+						   <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
+						   <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
 					   </tr>
 					</tbody>
 				</table>
@@ -111,23 +111,23 @@
 	  <div class="mdl-tabs__panel" id="licenzeWeb">
 		  <!-- tabella licenze - start -->
 		  <div id="divContenenteTabellaLicenze">
-			  <table class="mdl-data-table mdl-js-data-table">
+			  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 				  <thead>
 					  <tr>
-						  <th>Codice</th>
+						  <th class="mdl-data-table__cell--non-numeric">Codice</th>
 						  <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
 						  <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
-						  <th>Prezzo listino</th>
-						  <th>Quantità</th>
+						  <th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
+						  <th class="mdl-data-table__cell--non-numeric">Quantità</th>
 					  </tr>
 				  </thead>
 				  <tbody>
 					  <tr ng-repeat="x in licenze | filter:searchItem">
-						 <td>{{x.Codice}}</td>
+						 <td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
 						 <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
 						 <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
-						 <td>{{x.Prezzo_listino | currency:"€"}}</td>
-						 <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
+						 <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
+						 <td class="mdl-data-table__cell--non-numeric"><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
 					 </tr>
 				  </tbody>
 			  </table>
@@ -137,23 +137,23 @@
 	  <div class="mdl-tabs__panel" id="canoni">
 		  <!-- tabella canoni - start -->
 		   <div class="" id="divContenenteTabellaCanoni">
-			   <table class="mdl-data-table mdl-js-data-table">
+			   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 				   <thead>
 					   <tr>
-						   <th>Codice</th>
+						   <th class="mdl-data-table__cell--non-numeric">Codice</th>
 						   <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
 						   <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
-						   <th>Prezzo listino</th>
-						   <th>Quantità</th>
+						   <th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
+						   <th class="mdl-data-table__cell--non-numeric">Quantità</th>
 					   </tr>
 				   </thead>
 				   <tbody>
 					   <tr ng-repeat="x in canoni | filter:searchItem">
-						  <td>{{x.Codice}}</td>
+						  <td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
 						  <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
 						  <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
-						  <td>{{x.Prezzo_listino | currency:"€"}}</td>
-						  <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
+						  <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
+						  <td class="mdl-data-table__cell--non-numeric"><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
 					  </tr>
 				   </tbody>
 			   </table>
@@ -163,23 +163,23 @@
 	  <div class="mdl-tabs__panel" id="licenzeLocal">
 		  <!-- tabella prodotti local - start -->
  		 <div class="" id="divContenenteTabellaProdottiLocal">
- 			 <table class="mdl-data-table mdl-js-data-table">
+ 			 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
  				 <thead>
  					 <tr>
- 						 <th>Codice</th>
+ 						 <th class="mdl-data-table__cell--non-numeric">Codice</th>
  						 <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
  						 <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
- 						 <th>Prezzo listino</th>
- 						 <th>Quantità</th>
+ 						 <th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
+ 						 <th class="mdl-data-table__cell--non-numeric">Quantità</th>
  					 </tr>
  				 </thead>
  				 <tbody>
  					 <tr ng-repeat="x in local | filter:searchItem">
- 						<td>{{x.Codice}}</td>
+ 						<td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
  						<td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
  						<td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
- 						<td>{{x.Prezzo_listino | currency:"€"}}</td>
- 						<td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+ 						<td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
+ 						<td class="mdl-data-table__cell--non-numeric"><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
  					</tr>
  				 </tbody>
  			 </table>
@@ -188,7 +188,7 @@
 	  </div>
   </div>
   <!-- tabbed view- end -->
-	</div>
+</div>
 			<!-- container-->
 
 
