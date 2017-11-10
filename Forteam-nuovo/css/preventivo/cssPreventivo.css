@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T21:55:42+01:00
+ * @Last modified time: 2017-11-10T10:58:09+01:00
  */
 
 .textfield_input_error {
@@ -18,4 +18,23 @@
 
 .textfield_floatinglabel_error::after {
 	background-color: #d50000 !important;
+}
+
+.mdl-tabs__panel {
+	padding: 2%;
+}
+
+.mdl-tabs {
+	width: 90% !important;
+	margin: 0 auto;
+}
+
+#productTable {
+	width: 100%;
+	margin: 0 auto;
+}
+
+td input[type=number] {
+	width: 40px;
+	text-align: center;
 }

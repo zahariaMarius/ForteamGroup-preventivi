@@ -17,7 +17,9 @@
 		<!-- CDN packages Material- end-->
 
 	</head>
+
 	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
+
 		<!-- login input - start-->
 			<div class="">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -72,20 +74,24 @@
 			<!-- optional inputs field - start -->
 			<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
 			<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
+
 			<!-- optional inputs field - end -->
 
 			<!-- tabbed view- start -->
-<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--8dp">
 	<div class="mdl-tabs__tab-bar">
 		<a href="#hardware" class="mdl-tabs__tab mdl-js-ripple-effect is-active">Prodotti Hardware</a>
 		<a href="#licenzeWeb" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze (Webserver)</a>
 		<a href="#canoni" class="mdl-tabs__tab mdl-js-ripple-effect">Canoni collegamento e aggiornamenti web</a>
 	    <a href="#licenzeLocal" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze Local Usage</a>
 	</div>
+	<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+  <i class="material-icons">add</i>
+</button>
 	  <div class="mdl-tabs__panel is-active" id="hardware">
 			<!-- tabella prodotti hardware - start -->
 			<div id="divContenenteTabellaProdottiHardware">
-				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
 					<thead>
 						<tr>
 							<th class="mdl-data-table__cell--non-numeric">Codice</th>
@@ -111,7 +117,7 @@
 	  <div class="mdl-tabs__panel" id="licenzeWeb">
 		  <!-- tabella licenze - start -->
 		  <div id="divContenenteTabellaLicenze">
-			  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+			  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
 				  <thead>
 					  <tr>
 						  <th class="mdl-data-table__cell--non-numeric">Codice</th>
@@ -127,7 +133,7 @@
 						 <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
 						 <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
 						 <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
-						 <td class="mdl-data-table__cell--non-numeric"><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
+						 <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
 					 </tr>
 				  </tbody>
 			  </table>
@@ -137,7 +143,7 @@
 	  <div class="mdl-tabs__panel" id="canoni">
 		  <!-- tabella canoni - start -->
 		   <div class="" id="divContenenteTabellaCanoni">
-			   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+			   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
 				   <thead>
 					   <tr>
 						   <th class="mdl-data-table__cell--non-numeric">Codice</th>
@@ -153,7 +159,7 @@
 						  <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
 						  <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
 						  <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
-						  <td class="mdl-data-table__cell--non-numeric"><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
+						  <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
 					  </tr>
 				   </tbody>
 			   </table>
@@ -163,7 +169,7 @@
 	  <div class="mdl-tabs__panel" id="licenzeLocal">
 		  <!-- tabella prodotti local - start -->
  		 <div class="" id="divContenenteTabellaProdottiLocal">
- 			 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+ 			 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
  				 <thead>
  					 <tr>
  						 <th class="mdl-data-table__cell--non-numeric">Codice</th>
@@ -179,7 +185,7 @@
  						<td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
  						<td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
  						<td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
- 						<td class="mdl-data-table__cell--non-numeric"><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+ 						<td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
  					</tr>
  				 </tbody>
  			 </table>
@@ -377,7 +383,9 @@
 		</div>
 		<!-- prodotto personalizzato - end -->
 
+		<!-- script funzionale della pagina -->
 		<script type="text/javascript" src="js/script.js"></script>
+		<!-- script funzionale della pagina -->
 
 	</body>
 </html>
