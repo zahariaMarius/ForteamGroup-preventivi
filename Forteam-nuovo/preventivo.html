@@ -73,8 +73,6 @@
 			<!-- select del distributore desiderato - end -->
 			<!-- optional inputs field - start -->
 			<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
-			<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
-
 			<!-- optional inputs field - end -->
 
 			<!-- tabbed view- start -->
@@ -85,9 +83,7 @@
 		<a href="#canoni" class="mdl-tabs__tab mdl-js-ripple-effect">Canoni collegamento e aggiornamenti web</a>
 	    <a href="#licenzeLocal" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze Local Usage</a>
 	</div>
-	<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-  <i class="material-icons">add</i>
-</button>
+
 	  <div class="mdl-tabs__panel is-active" id="hardware">
 			<!-- tabella prodotti hardware - start -->
 			<div id="divContenenteTabellaProdottiHardware">
@@ -110,9 +106,22 @@
 						   <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
 					   </tr>
 					</tbody>
+					<tfoot>
+						<td>
+							<!-- bottone aggiungi prodotto personalizzato -->
+							<div class="addCustomProductButton">
+								<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
+									<i class="material-icons">add</i>
+								</button>
+							</div>
+							<!-- bottone aggiungi prodotto personalizzato -->
+						</td>
+
+					</tfoot>
 				</table>
 			</div>
 			<!-- tabella prodotti hardware - end -->
+
 	  </div>
 	  <div class="mdl-tabs__panel" id="licenzeWeb">
 		  <!-- tabella licenze - start -->
@@ -136,6 +145,18 @@
 						 <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
 					 </tr>
 				  </tbody>
+				  <tfoot>
+					  <td>
+						  <!-- bottone aggiungi prodotto personalizzato -->
+						  <div class="addCustomProductButton">
+							  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
+								  <i class="material-icons">add</i>
+							  </button>
+						  </div>
+						  <!-- bottone aggiungi prodotto personalizzato -->
+					  </td>
+
+				  </tfoot>
 			  </table>
 		  </div>
 		  <!-- tabella licenze - end -->
@@ -165,7 +186,15 @@
 			   </table>
 		   </div>
 		   <!-- tabella canoni - end -->
+		   <!-- bottone aggiungi prodotto personalizzato -->
+		   <div class="addCustomProductButton">
+			   <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
+				   <i class="material-icons">add</i>
+			   </button>
+		   </div>
+		   <!-- bottone aggiungi prodotto personalizzato -->
 	  </div>
+
 	  <div class="mdl-tabs__panel" id="licenzeLocal">
 		  <!-- tabella prodotti local - start -->
  		 <div class="" id="divContenenteTabellaProdottiLocal">
@@ -191,6 +220,13 @@
  			 </table>
  		 </div>
  		 <!-- tabella prodotti local - end -->
+		 <!-- bottone aggiungi prodotto personalizzato -->
+		 <div class="addCustomProductButton">
+			 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
+				 <i class="material-icons">add</i>
+			 </button>
+		 </div>
+		 <!-- bottone aggiungi prodotto personalizzato -->
 	  </div>
   </div>
   <!-- tabbed view- end -->

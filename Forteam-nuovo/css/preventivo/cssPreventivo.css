@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-10T10:58:09+01:00
+ * @Last modified time: 2017-11-10T12:39:38+01:00
  */
 
 .textfield_input_error {
@@ -22,6 +22,7 @@
 
 .mdl-tabs__panel {
 	padding: 2%;
+	position: relative;
 }
 
 .mdl-tabs {
@@ -33,6 +34,12 @@
 	width: 100%;
 	margin: 0 auto;
 }
+
+/*.addCustomProductButton {
+	position: absolute;
+	top: 88%;
+	left: 96%;
+}*/
 
 td input[type=number] {
 	width: 40px;
