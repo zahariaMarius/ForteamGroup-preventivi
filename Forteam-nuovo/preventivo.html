@@ -2,241 +2,169 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>ForteamGroup - Preventivi</title>
-		<!-- css -->
-		<link rel="stylesheet" type="text/css" href="css/preventivo/cssPreventivo.css" />
-		<!-- css -->
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<!-- Font Awesome -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <!-- Bootstrap core CSS -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <!-- Material Design Bootstrap -->
+	    <link href="css/mdb.min.css" rel="stylesheet">
+		<!-- Custom styles -->
+		<link href="css/preventivoStyle.css" rel="stylesheet">
 		<!-- CDN packages Angularjs -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<!-- CDN packages Angularjs -->
-		<!-- CDN packages Material - start-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-		<!-- CDN packages Material- end-->
-
 	</head>
 
 	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
 
-		<!-- login input - start-->
-			<div class="">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				  <input class="mdl-textfield__input" id="username" type="text" name="username" ng-model="usernameLogin">
-				  <label class="mdl-textfield__label" for="username">Username</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			      <input class="mdl-textfield__input" id="password" type="password" name="password" ng-model="passwordLogin">
-			      <label class="mdl-textfield__label" for="password">Password</label>
-			    </div>
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" name="buttonLogin" ng-click="userLoginAutentication()">Login</button>
-			</div>
-		<!-- Login input - end -->
+		<!-- <input type="text" name="username" ng-model="usernameLogin">
+		<input type="text" name="password" ng-model="passwordLogin">
+		<button name="buttonLogin" ng-click="userLoginAutentication()">Login</button> -->
 
-		<div class="containerPreventivi">
+
+		<div class="container-fluid">
 			<!-- input dati del cliente - start -->
-					<div class="" id="divInputDatiCliente">
-						<form class="" name="clienteForm">
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" minlength="5" id="nomeCliente" type="text" name="nomeCliente" ng-model="nomeCliente" required>
-							  <label class="mdl-textfield__label" for="nomeCliente">Nome</label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<input class="mdl-textfield__input" minlength="5" id="indirizzoCliente" type="text" name="indirizzoCliente" ng-model="indirizzoCliente" required>
-								<label class="mdl-textfield__label" for="indirizzoCliente">Indirizzo</label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="emailCliente" type="email" name="emailCliente" ng-model="emailCliente"required>
-							  <label class="mdl-textfield__label" for="emailCliente">E-mail</label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="partitaIVACliente" type="text" name="partitaIVACliente" ng-model="partitaIVACliente" ng-change="checkClientePartitaIva()" required my-partita-iva>
-							  <label class="mdl-textfield__label" id="partitaIVAClienteLabel" for="partitaIVACliente">Partiva IVA</label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <input class="mdl-textfield__input" id="codiceFiscaleCliente" type="text" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" ng-change="checkClientePartitaIva()" my-codfiscale>
-							  <label class="mdl-textfield__label" id="codiceFiscaleClienteLabel" for="codiceFiscaleCliente">Codice Fiscale</label>
-							</div>
-						</form>
-					</div>
+			<div class="row">
+				<div class="col">
+					<input type="text" placeholder="Nome" name="nomeCliente">
+					<input type="email" placeholder="Email" name="emailCliente">
+					<input type="text" placeholder="Indirizzo" name="indirizzoCliente">
+					<input type="text" placeholder="Partita iva" name="partitaIVACliente">
+					<input type="text" placeholder="Codice fiscale" name="codiceFiscaleCliente">
+				</div>
+			</div>
 			<!-- input dati del cliente - end -->
 
 			<!-- select del distributore desiderato - start -->
-
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"  id="divSelectDistributore">
-				<span> Seleziona il distributore:</span>
-				  <select class="mdl-textfield__input" id="octane" name="octane" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
-						<option value="">NESSUN DISTRIBUTORE</option>
-				  </select>
-            </div>
-			<!-- select del distributore desiderato - end -->
-			<!-- optional inputs field - start -->
-			<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
-			<!-- optional inputs field - end -->
-
-			<!-- tabbed view- start -->
-<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-shadow--8dp">
-	<div class="mdl-tabs__tab-bar">
-		<a href="#hardware" class="mdl-tabs__tab mdl-js-ripple-effect is-active">Prodotti Hardware</a>
-		<a href="#licenzeWeb" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze (Webserver)</a>
-		<a href="#canoni" class="mdl-tabs__tab mdl-js-ripple-effect">Canoni collegamento e aggiornamenti web</a>
-	    <a href="#licenzeLocal" class="mdl-tabs__tab mdl-js-ripple-effect">Licenze Local Usage</a>
-	</div>
-
-	  <div class="mdl-tabs__panel is-active" id="hardware">
-			<!-- tabella prodotti hardware - start -->
-			<div id="divContenenteTabellaProdottiHardware">
-				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
-					<thead>
-						<tr>
-							<th class="mdl-data-table__cell--non-numeric">Codice</th>
-							<th class="mdl-data-table__cell--non-numeric">Nome</th>
-							<th class="mdl-data-table__cell--non-numeric">Descrizione</th>
-							<th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
-							<th class="mdl-data-table__cell--non-numeric">Quantità</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="x in prodottiHardware | filter:searchItem">
-						   <td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
-						   <td class="mdl-data-table__cell--non-numeric">{{x.Nome}}</td>
-						   <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
-						   <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
-						   <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
-					   </tr>
-					</tbody>
-					<tfoot>
-						<td>
-							<!-- bottone aggiungi prodotto personalizzato -->
-							<div class="addCustomProductButton">
-								<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
-									<i class="material-icons">add</i>
-								</button>
-							</div>
-							<!-- bottone aggiungi prodotto personalizzato -->
-						</td>
-
-					</tfoot>
-				</table>
+			<div class="row">
+				<div class="col">
+					<div class="" id="divSelectDistributore">
+						<select class="" name="selectDistributore" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
+							<option value="">NESSUN DISTRIBUTORE</option>
+						</select>
+					</div>
+				</div>
 			</div>
-			<!-- tabella prodotti hardware - end -->
+			<!-- select del distributore desiderato - end -->
 
-	  </div>
-	  <div class="mdl-tabs__panel" id="licenzeWeb">
-		  <!-- tabella licenze - start -->
-		  <div id="divContenenteTabellaLicenze">
-			  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
-				  <thead>
-					  <tr>
-						  <th class="mdl-data-table__cell--non-numeric">Codice</th>
-						  <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
-						  <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
-						  <th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
-						  <th class="mdl-data-table__cell--non-numeric">Quantità</th>
-					  </tr>
-				  </thead>
-				  <tbody>
-					  <tr ng-repeat="x in licenze | filter:searchItem">
-						 <td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
-						 <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
-						 <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
-						 <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
-						 <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
-					 </tr>
-				  </tbody>
-				  <tfoot>
-					  <td>
-						  <!-- bottone aggiungi prodotto personalizzato -->
-						  <div class="addCustomProductButton">
-							  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
-								  <i class="material-icons">add</i>
-							  </button>
-						  </div>
-						  <!-- bottone aggiungi prodotto personalizzato -->
-					  </td>
+			<!-- tabelle che contengono i componenti selezionabili - start -->
+			<div class="row">
+				<div class="col">
+					<!-- optional inputs field - start -->
+					<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
+					<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
+					<!-- optional inputs field - end -->
 
-				  </tfoot>
-			  </table>
-		  </div>
-		  <!-- tabella licenze - end -->
-	  </div>
-	  <div class="mdl-tabs__panel" id="canoni">
-		  <!-- tabella canoni - start -->
-		   <div class="" id="divContenenteTabellaCanoni">
-			   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
-				   <thead>
-					   <tr>
-						   <th class="mdl-data-table__cell--non-numeric">Codice</th>
-						   <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
-						   <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
-						   <th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
-						   <th class="mdl-data-table__cell--non-numeric">Quantità</th>
-					   </tr>
-				   </thead>
-				   <tbody>
-					   <tr ng-repeat="x in canoni | filter:searchItem">
-						  <td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
-						  <td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
-						  <td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
-						  <td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
-						  <td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
-					  </tr>
-				   </tbody>
-			   </table>
-		   </div>
-		   <!-- tabella canoni - end -->
-		   <!-- bottone aggiungi prodotto personalizzato -->
-		   <div class="addCustomProductButton">
-			   <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
-				   <i class="material-icons">add</i>
-			   </button>
-		   </div>
-		   <!-- bottone aggiungi prodotto personalizzato -->
-	  </div>
-
-	  <div class="mdl-tabs__panel" id="licenzeLocal">
-		  <!-- tabella prodotti local - start -->
- 		 <div class="" id="divContenenteTabellaProdottiLocal">
- 			 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="productTable">
- 				 <thead>
- 					 <tr>
- 						 <th class="mdl-data-table__cell--non-numeric">Codice</th>
- 						 <th class="mdl-data-table__cell--non-numeric">Tipologia</th>
- 						 <th class="mdl-data-table__cell--non-numeric">Descrizione</th>
- 						 <th class="mdl-data-table__cell--non-numeric">Prezzo listino</th>
- 						 <th class="mdl-data-table__cell--non-numeric">Quantità</th>
- 					 </tr>
- 				 </thead>
- 				 <tbody>
- 					 <tr ng-repeat="x in local | filter:searchItem">
- 						<td class="mdl-data-table__cell--non-numeric">{{x.Codice}}</td>
- 						<td class="mdl-data-table__cell--non-numeric">{{x.Tipologia}}</td>
- 						<td class="mdl-data-table__cell--non-numeric">{{x.Descrizione}}</td>
- 						<td class="mdl-data-table__cell--non-numeric">{{x.Prezzo_listino | currency:"€"}}</td>
- 						<td class="mdl-data-table__cell--non-numeric"><input type="number" class="mdl-textfield__input" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
- 					</tr>
- 				 </tbody>
- 			 </table>
- 		 </div>
- 		 <!-- tabella prodotti local - end -->
-		 <!-- bottone aggiungi prodotto personalizzato -->
-		 <div class="addCustomProductButton">
-			 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="openCustomizedProduct()">
-				 <i class="material-icons">add</i>
-			 </button>
-		 </div>
-		 <!-- bottone aggiungi prodotto personalizzato -->
-	  </div>
-  </div>
-  <!-- tabbed view- end -->
-	</div>
-
+					<!-- tabella prodotti hardware - start -->
+					<div class="" id="divContenenteTabellaProdottiHardware">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Nome</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in prodottiHardware | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Nome}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella prodotti hardware - end -->
+					<!-- tabella licenze - start -->
+					<div class="" id="divContenenteTabellaLicenze">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Tipologia</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in licenze | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Tipologia}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella licenze - end -->
+					<!-- tabella prodotti local - start -->
+					<div class="" id="divContenenteTabellaProdottiLocal">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Tipologia</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in local | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Tipologia}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella prodotti local - end -->
+					<!-- tabella canoni - start -->
+					<div class="" id="divContenenteTabellaCanoni">
+						<table class="table table-responsive table-hover">
+							<thead>
+								<tr>
+									<th>Codice</th>
+									<th>Tipologia</th>
+									<th>Descrizione</th>
+									<th>Prezzo listino</th>
+									<th>Quantità</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in canoni | filter:searchItem">
+								   <td>{{x.Codice}}</td>
+								   <td>{{x.Tipologia}}</td>
+								   <td>{{x.Descrizione}}</td>
+								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+								   <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
+							   </tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- tabella canoni - end -->
+				</div>
+			</div>
+			<!-- tabelle che contengono i componenti selezionabili - end -->
+		</div>
 
 		<!-- carrello - start -->
 		<div class="container-fluid">
 			<!-- tabella distributore - start -->
-					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+			<div class="row">
+				<div class="col">
+					<table class="table table-responsive">
 						<thead>
 							<tr>
 								<th>Prodotto</th>
@@ -260,11 +188,13 @@
 							</tr>
 						</tfoot>
 					</table>
+				</div>
+			</div>
 			<!-- tabella distributore - end -->
 			<!-- tabella prodottiHardware - start -->
 			<div class="row">
 				<div class="col">
-					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<table class="table table-responsive">
 						<thead>
 							<tr>
 								<th>Prodotto</th>
@@ -294,7 +224,7 @@
 			<!-- tabella licenze - start -->
 			<div class="row">
 				<div class="col">
-					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<table class="table table-responsive">
 						<thead>
 							<tr>
 								<th>Prodotto</th>
@@ -414,9 +344,17 @@
 		</div>
 		<!-- prodotto personalizzato - end -->
 
-		<!-- script funzionale della pagina -->
-		<script type="text/javascript" src="js/script.js"></script>
-		<!-- script funzionale della pagina -->
-
+		<!-- SCRIPTS -->
+	    <!-- JQuery -->
+	    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	    <!-- Bootstrap tooltips -->
+	    <script type="text/javascript" src="js/popper.min.js"></script>
+	    <!-- Bootstrap core JavaScript -->
+	    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	    <!-- MDB core JavaScript -->
+	    <script type="text/javascript" src="js/mdb.min.js"></script>
+		<!-- import script funzionale della pagina -->
+		<script type="text/javascript" src="js/preventivoScript.js"></script>
+		<!-- import script funzionale della pagina -->
 	</body>
 </html>
