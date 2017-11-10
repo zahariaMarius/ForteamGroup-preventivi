@@ -20,12 +20,75 @@
 
 	<body ng-app="preventivoAngularApp" ng-controller="preventivoController">
 
-		<!-- <input type="text" name="username" ng-model="usernameLogin">
-		<input type="text" name="password" ng-model="passwordLogin">
-		<button name="buttonLogin" ng-click="userLoginAutentication()">Login</button> -->
+	<!--Main Navigation-->
+	<header>
+	    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+	        <a class="navbar-brand" href="#"><strong>Forteam Group - Preventivi</strong></a>
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	            <ul class="navbar-nav mr-auto">
+	                <li class="nav-item active">
+	                    <a class="nav-link" href="#">Crea preventivo <span class="sr-only">(current)</span></a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#">Gestisci preventivo</a>
+	                </li>
+	            </ul>
+
+				<ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+		            <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-user"></i>
+								<span class="clearfix d-none d-sm-inline-block">Account</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+		                    <a class="dropdown-item" href="#">Action</a>
+		                    <a class="dropdown-item" href="#">Another action</a>
+		                    <a class="dropdown-item" href="#">Something else here</a>
+		                </div>
+		            </li>
+        		</ul>
+	        </div>
+	    </nav>
+
+	    <div class="view intro hm-purple-light">
+	        <div class="full-bg-img flex-center">
+	            <div class="container text-center white-text fadeInDown">
+	                <h2>This Navbar is fixed and transparent</h2>
+	                <br>
+	                <h5>It will always stay visible on the top, even when you scroll down</h5>
+	                <p>Navbar's background will switch from transparent to solid color while scrolling down</p>
+	                <br>
+	                <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
+					<a href="#" class="downIndicationArrow"><i class="fa fa-angle-double-down animated bounce infinite fa-2x" aria-hidden="true"></i></a>
+	            </div>
+	        </div>
+	    </div>
+	</header>
+	<!--Main Navigation-->
+
+	<!--Main Layout-->
+	<main class="text-center py-5">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	            </div>
+	        </div>
+	    </div>
+	</main>
+	<!--Main Layout-->
 
 
 		<div class="container-fluid">
+
+			<!-- bottone del carrello - start -->
+			<button type="button" class="cart btn" ng-show="cartOverallTotalAllItemsSelected > 0" ng-click="openCart()"><i class="fa fa-shopping-bag white-text"></i></button>
+			<!-- bottone del carrello - end -->
+
 			<!-- input dati del cliente - start -->
 			<div class="row">
 				<div class="col">

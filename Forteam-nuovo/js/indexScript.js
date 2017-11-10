@@ -5,10 +5,12 @@
  * @Project: kebabCase
  * @Filename: indexScript.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-10T18:46:04+01:00
+ * @Last modified time: 2017-11-10T21:34:22+01:00
  */
 
 'use strict'
+
+localStorage.clear();
 
 /**
  * [angular app module]
@@ -34,10 +36,11 @@ app.controller('indexController', function($scope, $http) {
 		var password = $scope.passwordLogin;
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
 		$http.post('DataBase/DBM.php', {query: queryUserLogin}).then(function (response) {
-			localStorage.setItem("user", JSON.stringify(response.data[0]));
-			console.log(response.data[0]);
+			console.log(response.data[0])
+			var user = response.data[0];
 			//control if user exist and aplly the differt error style
-			if (response.data[0]) {
+			if (user) {
+				localStorage.setItem("user", JSON.stringify(user));
 				$scope.userNotExist = false;
 				$("i[id='errorAnimation']").removeClass('animated shake');
 				location.href = 'preventivo.html';

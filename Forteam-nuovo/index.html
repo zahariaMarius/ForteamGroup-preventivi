@@ -27,7 +27,7 @@
         <div class="full-bg-img">
             <div class="container flex-center">
                 <div class="d-flex align-items-center content-height">
-                    <div class="row flex-center pt-5 mt-3">
+                    <div class="row flex-center">
                         <div class="col-md-6 text-center text-md-left mb-5">
                             <div class="white-text">
                                 <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s">Forteam Group - Preventivi </h1>
@@ -42,19 +42,19 @@
                                 <div class="card-body">
                                     <!--Header-->
                                     <div class="text-center">
-                                        <h3 class="white-text">LOGIN</h3>
+										<i id="errorAnimation" class="fa fa-user-circle-o white-text fa-5x" aria-hidden="true"></i>
                                         <hr class="hr-light">
                                     </div>
 
                                     <!--Body-->
                                     <div class="md-form">
-										<i id="errorAnimation" class="fa fa-user prefix white-text"></i>
+										<i class="fa fa-user prefix white-text"></i>
                                         <input type="text" id="username" class="form-control" name="usernameLogin" ng-model="usernameLogin" ng-class="{'incorrectAutenticationTextfield': userNotExist}">
                                         <label ng-class="{'incorrectAutenticationLabel': userNotExist}" for="username">Your username</label>
                                     </div>
 
                                     <div class="md-form">
-                                        <i id="errorAnimation" class="fa fa-lock prefix white-text"></i>
+                                        <i class="fa fa-lock prefix white-text"></i>
                                         <input type="password" id="password" class="form-control" name="passwordLogin" ng-model="passwordLogin" ng-class="{'incorrectAutenticationTextfield': userNotExist}">
                                         <label ng-class="{'incorrectAutenticationLabel': userNotExist}" for="password">Your password</label>
                                     </div>
