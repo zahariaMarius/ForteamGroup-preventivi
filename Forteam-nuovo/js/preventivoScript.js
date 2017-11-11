@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-10T23:19:21+01:00
+ * @Last modified time: 2017-11-11T11:09:58+01:00
  */
 "use strict";
 /**
@@ -396,6 +396,10 @@ return {
  * @return {[type]}        [description]
  */
 app.controller('preventivoController', function($scope, $http) {
+
+	$scope.userCognomeNome = user.Cognome+ " " + user.Nome;
+
+
 	/**
 	* [queryDistributori contain the query for SELECT all distributori]
 	* @type {String}

@@ -42,12 +42,12 @@
 		            <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-user"></i>
-								<span class="clearfix d-none d-sm-inline-block">Account</span>
+								<span class="clearfix d-none d-sm-inline-block">{{userCognomeNome}}</span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-		                    <a class="dropdown-item" href="#">Action</a>
-		                    <a class="dropdown-item" href="#">Another action</a>
-		                    <a class="dropdown-item" href="#">Something else here</a>
+		                    <a class="dropdown-item" href="#">Profilo</a>
+							<div class="divider dropdown-divider"></div>
+        					<a class="dropdown-item" href="#">Log out</a>
 		                </div>
 		            </li>
         		</ul>
@@ -57,12 +57,18 @@
 	    <div class="view intro hm-purple-light">
 	        <div class="full-bg-img flex-center">
 	            <div class="container text-center white-text fadeInDown">
-	                <h2>This Navbar is fixed and transparent</h2>
+	                <h2>Bentornato {{userCognomeNome}}</h2>
 	                <br>
-	                <h5>It will always stay visible on the top, even when you scroll down</h5>
-	                <p>Navbar's background will switch from transparent to solid color while scrolling down</p>
+	                <h5>Crea un preventivo personalizzato in pochi minuti oppure modifica quelli vecchi</h5>
+	                <p>Puoi accedere al tuo profilo e visulizzare lo storico dei tuoi preventivi</p>
 	                <br>
-	                <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
+	                <p>Se ne cessiti aiuto contattaci attraverso i nostri canali che trovi qui sotto</p>
+					<br>
+					<div class="contattiAiuto">
+						<a href="https://www.facebook.com/vendingsumisura/"><i class="fa fa-facebook-square white-text fa-lg" aria-hidden="true"></i></a>
+						<a href="#"><i class="fa fa-envelope white-text fa-lg" aria-hidden="true"></i></a>
+						<a href="#"><i class="fa fa-phone-square white-text fa-lg" aria-hidden="true"></i></a>
+					</div>
 					<a href="#" class="downIndicationArrow"><i class="fa fa-angle-double-down animated bounce infinite fa-2x" aria-hidden="true"></i></a>
 	            </div>
 	        </div>
@@ -89,17 +95,20 @@
 			<button type="button" class="cart btn" ng-show="cartOverallTotalAllItemsSelected > 0" ng-click="openCart()"><i class="fa fa-shopping-bag white-text"></i></button>
 			<!-- bottone del carrello - end -->
 
-			<!-- input dati del cliente - start -->
-			<div class="row">
-				<div class="col">
-					<input type="text" placeholder="Nome" name="nomeCliente">
-					<input type="email" placeholder="Email" name="emailCliente">
-					<input type="text" placeholder="Indirizzo" name="indirizzoCliente">
-					<input type="text" placeholder="Partita iva" name="partitaIVACliente">
-					<input type="text" placeholder="Codice fiscale" name="codiceFiscaleCliente">
+			<section class="prova">
+				<!-- input dati del cliente - start -->
+				<div class="row">
+					<div class="col">
+						<input type="text" placeholder="Nome" name="nomeCliente">
+						<input type="email" placeholder="Email" name="emailCliente">
+						<input type="text" placeholder="Indirizzo" name="indirizzoCliente">
+						<input type="text" placeholder="Partita iva" name="partitaIVACliente">
+						<input type="text" placeholder="Codice fiscale" name="codiceFiscaleCliente">
+					</div>
 				</div>
-			</div>
-			<!-- input dati del cliente - end -->
+				<!-- input dati del cliente - end -->
+
+			</section>
 
 			<!-- select del distributore desiderato - start -->
 			<div class="row">
