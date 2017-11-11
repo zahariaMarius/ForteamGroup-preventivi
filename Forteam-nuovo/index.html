@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+	<head>
+		<meta charset="utf-8">
+		<title>ForteamGroup - Preventivi</title>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<!-- Font Awesome -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <!-- Bootstrap core CSS -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <!-- Material Design Bootstrap -->
+	    <link href="css/mdb.min.css" rel="stylesheet">
+		<!-- Custom styles -->
+		<link href="css/indexStyle.css" rel="stylesheet">
+		<!-- CDN packages Angularjs -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<!-- CDN packages Angularjs -->
+	</head>
+
+	<body ng-app="indexAngularApp" ng-controller="indexController">
+
+		<!--Main Navigation-->
+<header>
+
+    <!--Intro Section-->
+    <section class="view intro-2 hm-gradient">
+        <div class="full-bg-img">
+            <div class="container flex-center">
+                <div class="d-flex align-items-center content-height">
+                    <div class="row flex-center">
+                        <div class="col-md-6 text-center text-md-left mb-5">
+                            <div class="white-text">
+                                <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s">Forteam Group - Preventivi </h1>
+                                <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                                <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Accedi subito e crea un preventivo personalizzato in pochi semplici passi. Assicurati di possedere un account altrimenti chiama il tuo supervisore. Nel caso nessuno fosse disponibile usa i contatti al fondo del login.</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-5 offset-xl-1">
+                            <!--Form-->
+                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="card-body">
+                                    <!--Header-->
+                                    <div class="text-center">
+										<i id="errorAnimation" class="fa fa-user-circle-o white-text fa-5x" aria-hidden="true"></i>
+                                        <hr class="hr-light">
+                                    </div>
+
+                                    <!--Body-->
+                                    <div class="md-form">
+										<i class="fa fa-user prefix white-text"></i>
+                                        <input type="text" id="username" class="form-control" name="usernameLogin" ng-model="usernameLogin" ng-class="{'incorrectAutenticationTextfield': userNotExist}">
+                                        <label ng-class="{'incorrectAutenticationLabel': userNotExist}" for="username">Your username</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fa fa-lock prefix white-text"></i>
+                                        <input type="password" id="password" class="form-control" name="passwordLogin" ng-model="passwordLogin" ng-class="{'incorrectAutenticationTextfield': userNotExist}">
+                                        <label ng-class="{'incorrectAutenticationLabel': userNotExist}" for="password">Your password</label>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button class="btn btn-indigo" ng-click="userLoginAutentication()">Login</button>
+                                         <hr class="hr-light mb-3 mt-4">
+									 </div>
+
+									<div class="inline-ul text-center d-flex justify-content-center">
+										<a href="https://www.facebook.com/vendingsumisura/"><i class="fa fa-facebook-official white-text fa-lg"></i></a>
+										<a href="#"><i class="fa fa-envelope white-text fa-lg"></i></a>
+										<a href="#"><i class="fa fa-phone-square white-text fa-lg"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--/.Form-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</header>
+<!--Main Navigation-->
+
+
+		<!-- SCRIPTS -->
+	    <!-- JQuery -->
+	    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	    <!-- Bootstrap tooltips -->
+	    <script type="text/javascript" src="js/popper.min.js"></script>
+	    <!-- Bootstrap core JavaScript -->
+	    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	    <!-- MDB core JavaScript -->
+	    <script type="text/javascript" src="js/mdb.min.js"></script>
+		<!-- import script funzionale della pagina -->
+		<script type="text/javascript" src="js/indexScript.js"></script>
+		<!-- import script funzionale della pagina -->
+	</body>
+</html>

@@ -4,15 +4,16 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-09T23:31:41+01:00
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-10T23:19:21+01:00
  */
 "use strict";
 /**
  * [user contain user Object from DB]
  * @type {Object}
  */
-var user;
+var user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
 /**
  * [cliente contain all cliente Objects from inputForm]
  * @type {[Array]}
@@ -154,16 +155,20 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 			distributoreSelected.push(distributore);
 		}
 		totalItemsSelected["totalDistributoreSelected"] = Number(distributore.Prezzo_listino);
+		distributore.Ricavo = distributore.Prezzo_listino - distributore.Prezzo_acquisto;
+		distributore.Ricavo_percentuale = (distributore.Ricavo * 100) / distributore.Prezzo_listino;
+		distributore.Sconto = 0;
+		totalItemsSelected["distributoreSelectedRevenue"] = distributore.Ricavo;
+		totalItemsSelected["distributoreSelectedPercentageRevenue"] = distributore.Ricavo_percentuale;
 	}else {
 		distributoreSelected.splice(0, 1);
 		totalItemsSelected["totalDistributoreSelected"] = 0;
+		totalItemsSelected["distributoreSelectedRevenue"] = 0;
+		totalItemsSelected["distributoreSelectedPercentageRevenue"] = 0;
+		console.log("non esiste");
 	}
 
-	distributore.Ricavo = distributore.Prezzo_listino - distributore.Prezzo_acquisto;
-	distributore.Ricavo_percentuale = (distributore.Ricavo * 100) / distributore.Prezzo_listino;
-	distributore.Sconto = 0;
-	totalItemsSelected["distributoreSelectedRevenue"] = distributore.Ricavo;
-	totalItemsSelected["distributoreSelectedPercentageRevenue"] = distributore.Ricavo_percentuale;
+
 	console.log(totalItemsSelected);
 }
 
@@ -426,7 +431,8 @@ app.controller('preventivoController', function($scope, $http) {
 		var password = $scope.passwordLogin;
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
 		$http.post('DataBase/DBM.php', {query: queryUserLogin}).then(function (response) {
-			sessionStorage.setItem("user", JSON.stringify(response.data[0]));
+			localStorage.clear();
+			localStorage.setItem("user", JSON.stringify(response.data[0]));
 			console.log(response.data[0]);
 			checkIfInsertedUserExist(response.data[0]);
 		});
@@ -499,7 +505,6 @@ app.controller('preventivoController', function($scope, $http) {
 		calculateOverallRevenueAllItemsSelected();
 		calculateOverllPercentageRevenueAllItemsSelected();
 		console.log(distributore);
-		console.log("mamma puttana");
 	}
 
 	/**
@@ -624,8 +629,6 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @return {[type]} [description]
 	 */
 	$scope.openCustomizedProduct = function() {
-		//save user into variable from sessionStorage
-		user = JSON.parse(sessionStorage.getItem("user"));
 		//check if user is qualified to craete a customized product
 		if (checkUserPrivilegeForCustomizedProduct(user)) {
 			//open the create new element form

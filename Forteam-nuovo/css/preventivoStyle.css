@@ -1,0 +1,67 @@
+/**
+ * @Author: Zaharia Laurentiu Jr Marius
+ * @Date:   2017-11-09T20:55:53+01:00
+ * @Email:  laurentiu.zaharia@edu.itspiemonte.it
+ * @Project: kebabCase
+ * @Filename: cssPreventivo.css
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-10T23:38:41+01:00
+ */
+
+ .view {
+     background: url("https://mdbootstrap.com/img/Photos/Others/img (42).jpg")no-repeat center center;
+     background-size: cover;
+ }
+
+ .navbar {
+     background-color: transparent;
+	 font-size: 18px;
+ }
+
+ .navbar-brand {
+	 font-size: 22px !important;
+ }
+
+ .navbar.scrolling-navbar {
+	 padding-top: 16px;
+	 padding-bottom: 16px;
+ }
+
+ .top-nav-collapse {
+     background-color: #4285F4;
+	 font-size: 15px;
+ }
+
+ @media only screen and (max-width: 768px) {
+     .navbar {
+         background-color: #4285F4;
+     }
+ }
+
+.intro {
+	min-height: 1020px;
+}
+
+.dropDownColor {
+	color: black !important;
+}
+
+.cart {
+	border-radius: 50%;
+    padding: 1%;
+    border: 0px;
+    background: #F44336 !important;
+	position: fixed;
+	bottom: 4%;
+	left: 94%;
+}
+
+.btn .fa {
+	font-size: 2rem;
+}
+
+.downIndicationArrow {
+	top: 380px;
+	position: relative;
+	color: white !important;
+}
