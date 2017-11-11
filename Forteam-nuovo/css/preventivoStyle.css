@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-10T23:38:41+01:00
+ * @Last modified time: 2017-11-11T13:07:25+01:00
  */
 
  .view {
@@ -61,7 +61,15 @@
 }
 
 .downIndicationArrow {
-	top: 380px;
+	top: 350px;
 	position: relative;
 	color: white !important;
+}
+
+.contattiAiuto a{
+	padding: 15px;
+}
+
+.prova{
+	display: none;
 }
