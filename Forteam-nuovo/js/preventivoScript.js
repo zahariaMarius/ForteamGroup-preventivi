@@ -4,8 +4,13 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
+<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
  * @Last modified time: 2017-11-12T17:38:27+01:00
+=======
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-12T14:50:35+01:00
+>>>>>>> c8cabc8f4444cfdb14ca4166421142d64f7b2c05
  */
 
 "use strict";
@@ -726,5 +731,20 @@ app.controller('preventivoController', function($scope, $http) {
 			document.getElementById("partitaIVAClienteLabel").classList.add('textfield_floatinglabel_error');
 		}
 	}
-
+	$scope.goToRiepilogo = function() {
+		var allSelectedData = {
+			user : user,
+			cliente : cliente,
+			distributoreSelected : distributoreSelected,
+			prodottiHardwareSelected : prodottiHardwareSelected,
+			licenzeSelected : licenzeSelected,
+			localSelected : localSelected,
+			canoniSelected : canoniSelected,
+            totalItemsSelected : totalItemsSelected
+		};
+		localStorage.clear();
+		localStorage.setItem("allDataFromPreventivi", JSON.stringify(allSelectedData));
+		location.href = 'riepilogo.html';
+		 console.log(allSelectedData);
+	}
 });
