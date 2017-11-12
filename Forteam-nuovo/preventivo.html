@@ -69,46 +69,64 @@
 						<a href="#"><i class="fa fa-envelope white-text fa-lg" aria-hidden="true"></i></a>
 						<a href="#"><i class="fa fa-phone-square white-text fa-lg" aria-hidden="true"></i></a>
 					</div>
-					<a href="#" class="downIndicationArrow"><i class="fa fa-angle-double-down animated bounce infinite fa-2x" aria-hidden="true"></i></a>
+					<a href="#formDatiCliente" class="downIndicationArrow"><i class="fa fa-angle-double-down animated bounce infinite fa-2x" aria-hidden="true"></i></a>
 	            </div>
 	        </div>
 	    </div>
 	</header>
 	<!--Main Navigation-->
 
-	<!--Main Layout-->
-	<main class="text-center py-5">
-	    <div class="container">
+	<!--section form dati cliente-->
+	<section class="formDatiCliente py-5" id="formDatiCliente">
+	    <div class="container-fluid">
 	        <div class="row">
-	            <div class="col-md-12">
-	                <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	            </div>
+	            <div class="col-md-9 py-5 mx-auto">
+					<!--panel-->
+					<div class="card">
+						<h4 class="card-header primary-color white-text text-center">Cliente richiedente preventivo</h4>
+						<div class="card-body">
+							<!-- input dati del cliente - start -->
+							<div class="md-form">
+							    <i class="fa fa-users prefix"></i>
+							    <input type="text" id="nomeCliente" class="form-control" name="nomeCliente">
+							    <label for="nomeCliente">Nome</label>
+							</div>
+							<div class="md-form">
+							    <i class="fa fa-road prefix"></i>
+							    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente">
+							    <label for="indirizzoCliente">Indirizzo</label>
+							</div>
+							<div class="md-form">
+							    <i class="fa fa-envelope prefix"></i>
+							    <input type="text" id="emailCliente" class="form-control" name="emailCliente">
+							    <label for="emailCliente">Email</label>
+							</div>
+							<div class="md-form">
+							    <i class="fa fa-university prefix"></i>
+							    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente">
+							    <label for="partitaIvaCliente">Partita IVA</label>
+							</div>
+							<div class="md-form">
+							    <i class="fa fa-id-card prefix"></i>
+							    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente">
+							    <label for="codiceFiscaleCliente">Codice fiscale</label>
+							</div>
+							<!-- input dati del cliente - end -->
+						</div>
+					</div>
+					<!--/.panel-->
+	           </div>
 	        </div>
 	    </div>
-	</main>
-	<!--Main Layout-->
+	</section>
+	<!--section form dati cliente-->
 
 
+	<section class="tabelleProdotti" id="tabelleCliente">
 		<div class="container-fluid">
-
 			<!-- bottone del carrello - start -->
-			<button type="button" class="cart btn" ng-show="cartOverallTotalAllItemsSelected > 0" ng-click="openCart()"><i class="fa fa-shopping-bag white-text"></i></button>
+			<button type="button" class="cartButton btn" ng-show="cartOverallTotalAllItemsSelected > 0" ng-click="openCart()"><i class="fa fa-shopping-bag white-text"></i></button>
 			<!-- bottone del carrello - end -->
-
-			<section class="prova">
-				<!-- input dati del cliente - start -->
-				<div class="row">
-					<div class="col">
-						<input type="text" placeholder="Nome" name="nomeCliente">
-						<input type="email" placeholder="Email" name="emailCliente">
-						<input type="text" placeholder="Indirizzo" name="indirizzoCliente">
-						<input type="text" placeholder="Partita iva" name="partitaIVACliente">
-						<input type="text" placeholder="Codice fiscale" name="codiceFiscaleCliente">
-					</div>
-				</div>
-				<!-- input dati del cliente - end -->
-
-			</section>
 
 			<!-- select del distributore desiderato - start -->
 			<div class="row">
@@ -124,112 +142,143 @@
 
 			<!-- tabelle che contengono i componenti selezionabili - start -->
 			<div class="row">
-				<div class="col">
+				<div class="col-md-9 py-5 mx-auto">
 					<!-- optional inputs field - start -->
 					<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
 					<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
 					<!-- optional inputs field - end -->
 
-					<!-- tabella prodotti hardware - start -->
-					<div class="" id="divContenenteTabellaProdottiHardware">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Nome</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in prodottiHardware | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Nome}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
+					<!--Panel-->
+					<div class="card">
+					    <h3 class="card-header primary-color white-text">Distributore selezionato</h3>
+					    <div class="card-body">
+							<nav class="nav nav-tabs" id="myTab" role="tablist">
+								<a class="nav-item nav-link active" id="nav-prodottiHardware-tab" data-toggle="tab" href="#nav-prodottiHardware" role="tab" aria-controls="nav-prodottiHardware" aria-selected="true">Prodotti hardware</a>
+								<a class="nav-item nav-link" id="nav-licenze-tab" data-toggle="tab" href="#nav-licenze" role="tab" aria-controls="nav-licenze" aria-selected="false">Licenze (Webserver)</a>
+								<a class="nav-item nav-link" id="nav-canoni-tab" data-toggle="tab" href="#nav-canoni" role="tab" aria-controls="nav-canoni" aria-selected="false">Canoni collengamento e aggiornamenti web</a>
+								<a class="nav-item nav-link" id="nav-local-tab" data-toggle="tab" href="#nav-local" role="tab" aria-controls="nav-local" aria-selected="false">Licenze Local Usage</a>
+							</nav>
+							<div class="tab-content" id="nav-tabContent">
+								<div class="tab-pane fade show active" id="nav-prodottiHardware" role="tabpanel" aria-labelledby="nav-prodottiHardware-tab">
+									<!-- tabella prodotti hardware - start -->
+									<div class="" id="divContenenteTabellaProdottiHardware">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Codice</th>
+													<th>Nome</th>
+													<th>Descrizione</th>
+													<th>Prezzo listino</th>
+													<th>Quantità</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in prodottiHardware | filter:searchItem">
+												   <td>{{x.Codice}}</td>
+												   <td>{{x.Nome}}</td>
+												   <td>{{x.Descrizione}}</td>
+												   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+												   <td><input type="number" min="0" name="prodottiHardwareQuantita" placeholder="0" ng-model="prodottiHardwareQuantita" ng-change="getProdottiHardwareQuantita(prodottiHardwareQuantita, x)"></td>
+											   </tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- tabella prodotti hardware - end -->
+								</div>
+								<div class="tab-pane fade" id="nav-licenze" role="tabpanel" aria-labelledby="nav-licenze-tab">
+									<!-- tabella licenze - start -->
+									<div class="" id="divContenenteTabellaLicenze">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Codice</th>
+													<th>Tipologia</th>
+													<th>Descrizione</th>
+													<th>Prezzo listino</th>
+													<th>Quantità</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in licenze | filter:searchItem">
+												   <td>{{x.Codice}}</td>
+												   <td>{{x.Tipologia}}</td>
+												   <td>{{x.Descrizione}}</td>
+												   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+												   <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
+											   </tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- tabella licenze - end -->
+								</div>
+								<div class="tab-pane fade" id="nav-canoni" role="tabpanel" aria-labelledby="nav-canoni-tab">
+									<!-- tabella prodotti local - start -->
+									<div class="" id="divContenenteTabellaProdottiLocal">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Codice</th>
+													<th>Tipologia</th>
+													<th>Descrizione</th>
+													<th>Prezzo listino</th>
+													<th>Quantità</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in local | filter:searchItem">
+												   <td>{{x.Codice}}</td>
+												   <td>{{x.Tipologia}}</td>
+												   <td>{{x.Descrizione}}</td>
+												   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+												   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+											   </tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- tabella prodotti local - end -->
+								</div>
+								<div class="tab-pane fade" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
+									<!-- tabella canoni - start -->
+									<div class="" id="divContenenteTabellaCanoni">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Codice</th>
+													<th>Tipologia</th>
+													<th>Descrizione</th>
+													<th>Prezzo listino</th>
+													<th>Quantità</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in canoni | filter:searchItem">
+												   <td>{{x.Codice}}</td>
+												   <td>{{x.Tipologia}}</td>
+												   <td>{{x.Descrizione}}</td>
+												   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+												   <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
+											   </tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- tabella canoni - end -->
+								</div>
+							</div>
+					    </div>
+						<button type="button" class="btn btn-primary"><i class="fa fa-shopping-bag white-text"></i></button>
 					</div>
-					<!-- tabella prodotti hardware - end -->
-					<!-- tabella licenze - start -->
-					<div class="" id="divContenenteTabellaLicenze">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Tipologia</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in licenze | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Tipologia}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="licenzeQuantita" placeholder="0" ng-model="licenzeQuantita" ng-change="getLicenzeQuantita(licenzeQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella licenze - end -->
-					<!-- tabella prodotti local - start -->
-					<div class="" id="divContenenteTabellaProdottiLocal">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Tipologia</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in local | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Tipologia}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella prodotti local - end -->
-					<!-- tabella canoni - start -->
-					<div class="" id="divContenenteTabellaCanoni">
-						<table class="table table-responsive table-hover">
-							<thead>
-								<tr>
-									<th>Codice</th>
-									<th>Tipologia</th>
-									<th>Descrizione</th>
-									<th>Prezzo listino</th>
-									<th>Quantità</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in canoni | filter:searchItem">
-								   <td>{{x.Codice}}</td>
-								   <td>{{x.Tipologia}}</td>
-								   <td>{{x.Descrizione}}</td>
-								   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-								   <td><input type="number" min="0" name="canoniQuantita" placeholder="0" ng-model="canoniQuantita" ng-change="getCanoniQuantita(canoniQuantita, x)"></td>
-							   </tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- tabella canoni - end -->
+					<!--/.Panel-->
+
+
+
+
+
 				</div>
 			</div>
 			<!-- tabelle che contengono i componenti selezionabili - end -->
 		</div>
+	</section>
+
 
 		<!-- carrello - start -->
 		<div class="container-fluid">
