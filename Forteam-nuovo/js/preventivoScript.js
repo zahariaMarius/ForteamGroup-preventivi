@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-12T17:45:00+01:00
+ * @Last modified time: 2017-11-12T22:16:12+01:00
  */
 
 "use strict";
@@ -639,6 +639,50 @@ app.controller('preventivoController', function($scope, $http) {
 	}
 
 	/**
+	 * [openCart scope function that open teh modal cart]
+	 * @return {[type]} [description]
+	 */
+	$scope.openCart = function(){
+		//close tab if nothing has been selected
+		if (totalItemsSelected["totalDistributoreSelected"] == 0) {
+			$('#collapseDistributore').removeClass('show');
+		}else {
+			$('#collapseDistributore').addClass('show');
+		}
+
+		//close tab if nothing has been selected
+		if (totalItemsSelected["totalProdottiHardwareSelected"] == 0) {
+			$('#collapseProdottiHardware').removeClass('show');
+		}else {
+			$('#collapseProdottiHardware').addClass('show');
+		}
+
+		//close tab if nothing has been selected
+		if (totalItemsSelected["totalLicenzeSelected"] == 0) {
+			$('#collapseLicenze').removeClass('show');
+		}else {
+			$('#collapseLicenze').addClass('show');
+		}
+
+		//close tab if nothing has been selected
+		if (totalItemsSelected["totalLocalSelected"] == 0) {
+			$('#collapseLocal').removeClass('show');
+		}else {
+			$('#collapseLocal').addClass('show');
+		}
+
+		//close tab if nothing has been selected
+		if (totalItemsSelected["totalCanoniSelected"] == 0) {
+			$('#collapseCanoni').removeClass('show');
+		}else {
+			$('#collapseCanoni').addClass('show');
+		}
+
+		//open the modal cart
+		$('#modalCarrello').modal('show');
+	}
+
+	/**
 	 * [openCustomizedProduct open the create customized product form]
 	 * @return {[type]} [description]
 	 */
@@ -646,6 +690,7 @@ app.controller('preventivoController', function($scope, $http) {
 		//check if user is qualified to craete a customized product
 		if (checkUserPrivilegeForCustomizedProduct(user)) {
 			//open the create new element form
+			$('#modalCustomizeProduct').modal('show');
 			console.log("User qualified");
 		}else {
 			//open the login form
@@ -726,6 +771,7 @@ app.controller('preventivoController', function($scope, $http) {
 			document.getElementById("partitaIVAClienteLabel").classList.add('textfield_floatinglabel_error');
 		}
 	}
+
 	$scope.goToRiepilogo = function() {
 		var allSelectedData = {
 			user : user,

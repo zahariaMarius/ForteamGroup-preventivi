@@ -130,7 +130,7 @@
 
 			<!-- select del distributore desiderato - start -->
 			<div class="row">
-				<div class="col">
+				<div class="col-md-9 py-5 mx-auto">
 					<div class="" id="divSelectDistributore">
 						<select class="" name="selectDistributore" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
 							<option value="">NESSUN DISTRIBUTORE</option>
@@ -182,7 +182,7 @@
 											   </tr>
 											</tbody>
 										</table>
-										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
+										<button type="button" class="btn btn-primary btn-block waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella prodotti hardware - end -->
 								</div>
@@ -209,38 +209,11 @@
 											   </tr>
 											</tbody>
 										</table>
-										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
+										<button type="button" class="btn btn-primary btn-block waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella licenze - end -->
 								</div>
 								<div class="tab-pane fade" id="nav-canoni" role="tabpanel" aria-labelledby="nav-canoni-tab">
-									<!-- tabella prodotti local - start -->
-									<div class="" id="divContenenteTabellaProdottiLocal">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>Codice</th>
-													<th>Tipologia</th>
-													<th>Descrizione</th>
-													<th>Prezzo listino</th>
-													<th>Quantità</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr ng-repeat="x in local | filter:searchItem">
-												   <td>{{x.Codice}}</td>
-												   <td>{{x.Tipologia}}</td>
-												   <td>{{x.Descrizione}}</td>
-												   <td>{{x.Prezzo_listino | currency:"€"}}</td>
-												   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
-											   </tr>
-											</tbody>
-										</table>
-										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
-									</div>
-									<!-- tabella prodotti local - end -->
-								</div>
-								<div class="tab-pane fade" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
 									<!-- tabella canoni - start -->
 									<div class="" id="divContenenteTabellaCanoni">
 										<table class="table table-hover">
@@ -263,9 +236,36 @@
 											   </tr>
 											</tbody>
 										</table>
-										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
+										<button type="button" class="btn btn-primary btn-block waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella canoni - end -->
+								</div>
+								<div class="tab-pane fade" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
+									<!-- tabella prodotti local - start -->
+									<div class="" id="divContenenteTabellaProdottiLocal">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Codice</th>
+													<th>Tipologia</th>
+													<th>Descrizione</th>
+													<th>Prezzo listino</th>
+													<th>Quantità</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in local | filter:searchItem">
+												   <td>{{x.Codice}}</td>
+												   <td>{{x.Tipologia}}</td>
+												   <td>{{x.Descrizione}}</td>
+												   <td>{{x.Prezzo_listino | currency:"€"}}</td>
+												   <td><input type="number" min="0" name="localQuantita" placeholder="0" ng-model="localQuantita" ng-change="getLocalQuantita(localQuantita, x)"></td>
+											   </tr>
+											</tbody>
+										</table>
+										<button type="button" class="btn btn-primary waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
+									</div>
+									<!-- tabella prodotti local - end -->
 								</div>
 							</div>
 					    </div>
@@ -277,277 +277,397 @@
 		</div>
 	</section>
 
-<!--Accordion wrapper-->
-<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-	<!-- Accordion card -->
-	<div class="card">
-		<!-- Card header -->
-		<div class="card-header" role="tab" id="headingOne">
-			<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseProdottiHardware" aria-expanded="true" aria-controls="collapseOne">
-				<h5 class="mb-0 text-center">
-					Prodotti hardware <i class="fa fa-angle-down rotate-icon"></i>
-				</h5>
-			</a>
-		</div>
-		<!-- Card body -->
-		<div id="collapseProdottiHardware" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-			<div class="card-body">
-				<!-- tabella prodottiHardware - start -->
-				<div class="row">
-					<div class="col">
-						<table class="table table-responsive">
-							<thead>
-								<tr>
-									<th>Prodotto</th>
-									<th>Quantità</th>
-									<th>Prezzo listino</th>
-									<th>Totale</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="x in cartProdottiHardwareSelected">
-									<td>{{x.Nome}}</td>
-									<td>{{x.Quantita}}</td>
-									<td>{{x.Prezzo_listino | currency:"€"}}</td>
-									<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th colspan="3">TOTALE</th>
-									<th>{{cartTotalProdottiHardwareSelected | currency:"€"}}</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-				</div>
-				<!-- tabella prodottiHardware - end -->
+<!-- Central carrello -->
+ <div class="modal fade right" id="modalCarrello" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	 <div class="modal-dialog modal-side modal-top-right modal-lg modal-notify modal-danger" role="document">
+		 <!--Content-->
+		 <div class="modal-content">
+			 <!--Header-->
+			 <div class="modal-header">
+				 <p class="heading lead">Carrello</p>
+
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					 <span aria-hidden="true" class="white-text">&times;</span>
+				 </button>
+			 </div>
+
+			 <!--Body-->
+			 <div class="modal-body">
+				 <div class="text-center">
+					 <i id="iconModalCart" class="fa fa-shopping-bag fa-4x mb-3 animated rotateIn"></i>
+
+					 <!--Accordion wrapper distributore-->
+				 	<div class="accordion" id="accordionDistributore" role="tablist" aria-multiselectable="true">
+				 		<!-- Accordion card -->
+				 		<div class="card">
+				 			<!-- Card header -->
+				 			<div class="card-header" role="tab" id="headingDistributore">
+				 				<a data-toggle="collapse" data-parent="#accordionDistributore" href="#collapseDistributore" aria-expanded="true" aria-controls="collapseDistributore">
+				 					<h5 class="mb-0 text-center">
+				 						Distributore <i class="fa fa-angle-down rotate-icon"></i>
+				 					</h5>
+				 				</a>
+				 			</div>
+				 			<!-- Card body -->
+				 			<div id="collapseDistributore" class="collapse show" role="tabpanel" aria-labelledby="headingDistributore">
+				 				<div class="card-body">
+				 					<!-- tabella distributore - start -->
+				 					<div class="row">
+				 						<div class="col">
+				 							<table class="table text-left">
+				 								<thead>
+				 									<tr>
+				 										<th>Prodotto</th>
+				 										<th>Quantità</th>
+				 										<th>Prezzo listino</th>
+				 										<th>Totale</th>
+				 									</tr>
+				 								</thead>
+				 								<tbody>
+				 									<tr ng-repeat="x in cartDistributoreSelected">
+				 										<td>{{x.Nome}}</td>
+				 										<td>{{x.Quantita}}</td>
+				 										<td>{{x.Prezzo_listino | currency:"€"}}</td>
+				 										<td>{{x.Prezzo_listino | currency:"€"}}</td>
+				 									</tr>
+				 								</tbody>
+				 								<tfoot>
+				 									<tr>
+				 										<th>TOTALE</th>
+				 										<th>{{cartTotalDistributoreSelected | currency:"€"}}</th>
+				 									</tr>
+				 								</tfoot>
+				 							</table>
+				 						</div>
+				 					</div>
+				 					<!-- tabella distributore - end -->
+				 				</div>
+				 			</div>
+				 		</div>
+				 		<!-- Accordion card -->
+				 	</div>
+				 	<!--Accordion wrapper distributore-->
+
+
+
+				 <!--Accordion wrapper prodotto hardware-->
+				 <div class="accordion" id="accordionProdottiHardware" role="tablist" aria-multiselectable="true">
+				 	<!-- Accordion card -->
+				 	<div class="card">
+				 		<!-- Card header -->
+				 		<div class="card-header" role="tab" id="headingProdottiHardware">
+				 			<a data-toggle="collapse" data-parent="#accordionProdottiHardware" href="#collapseProdottiHardware" aria-expanded="true" aria-controls="collapseProdottiHardware">
+				 				<h5 class="mb-0 text-center">
+				 					Prodotti hardware <i class="fa fa-angle-down rotate-icon"></i>
+				 				</h5>
+				 			</a>
+				 		</div>
+				 		<!-- Card body -->
+				 		<div id="collapseProdottiHardware" class="collapse show" role="tabpanel" aria-labelledby="headingProdottiHardware">
+				 			<div class="card-body">
+				 				<!-- tabella prodottiHardware - start -->
+				 				<div class="row">
+				 					<div class="col">
+				 						<table class="table text-left">
+				 							<thead>
+				 								<tr>
+				 									<th>Prodotto</th>
+				 									<th>Quantità</th>
+				 									<th>Prezzo listino</th>
+				 									<th>Totale</th>
+				 								</tr>
+				 							</thead>
+				 							<tbody>
+				 								<tr ng-repeat="x in cartProdottiHardwareSelected">
+				 									<td>{{x.Nome}}</td>
+				 									<td>{{x.Quantita}}</td>
+				 									<td>{{x.Prezzo_listino | currency:"€"}}</td>
+				 									<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				 								</tr>
+				 							</tbody>
+				 							<tfoot>
+				 								<tr>
+				 									<th>TOTALE</th>
+				 									<th>{{cartTotalProdottiHardwareSelected | currency:"€"}}</th>
+				 								</tr>
+				 							</tfoot>
+				 						</table>
+				 					</div>
+				 				</div>
+				 				<!-- tabella prodottiHardware - end -->
+				 			</div>
+				 		</div>
+				 	</div>
+				 	<!-- Accordion card -->
+				 </div>
+				 <!--Accordion wrapper prodotto hardware-->
+
+				 <!--Accordion wrapper licenze-->
+				 <div class="accordion" id="accordionLicenze" role="tablist" aria-multiselectable="true">
+				 	<!-- Accordion card -->
+				 	<div class="card">
+				 		<!-- Card header -->
+				 		<div class="card-header" role="tab" id="headingLicenze">
+				 			<a data-toggle="collapse" data-parent="#accordionLicenze" href="#collapseLicenze" aria-expanded="true" aria-controls="collapseLicenze">
+				 				<h5 class="mb-0 text-center">
+				 					Licenze (Webserver) <i class="fa fa-angle-down rotate-icon"></i>
+				 				</h5>
+				 			</a>
+				 		</div>
+				 		<!-- Card body -->
+				 		<div id="collapseLicenze" class="collapse show" role="tabpanel" aria-labelledby="headingLicenze">
+				 			<div class="card-body">
+				 				<!-- tabella licenze - start -->
+				 				<div class="row">
+				 					<div class="col">
+				 						<table class="table text-left">
+				 							<thead>
+				 								<tr>
+				 									<th>Prodotto</th>
+				 									<th>Quantità</th>
+				 									<th>Prezzo listino</th>
+				 									<th>Totale</th>
+				 								</tr>
+				 							</thead>
+				 							<tbody>
+				 								<tr ng-repeat="x in cartLicenzeSelected">
+				 									<td>{{x.Tipologia}}</td>
+				 									<td>{{x.Quantita}}</td>
+				 									<td>{{x.Prezzo_listino | currency:"€"}}</td>
+				 									<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				 								</tr>
+				 							</tbody>
+				 							<tfoot>
+				 								<tr>
+				 									<th>TOTALE</th>
+				 									<th>{{cartTotalLicenzeSelected | currency:"€"}}</th>
+				 								</tr>
+				 							</tfoot>
+				 						</table>
+				 					</div>
+				 				</div>
+				 				<!-- tabella licenze - end -->
+				 			</div>
+				 		</div>
+				 	</div>
+				 	<!-- Accordion card -->
+				 </div>
+				 <!--Accordion wrapper licenze-->
+
+				 <!--Accordion wrapper canoni-->
+				 <div class="accordion" id="accordionCanoni" role="tablist" aria-multiselectable="true">
+				 	<!-- Accordion card -->
+				 	<div class="card">
+				 		<!-- Card header -->
+				 		<div class="card-header" role="tab" id="headingCanoni">
+				 			<a data-toggle="collapse" data-parent="#accordionCanoni" href="#collapseCanoni" aria-expanded="true" aria-controls="collapseCanoni">
+				 				<h5 class="mb-0 text-center">
+				 					Canoni collengamento e aggiornamenti web <i class="fa fa-angle-down rotate-icon"></i>
+				 				</h5>
+				 			</a>
+				 		</div>
+				 		<!-- Card body -->
+				 		<div id="collapseCanoni" class="collapse show" role="tabpanel" aria-labelledby="headingCanoni">
+				 			<div class="card-body">
+				 				<!-- tabella canoni - start -->
+				 				<div class="row">
+				 					<div class="col">
+				 						<table class="table text-left">
+				 							<thead>
+				 								<tr>
+				 									<th>Prodotto</th>
+				 									<th>Quantità</th>
+				 									<th>Prezzo listino</th>
+				 									<th>Totale</th>
+				 								</tr>
+				 							</thead>
+				 							<tbody>
+				 								<tr ng-repeat="x in cartCanoniSelected">
+				 									<td>{{x.Tipologia}}</td>
+				 									<td>{{x.Quantita}}</td>
+				 									<td>{{x.Prezzo_listino | currency:"€"}}</td>
+				 									<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				 								</tr>
+				 							</tbody>
+				 							<tfoot>
+				 								<tr>
+				 									<th>TOTALE</th>
+				 									<th>{{cartTotalCanoniSelected | currency:"€"}}</th>
+				 								</tr>
+				 							</tfoot>
+				 						</table>
+				 					</div>
+				 				</div>
+				 				<!-- tabella canoni - end -->
+				 			</div>
+				 		</div>
+				 	</div>
+				 	<!-- Accordion card -->
+				 </div>
+				 <!--Accordion wrapper canoni-->
+
+				 <!--Accordion wrapper local-->
+				 <div class="accordion" id="accordionLocal" role="tablist" aria-multiselectable="true">
+				 	<!-- Accordion card -->
+				 	<div class="card">
+				 		<!-- Card header -->
+				 		<div class="card-header" role="tab" id="headingLocal">
+				 			<a data-toggle="collapse" data-parent="#accordionLocal" href="#collapseLocal" aria-expanded="true" aria-controls="collapseLocal">
+				 				<h5 class="mb-0 text-center">
+				 					Licenze Local Usage <i class="fa fa-angle-down rotate-icon"></i>
+				 				</h5>
+				 			</a>
+				 		</div>
+				 		<!-- Card body -->
+				 		<div id="collapseLocal" class="collapse show" role="tabpanel" aria-labelledby="headingLocal">
+				 			<div class="card-body">
+				 				<!-- tabella local - start -->
+				 				<div class="row">
+				 					<div class="col">
+				 						<table class="table text-left">
+				 							<thead>
+				 								<tr>
+				 									<th>Prodotto</th>
+				 									<th>Quantità</th>
+				 									<th>Prezzo listino</th>
+				 									<th>Totale</th>
+				 								</tr>
+				 							</thead>
+				 							<tbody>
+				 								<tr ng-repeat="x in cartLocalSelected">
+				 									<td>{{x.Tipologia}}</td>
+				 									<td>{{x.Quantita}}</td>
+				 									<td>{{x.Prezzo_listino | currency:"€"}}</td>
+				 									<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				 								</tr>
+				 							</tbody>
+				 							<tfoot>
+				 								<tr>
+				 									<th>TOTALE</th>
+				 									<th>{{cartTotalLocalSelected | currency:"€"}}</th>
+				 								</tr>
+				 							</tfoot>
+				 						</table>
+				 					</div>
+				 				</div>
+				 				<!-- tabella local - end -->
+				 			</div>
+				 		</div>
+				 	</div>
+				 	<!-- Accordion card -->
+				 </div>
+				 <!--Accordion wrapper local-->
+
+				 <!--Accordion wrapper totale complessivo-->
+				 <div class="accordion" id="accordionTotaleComplpessivo" role="tablist" aria-multiselectable="true">
+				 	<!-- Accordion card -->
+				 	<div class="card">
+				 		<!-- Card header -->
+				 		<div class="card-header" role="tab" id="headingTotaleComplessivo">
+				 			<a data-toggle="collapse" data-parent="#accordionTotaleComplpessivo" href="#collapseTotaleComplessivo" aria-expanded="true" aria-controls="collapseTotaleComplessivo">
+				 				<h5 class="mb-0 text-center">
+				 					Totale complessivo <i class="fa fa-angle-down rotate-icon"></i>
+				 				</h5>
+				 			</a>
+				 		</div>
+				 		<!-- Card body -->
+				 		<div id="collapseTotaleComplessivo" class="collapse show" role="tabpanel" aria-labelledby="headingTotaleComplessivo">
+				 			<div class="card-body text-center">
+				 				<!-- totale complessivo del carrello - start -->
+				 				<h2>{{cartOverallTotalAllItemsSelected | currency:"€"}}</h2>
+				 				<!-- totale complessivo del carrello - end -->
+				 			</div>
+				 		</div>
+				 	</div>
+				 	<!-- Accordion card -->
+				 </div>
+				 <!--Accordion wrapper totale complessivo-->
+
+				 </div>
+			 </div>
+
+			 <!--Footer-->
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-danger waves-effect">Prosegui al riepilogo</button>
 			</div>
 		</div>
+		<!--/.Content-->
 	</div>
-	<!-- Accordion card -->
 </div>
-<!--Accordion wrapper-->
+<!-- Modal carrello -->
 
-
-<!--Accordion wrapper-->
-<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-<!-- Accordion card -->
-<div class="card">
-
-	<!-- Card header -->
-	<div class="card-header" role="tab" id="headingOne">
-		<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOnee" aria-expanded="true" aria-controls="collapseOne">
-			<h5 class="mb-0">
-				Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
-			</h5>
-		</a>
-	</div>
-
-	<!-- Card body -->
-	<div id="collapseOnee" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-		<div class="card-body">
-			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-			non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
-			3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-			shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-			sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-			farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-			accusamus labore sustainable VHS.
-		</div>
-	</div>
-</div>
-<!-- Accordion card -->
-</div>
-<!--Accordion wrapper-->
-<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-<!-- Accordion card -->
-<div class="card">
-
-	<!-- Card header -->
-	<div class="card-header" role="tab" id="headingOne">
-		<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			<h5 class="mb-0">
-				Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
-			</h5>
-		</a>
-	</div>
-
-	<!-- Card body -->
-	<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-		<div class="card-body">
-			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-			non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
-			3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-			shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-			sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-			farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-			accusamus labore sustainable VHS.
-		</div>
-	</div>
-</div>
-<!-- Accordion card -->
-</div>
-
-
-
-
-
-		<!-- carrello - start -->
-		<div class="container-fluid">
-			<!-- tabella distributore - start -->
-			<div class="row">
-				<div class="col">
-					<table class="table table-responsive">
-						<thead>
-							<tr>
-								<th>Prodotto</th>
-								<th>Quantità</th>
-								<th>Prezzo listino</th>
-								<th>Totale</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="x in cartDistributoreSelected">
-								<td>{{x.Nome}}</td>
-								<td>{{x.Quantita}}</td>
-								<td>{{x.Prezzo_listino | currency:"€"}}</td>
-								<td>{{x.Prezzo_listino | currency:"€"}}</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="3">TOTALE</th>
-								<th>{{cartTotalDistributoreSelected | currency:"€"}}</th>
-							</tr>
-						</tfoot>
-					</table>
+<!-- modal per la creazione di un prodotto personalizzato -->
+<!--Modal: prdotto personalizzato -->
+<div class="modal fade" id="modalCustomizeProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog cascading-modal" role="document">
+		<!--Content-->
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header light-blue darken-3 white-text">
+				<div class="loginFormHeaderIcon">
+					<i id="errorAnimation" class="fa fa-plus-circle fa-5x"></i>
 				</div>
+				<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-			<!-- tabella distributore - end -->
+			<!--Body-->
+			<div class="modal-body">
 
-			<!-- tabella licenze - start -->
-			<div class="row">
-				<div class="col">
-					<table class="table table-responsive">
-						<thead>
-							<tr>
-								<th>Prodotto</th>
-								<th>Quantità</th>
-								<th>Prezzo listino</th>
-								<th>Totale</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="x in cartLicenzeSelected">
-								<td>{{x.Tipologia}}</td>
-								<td>{{x.Quantita}}</td>
-								<td>{{x.Prezzo_listino | currency:"€"}}</td>
-								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="3">TOTALE</th>
-								<th>{{cartTotalLicenzeSelected | currency:"€"}}</th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			<!-- tabella licenze - end -->
-			<!-- tabella local - start -->
-			<div class="row">
-				<div class="col">
-					<table class="table table-responsive">
-						<thead>
-							<tr>
-								<th>Prodotto</th>
-								<th>Quantità</th>
-								<th>Prezzo listino</th>
-								<th>Totale</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="x in cartLocalSelected">
-								<td>{{x.Tipologia}}</td>
-								<td>{{x.Quantita}}</td>
-								<td>{{x.Prezzo_listino | currency:"€"}}</td>
-								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="3">TOTALE</th>
-								<th>{{cartTotalLocalSelected | currency:"€"}}</th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			<!-- tabella local - end -->
-			<!-- tabella canoni - start -->
-			<div class="row">
-				<div class="col">
-					<table class="table table-responsive">
-						<thead>
-							<tr>
-								<th>Prodotto</th>
-								<th>Quantità</th>
-								<th>Prezzo listino</th>
-								<th>Totale</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="x in cartCanoniSelected">
-								<td>{{x.Tipologia}}</td>
-								<td>{{x.Quantita}}</td>
-								<td>{{x.Prezzo_listino | currency:"€"}}</td>
-								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="3">TOTALE</th>
-								<th>{{cartTotalCanoniSelected | currency:"€"}}</th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			<!-- tabella canoni - end -->
-			<!-- totale complessivo del carrello - start -->
-			<h2>{{cartOverallTotalAllItemsSelected | currency:"€"}}</h2>
-			<!-- totale complessivo del carrello - end -->
-			<!-- pulsanti chiusura - e passaggio a riepilogo - sart-->
-			<button type="button" name="closeCart" ng-click="closeCart()">Chiudi</button>
-			<button type="button" name="goToRiepilogo" ng-click="goToRiepilogo()">Vai al riepilogo</button>
-			<!-- pulsanti chiusura - e passaggio a riepilogo - end-->
-		</div>
-		<!-- carrello - end -->
+				<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct">
+					<option disabled selected value="">Seleziona una categoria</option>
+					<option value="0">Prodotti Hardware</option>
+					<option value="1">Licenze</option>
+					<option value="2">Local</option>
+					<option value="3">Canoni</option>
+				</select>
 
-		<!-- prodotto personalizzato - start -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
-					<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct">
-						<option disabled selected value="">Seleziona una categoria</option>
-						<option value="0">Prodotti Hardware</option>
-						<option value="1">Licenze</option>
-						<option value="2">Local</option>
-						<option value="3">Canoni</option>
-					</select>
-					<input type="text" name="codice" placeholder="Codice" ng-model="codiceCustomizedProduct">
-					<input type="text" name="nome" placeholder="Nome/Tipologia" ng-model="nomeCustomizedProduct">
-					<input type="text" name="descrizione" placeholder="Descrizione" ng-model="descrizioneCustomizedProduct">
-					<input type="number" name="prezzoAcquisto" placeholder="Prezzo di acquisto" ng-model="prezzoAcquistoCustomizedProduct">
-					<input type="number" name="prezzoListino" placeholder="Prezzo di listino" ng-model="prezzoListinoCustomizedProduct">
-					<button type="button" name="closeCustomizedProduct" ng-click="closeCustomizedProduct()">Annulla</button>
-					<button type="button" name="createCustomizedProduct" ng-click="createCustomizedProduct()">Crea</button>
+				<div class="md-form form-sm">
+					<i class="fa fa-envelope prefix"></i>
+					<input type="text" id="codiceCustomizedProduct" class="form-control" name="codice" ng-model="codiceCustomizedProduct">
+					<label for="codiceCustomizedProduct">Codice</label>
 				</div>
+
+				<div class="md-form form-sm">
+					<i class="fa fa-lock prefix"></i>
+					<input type="text" id="nomeCustomizedProduct" name="nome" class="form-control" ng-model="nomeCustomizedProduct">
+					<label for="nomeCustomizedProduct">Nome</label>
+				</div>
+
+				<div class="md-form form-sm">
+					<i class="fa fa-lock prefix"></i>
+					<input type="text" id="descrizioneCustomizedProduct" name="descrizione" class="form-control" ng-model="descrizioneCustomizedProduct">
+					<label for="descrizioneCustomizedProduct">Descrizione</label>
+				</div>
+
+				<div class="md-form form-sm">
+					<i class="fa fa-lock prefix"></i>
+					<input type="number" id="prezzoAcquistoCustomizedProduct" name="prezzoAcquisto" class="form-control" ng-model="prezzoAcquistoCustomizedProduct">
+					<label for="prezzoAcquistoCustomizedProduct">Descrizione</label>
+				</div>
+
+				<div class="md-form form-sm">
+					<i class="fa fa-lock prefix"></i>
+					<input type="number" id="prezzoListinoCustomizedProduct" name="prezzoListino" class="form-control" ng-model="prezzoListinoCustomizedProduct">
+					<label for="prezzoListinoCustomizedProduct">Descrizione</label>
+				</div>
+
+				<div class="text-center mt-2">
+					<button class="btn btn-danger waves-effect" ng-click="closeCustomizedProduct()" data-dismiss="modal">Annulla</button>
+					<button class="btn btn-primary waves-effect" name="createCustomizedProduct" ng-click="createCustomizedProduct()">Crea prodotto</button>
+				</div>
+
+			</div>
+			<!--Footer-->
+			<div class="modal-footer text-center red-text">
+				<p>Il prodotto creato sarà visibile nella tabella sopra indicata e disponibile solamente per questo preventivo</p>
 			</div>
 		</div>
-		<!-- prodotto personalizzato - end -->
+		<!--/.Content-->
+	</div>
+</div>
+<!--Modal: prdotto personalizzato-->
+<!-- modal per la creazione di un prodotto personalizzato -->
 
 		<!-- Login form se cliente non autorizzato a creare un nuovo prodotto -->
 		<!--Modal: Login Form-->
@@ -568,18 +688,18 @@
 	                <div class="modal-body">
 	                    <div class="md-form form-sm">
 	                        <i class="fa fa-envelope prefix"></i>
-	                        <input type="text" id="form30" class="form-control" name="usernameLogin" ng-model="usernameLogin">
-	                        <label for="form30">Username</label>
+	                        <input type="text" id="usernameLogin" class="form-control" name="usernameLogin" ng-model="usernameLogin">
+	                        <label for="usernameLogin">Username</label>
 	                    </div>
 
 	                    <div class="md-form form-sm">
 	                        <i class="fa fa-lock prefix"></i>
-	                        <input type="password" id="form31" class="form-control" name="passwordLogin" ng-model="passwordLogin">
-	                        <label for="form31">Password</label>
+	                        <input type="password" id="passwordLogin" class="form-control" name="passwordLogin" ng-model="passwordLogin">
+	                        <label for="passwordLogin">Password</label>
 	                    </div>
 
 	                    <div class="text-center mt-2">
-	                        <button class="btn btn-info" ng-click="userLoginAutentication()">Log in <i class="fa fa-sign-in ml-1"></i></button>
+	                        <button class="btn btn-primary waves-effect" ng-click="userLoginAutentication()">Log in <i class="fa fa-sign-in ml-1"></i></button>
 	                    </div>
 
 	                </div>

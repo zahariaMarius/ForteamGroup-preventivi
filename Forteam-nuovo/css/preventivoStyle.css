@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-12T17:44:58+01:00
+ * @Last modified time: 2017-11-12T20:53:12+01:00
  */
 
  .view {
@@ -53,7 +53,7 @@
     background: #F44336 !important;
 	position: fixed;
 	bottom: 4%;
-	right: 94%;
+	left: 94%;
 }
 
 .btn .fa {
@@ -86,4 +86,35 @@
 
 .modal-header {
 	padding: 12px !important;
+}
+
+@media (min-width: 768px) {
+	.modal .modal-dialog.modal-top-right {
+	    top: 0px;
+	    right: 0px;
+	}
+}
+
+@media (min-width: 992px) {
+	.modal .modal-side {
+		width: 45%;
+	}
+}
+
+@media (min-width: 992px) {
+	.modal-lg {
+		width: 1920px;
+	}
+}
+
+.accordion {
+	margin-bottom: 10px;
+}
+
+.accordion .card {
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
+}
+
+#iconModalCart {
+	margin-bottom: 35px !important;
 }
