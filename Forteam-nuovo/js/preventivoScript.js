@@ -4,13 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
-<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-12T17:38:27+01:00
-=======
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-12T14:50:35+01:00
->>>>>>> c8cabc8f4444cfdb14ca4166421142d64f7b2c05
+ * @Last modified time: 2017-11-12T17:45:00+01:00
  */
 
 "use strict";
