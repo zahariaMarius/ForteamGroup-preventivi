@@ -143,22 +143,22 @@
 			<!-- tabelle che contengono i componenti selezionabili - start -->
 			<div class="row">
 				<div class="col-md-9 py-5 mx-auto">
-					<!-- optional inputs field - start -->
-					<input type="text" name="searchItem" placeholder="Search" ng-model="searchItem">
-					<button type="button" name="createcustomizedItem" ng-click="openCustomizedProduct()">Crea prodotto personalizzato</button>
-					<!-- optional inputs field - end -->
-
 					<!--Panel-->
 					<div class="card">
 					    <h3 class="card-header primary-color white-text">Distributore selezionato</h3>
 					    <div class="card-body">
-							<nav class="nav nav-tabs" id="myTab" role="tablist">
+							<nav class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 								<a class="nav-item nav-link active" id="nav-prodottiHardware-tab" data-toggle="tab" href="#nav-prodottiHardware" role="tab" aria-controls="nav-prodottiHardware" aria-selected="true">Prodotti hardware</a>
 								<a class="nav-item nav-link" id="nav-licenze-tab" data-toggle="tab" href="#nav-licenze" role="tab" aria-controls="nav-licenze" aria-selected="false">Licenze (Webserver)</a>
 								<a class="nav-item nav-link" id="nav-canoni-tab" data-toggle="tab" href="#nav-canoni" role="tab" aria-controls="nav-canoni" aria-selected="false">Canoni collengamento e aggiornamenti web</a>
 								<a class="nav-item nav-link" id="nav-local-tab" data-toggle="tab" href="#nav-local" role="tab" aria-controls="nav-local" aria-selected="false">Licenze Local Usage</a>
 							</nav>
 							<div class="tab-content" id="nav-tabContent">
+								<!-- Search form -->
+								<form class="form-inline">
+								    <input class="form-control w-100 search" type="text" placeholder="Cerca prodotto" aria-label="Search" ng-model="searchItem">
+								</form>
+								<!-- Search form -->
 								<div class="tab-pane fade show active" id="nav-prodottiHardware" role="tabpanel" aria-labelledby="nav-prodottiHardware-tab">
 									<!-- tabella prodotti hardware - start -->
 									<div class="" id="divContenenteTabellaProdottiHardware">
@@ -182,6 +182,7 @@
 											   </tr>
 											</tbody>
 										</table>
+										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella prodotti hardware - end -->
 								</div>
@@ -208,6 +209,7 @@
 											   </tr>
 											</tbody>
 										</table>
+										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella licenze - end -->
 								</div>
@@ -234,6 +236,7 @@
 											   </tr>
 											</tbody>
 										</table>
+										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella prodotti local - end -->
 								</div>
@@ -260,24 +263,134 @@
 											   </tr>
 											</tbody>
 										</table>
+										<button type="button" class="btn btn-primary btn-block" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella canoni - end -->
 								</div>
 							</div>
 					    </div>
-						<button type="button" class="btn btn-primary"><i class="fa fa-shopping-bag white-text"></i></button>
 					</div>
 					<!--/.Panel-->
-
-
-
-
-
 				</div>
 			</div>
 			<!-- tabelle che contengono i componenti selezionabili - end -->
 		</div>
 	</section>
+
+<!--Accordion wrapper-->
+<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+	<!-- Accordion card -->
+	<div class="card">
+		<!-- Card header -->
+		<div class="card-header" role="tab" id="headingOne">
+			<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseProdottiHardware" aria-expanded="true" aria-controls="collapseOne">
+				<h5 class="mb-0 text-center">
+					Prodotti hardware <i class="fa fa-angle-down rotate-icon"></i>
+				</h5>
+			</a>
+		</div>
+		<!-- Card body -->
+		<div id="collapseProdottiHardware" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+			<div class="card-body">
+				<!-- tabella prodottiHardware - start -->
+				<div class="row">
+					<div class="col">
+						<table class="table table-responsive">
+							<thead>
+								<tr>
+									<th>Prodotto</th>
+									<th>Quantità</th>
+									<th>Prezzo listino</th>
+									<th>Totale</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in cartProdottiHardwareSelected">
+									<td>{{x.Nome}}</td>
+									<td>{{x.Quantita}}</td>
+									<td>{{x.Prezzo_listino | currency:"€"}}</td>
+									<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th colspan="3">TOTALE</th>
+									<th>{{cartTotalProdottiHardwareSelected | currency:"€"}}</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+				<!-- tabella prodottiHardware - end -->
+			</div>
+		</div>
+	</div>
+	<!-- Accordion card -->
+</div>
+<!--Accordion wrapper-->
+
+
+<!--Accordion wrapper-->
+<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+<!-- Accordion card -->
+<div class="card">
+
+	<!-- Card header -->
+	<div class="card-header" role="tab" id="headingOne">
+		<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOnee" aria-expanded="true" aria-controls="collapseOne">
+			<h5 class="mb-0">
+				Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
+			</h5>
+		</a>
+	</div>
+
+	<!-- Card body -->
+	<div id="collapseOnee" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+		<div class="card-body">
+			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+			non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+			3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+			shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+			sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+			farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+			accusamus labore sustainable VHS.
+		</div>
+	</div>
+</div>
+<!-- Accordion card -->
+</div>
+<!--Accordion wrapper-->
+<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+<!-- Accordion card -->
+<div class="card">
+
+	<!-- Card header -->
+	<div class="card-header" role="tab" id="headingOne">
+		<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			<h5 class="mb-0">
+				Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
+			</h5>
+		</a>
+	</div>
+
+	<!-- Card body -->
+	<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+		<div class="card-body">
+			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+			non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+			3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+			shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+			sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+			farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+			accusamus labore sustainable VHS.
+		</div>
+	</div>
+</div>
+<!-- Accordion card -->
+</div>
+
+
+
 
 
 		<!-- carrello - start -->
@@ -312,36 +425,7 @@
 				</div>
 			</div>
 			<!-- tabella distributore - end -->
-			<!-- tabella prodottiHardware - start -->
-			<div class="row">
-				<div class="col">
-					<table class="table table-responsive">
-						<thead>
-							<tr>
-								<th>Prodotto</th>
-								<th>Quantità</th>
-								<th>Prezzo listino</th>
-								<th>Totale</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="x in cartProdottiHardwareSelected">
-								<td>{{x.Nome}}</td>
-								<td>{{x.Quantita}}</td>
-								<td>{{x.Prezzo_listino | currency:"€"}}</td>
-								<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th colspan="3">TOTALE</th>
-								<th>{{cartTotalProdottiHardwareSelected | currency:"€"}}</th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			<!-- tabella prodottiHardware - end -->
+
 			<!-- tabella licenze - start -->
 			<div class="row">
 				<div class="col">
@@ -464,6 +548,51 @@
 			</div>
 		</div>
 		<!-- prodotto personalizzato - end -->
+
+		<!-- Login form se cliente non autorizzato a creare un nuovo prodotto -->
+		<!--Modal: Login Form-->
+	    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	        <div class="modal-dialog cascading-modal" role="document">
+	            <!--Content-->
+	            <div class="modal-content">
+	                <!--Header-->
+	                <div class="modal-header light-blue darken-3 white-text">
+						<div class="loginFormHeaderIcon">
+							<i id="errorAnimation" class="fa fa-user-circle-o fa-5x"></i>
+						</div>
+	                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	                <!--Body-->
+	                <div class="modal-body">
+	                    <div class="md-form form-sm">
+	                        <i class="fa fa-envelope prefix"></i>
+	                        <input type="text" id="form30" class="form-control" name="usernameLogin" ng-model="usernameLogin">
+	                        <label for="form30">Username</label>
+	                    </div>
+
+	                    <div class="md-form form-sm">
+	                        <i class="fa fa-lock prefix"></i>
+	                        <input type="password" id="form31" class="form-control" name="passwordLogin" ng-model="passwordLogin">
+	                        <label for="form31">Password</label>
+	                    </div>
+
+	                    <div class="text-center mt-2">
+	                        <button class="btn btn-info" ng-click="userLoginAutentication()">Log in <i class="fa fa-sign-in ml-1"></i></button>
+	                    </div>
+
+	                </div>
+	                <!--Footer-->
+	                <div class="modal-footer text-center red-text">
+						<p>Accedi con un account da amministratore per creare un prodotto personalizzato</p>
+	                </div>
+	            </div>
+	            <!--/.Content-->
+	        </div>
+	    </div>
+	    <!--Modal: Login Form-->
+		<!-- Login form se cliente non autorizzato a creare un nuovo prodotto -->
 
 		<!-- SCRIPTS -->
 	    <!-- JQuery -->

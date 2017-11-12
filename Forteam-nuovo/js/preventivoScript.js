@@ -5,8 +5,9 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-11T14:03:06+01:00
+ * @Last modified time: 2017-11-12T17:38:27+01:00
  */
+
 "use strict";
 /**
  * [user contain user Object from DB]
@@ -258,6 +259,7 @@ function checkIfQuantitaIsNumber(qnt) {
  * @return {[Bool]}      [true or false]
  */
 function checkUserPrivilegeForCustomizedProduct(user) {
+	console.log(user.Privilegi);
 	var flag = false
 	if (user.Privilegi == "Amministratore") {flag = true;}
 	return flag;
@@ -304,18 +306,11 @@ function checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, 
 }
 
 /**
- * [checkIfInsertedUserExist function taht control if the username inserted exist]
- * @param  {[Object]} user [user returned from DB]
+ * [callBackAssingnUser function that assing the user value]
  * @return {[type]}      [description]
  */
-function checkIfInsertedUserExist(user) {
-	if (user) {
-		//continua con l'app
-		console.log("esiste");
-	}else {
-		//messaggio errore su text field
-		console.log("username or password sbagliati");
-	}
+function callBackAssingnUser() {
+	user = JSON.parse(localStorage.getItem("user"));
 }
 
 /**
@@ -431,14 +426,29 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @return {[type]} [description]
 	 */
 	$scope.userLoginAutentication = function() {
+		$("i[id='errorAnimation']").removeClass('animated shake');
 		var username = $scope.usernameLogin;
 		var password = $scope.passwordLogin;
 		var queryUserLogin = "SELECT * FROM utenti WHERE Username = '"+username+"' AND Password = '"+password+"'";
 		$http.post('DataBase/DBM.php', {query: queryUserLogin}).then(function (response) {
+			//craete user variable
+			var user = response.data[0];
+			//clear and set the localStorage
 			localStorage.clear();
-			localStorage.setItem("user", JSON.stringify(response.data[0]));
+			localStorage.setItem("user", JSON.stringify(user));
 			console.log(response.data[0]);
-			checkIfInsertedUserExist(response.data[0]);
+			//controll if user exist
+			if (user) {
+				console.log("esiste");
+				//close login form
+				$("i[id='errorAnimation']").removeClass('animated shake');
+				$('#modalLogin').modal('hide');
+				$scope.userCognomeNome = user.Cognome+ " " + user.Nome;
+				callBackAssingnUser();
+			}else {
+				$("i[id='errorAnimation']").addClass('animated shake');
+				console.log("username or password sbagliati");
+			}
 		});
 	}
 
@@ -639,6 +649,7 @@ app.controller('preventivoController', function($scope, $http) {
 			console.log("User qualified");
 		}else {
 			//open the login form
+			$('#modalLogin').modal('show');
 			console.log("user not qualified");
 		}
 		console.log(user);
