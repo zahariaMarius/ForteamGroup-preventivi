@@ -77,7 +77,7 @@
 	<!--Main Navigation-->
 
 	<!--section form dati cliente-->
-	<section class="formDatiCliente py-5" id="formDatiCliente">
+	<section class="formDatiCliente py-5" id="formDatiCliente" ng-controller="clienteFormValidation">
 	    <div class="container-fluid">
 	        <div class="row">
 	            <div class="col-md-9 py-5 mx-auto">
@@ -85,39 +85,42 @@
 					<div class="card">
 						<h4 class="card-header primary-color white-text text-center">Cliente richiedente preventivo</h4>
 						<div class="card-body">
-							<!-- input dati del cliente - start -->
-							<div class="md-form">
-							    <i class="fa fa-users prefix"></i>
-							    <input type="text" id="nomeCliente" class="form-control" name="nomeCliente">
-							    <label for="nomeCliente">Nome</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-road prefix"></i>
-							    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente">
-							    <label for="indirizzoCliente">Indirizzo</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-envelope prefix"></i>
-							    <input type="text" id="emailCliente" class="form-control" name="emailCliente">
-							    <label for="emailCliente">Email</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-university prefix"></i>
-							    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente">
-							    <label for="partitaIvaCliente">Partita IVA</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-id-card prefix"></i>
-							    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente">
-							    <label for="codiceFiscaleCliente">Codice fiscale</label>
-							</div>
-							<!-- input dati del cliente - end -->
+							<form name="clienteForm">
+								<!-- input dati del cliente - start -->
+								<div class="md-form">
+								    <i class="fa fa-users prefix"></i>
+								    <input type="text" id="nomeCliente" class="form-control" name="nomeCliente" ng-model="nomeCliente" ng-change="changeNomeCliente()" required>
+								    <label for="nomeCliente">Nome</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-road prefix"></i>
+								    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente" ng-model="indirizzoCliente" required>
+								    <label for="indirizzoCliente">Indirizzo</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-envelope prefix"></i>
+								    <input type="text" id="emailCliente" class="form-control" name="emailCliente" ng-model="emailCliente" required>
+								    <label for="emailCliente">Email</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-university prefix"></i>
+								    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente" ng-model="partitaIVACliente" required>
+								    <label for="partitaIvaCliente">Partita IVA</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-id-card prefix"></i>
+								    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" required>
+								    <label for="codiceFiscaleCliente">Codice fiscale</label>
+								</div>
+								<!-- input dati del cliente - end -->
+							</form>
 						</div>
 					</div>
 					<!--/.panel-->
 	           </div>
 	        </div>
 	    </div>
+		{{formCheck}}
 	</section>
 	<!--section form dati cliente-->
 
@@ -263,7 +266,7 @@
 											   </tr>
 											</tbody>
 										</table>
-										<button type="button" class="btn btn-primary waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
+										<button type="button" class="btn btn-primary btn-block waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella prodotti local - end -->
 								</div>
@@ -613,50 +616,50 @@
 			</div>
 			<!--Body-->
 			<div class="modal-body">
+				<form name="customizedProductForm">
+					<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct" required>
+						<option disabled selected value="">Seleziona una categoria</option>
+						<option value="0">Prodotti Hardware</option>
+						<option value="1">Licenze</option>
+						<option value="2">Local</option>
+						<option value="3">Canoni</option>
+					</select>
 
-				<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct">
-					<option disabled selected value="">Seleziona una categoria</option>
-					<option value="0">Prodotti Hardware</option>
-					<option value="1">Licenze</option>
-					<option value="2">Local</option>
-					<option value="3">Canoni</option>
-				</select>
+					<div class="md-form form-sm">
+						<i id="codiceProdottoIcon" class="fa fa-tag prefix"></i>
+						<input type="text" id="codiceCustomizedProduct" class="form-control" name="codice" ng-model="codiceCustomizedProduct" required>
+						<label for="codiceCustomizedProduct">Codice</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-envelope prefix"></i>
-					<input type="text" id="codiceCustomizedProduct" class="form-control" name="codice" ng-model="codiceCustomizedProduct">
-					<label for="codiceCustomizedProduct">Codice</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-laptop prefix"></i>
+						<input type="text" id="nomeCustomizedProduct" name="nome" class="form-control" ng-model="nomeCustomizedProduct" required>
+						<label for="nomeCustomizedProduct">Nome</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="text" id="nomeCustomizedProduct" name="nome" class="form-control" ng-model="nomeCustomizedProduct">
-					<label for="nomeCustomizedProduct">Nome</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-pencil-square-o prefix"></i>
+						<input type="text" id="descrizioneCustomizedProduct" name="descrizione" class="form-control" ng-model="descrizioneCustomizedProduct" required>
+						<label for="descrizioneCustomizedProduct">Descrizione</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="text" id="descrizioneCustomizedProduct" name="descrizione" class="form-control" ng-model="descrizioneCustomizedProduct">
-					<label for="descrizioneCustomizedProduct">Descrizione</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-money prefix"></i>
+						<input type="number" id="prezzoAcquistoCustomizedProduct" name="prezzoAcquisto" class="form-control" ng-model="prezzoAcquistoCustomizedProduct" required>
+						<label for="prezzoAcquistoCustomizedProduct">Prezzo acquisto</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="number" id="prezzoAcquistoCustomizedProduct" name="prezzoAcquisto" class="form-control" ng-model="prezzoAcquistoCustomizedProduct">
-					<label for="prezzoAcquistoCustomizedProduct">Descrizione</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-money prefix"></i>
+						<input type="number" id="prezzoListinoCustomizedProduct" name="prezzoListino" class="form-control" ng-model="prezzoListinoCustomizedProduct" required>
+						<label for="prezzoListinoCustomizedProduct">Prezzo listino</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="number" id="prezzoListinoCustomizedProduct" name="prezzoListino" class="form-control" ng-model="prezzoListinoCustomizedProduct">
-					<label for="prezzoListinoCustomizedProduct">Descrizione</label>
-				</div>
-
-				<div class="text-center mt-2">
-					<button class="btn btn-danger waves-effect" ng-click="closeCustomizedProduct()" data-dismiss="modal">Annulla</button>
-					<button class="btn btn-primary waves-effect" name="createCustomizedProduct" ng-click="createCustomizedProduct()">Crea prodotto</button>
-				</div>
-
+					<div class="text-center mt-2">
+						<button class="btn btn-danger waves-effect" ng-click="closeCustomizedProduct()" data-dismiss="modal">Annulla</button>
+						<input type="submit" class="btn btn-primary waves-effect" value="Crea prodotto" ng-click="createCustomizedProduct()">
+					</div>
+				</form>
 			</div>
 			<!--Footer-->
 			<div class="modal-footer text-center red-text">
