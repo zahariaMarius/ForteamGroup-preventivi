@@ -263,7 +263,7 @@
 											   </tr>
 											</tbody>
 										</table>
-										<button type="button" class="btn btn-primary waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
+										<button type="button" class="btn btn-primary btn-block waves-effect" ng-click="openCustomizedProduct()"><i class="fa fa-plus white-text"></i></button>
 									</div>
 									<!-- tabella prodotti local - end -->
 								</div>
@@ -613,50 +613,50 @@
 			</div>
 			<!--Body-->
 			<div class="modal-body">
+				<form>
+					<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct" required>
+						<option disabled selected value="">Seleziona una categoria</option>
+						<option value="0">Prodotti Hardware</option>
+						<option value="1">Licenze</option>
+						<option value="2">Local</option>
+						<option value="3">Canoni</option>
+					</select>
 
-				<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct">
-					<option disabled selected value="">Seleziona una categoria</option>
-					<option value="0">Prodotti Hardware</option>
-					<option value="1">Licenze</option>
-					<option value="2">Local</option>
-					<option value="3">Canoni</option>
-				</select>
+					<div class="md-form form-sm">
+						<i id="codiceProdottoIcon" class="fa fa-tag prefix"></i>
+						<input type="text" id="codiceCustomizedProduct" class="form-control" name="codice" ng-model="codiceCustomizedProduct" required>
+						<label for="codiceCustomizedProduct">Codice</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-envelope prefix"></i>
-					<input type="text" id="codiceCustomizedProduct" class="form-control" name="codice" ng-model="codiceCustomizedProduct">
-					<label for="codiceCustomizedProduct">Codice</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-laptop prefix"></i>
+						<input type="text" id="nomeCustomizedProduct" name="nome" class="form-control" ng-model="nomeCustomizedProduct" required>
+						<label for="nomeCustomizedProduct">Nome</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="text" id="nomeCustomizedProduct" name="nome" class="form-control" ng-model="nomeCustomizedProduct">
-					<label for="nomeCustomizedProduct">Nome</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-pencil-square-o prefix"></i>
+						<input type="text" id="descrizioneCustomizedProduct" name="descrizione" class="form-control" ng-model="descrizioneCustomizedProduct" required>
+						<label for="descrizioneCustomizedProduct">Descrizione</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="text" id="descrizioneCustomizedProduct" name="descrizione" class="form-control" ng-model="descrizioneCustomizedProduct">
-					<label for="descrizioneCustomizedProduct">Descrizione</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-money prefix"></i>
+						<input type="number" id="prezzoAcquistoCustomizedProduct" name="prezzoAcquisto" class="form-control" ng-model="prezzoAcquistoCustomizedProduct" required>
+						<label for="prezzoAcquistoCustomizedProduct">Prezzo acquisto</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="number" id="prezzoAcquistoCustomizedProduct" name="prezzoAcquisto" class="form-control" ng-model="prezzoAcquistoCustomizedProduct">
-					<label for="prezzoAcquistoCustomizedProduct">Descrizione</label>
-				</div>
+					<div class="md-form form-sm">
+						<i class="fa fa-money prefix"></i>
+						<input type="number" id="prezzoListinoCustomizedProduct" name="prezzoListino" class="form-control" ng-model="prezzoListinoCustomizedProduct" required>
+						<label for="prezzoListinoCustomizedProduct">Prezzo listino</label>
+					</div>
 
-				<div class="md-form form-sm">
-					<i class="fa fa-lock prefix"></i>
-					<input type="number" id="prezzoListinoCustomizedProduct" name="prezzoListino" class="form-control" ng-model="prezzoListinoCustomizedProduct">
-					<label for="prezzoListinoCustomizedProduct">Descrizione</label>
-				</div>
-
-				<div class="text-center mt-2">
-					<button class="btn btn-danger waves-effect" ng-click="closeCustomizedProduct()" data-dismiss="modal">Annulla</button>
-					<button class="btn btn-primary waves-effect" name="createCustomizedProduct" ng-click="createCustomizedProduct()">Crea prodotto</button>
-				</div>
-
+					<div class="text-center mt-2">
+						<button class="btn btn-danger waves-effect" ng-click="closeCustomizedProduct()" data-dismiss="modal">Annulla</button>
+						<input type="submit" class="btn btn-primary waves-effect" value="Crea prodotto" ng-click="createCustomizedProduct()">
+					</div>
+				</form>
 			</div>
 			<!--Footer-->
 			<div class="modal-footer text-center red-text">
