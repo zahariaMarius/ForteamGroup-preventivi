@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-13T10:17:53+01:00
+ * @Last modified time: 2017-11-13T11:50:01+01:00
  */
 
 "use strict";
@@ -49,7 +49,7 @@ var canoniSelected = [];
  * [totalItemsSelected contains all total from selected items]
  * @type {Array}
  */
-var totalItemsSelected = [];
+var totalItemsSelected = {};
 //all totalItemsSelected distributore variables
 totalItemsSelected["totalDistributoreSelected"] = 0;
 totalItemsSelected["distributoreSelectedRevenue"] = 0;
@@ -783,10 +783,10 @@ app.controller('preventivoController', function($scope, $http) {
 			canoniSelected,
             totalItemsSelected
 		};
-	   /* localStorage.clear();
+	    localStorage.clear();
 		localStorage.setItem("allDataFromPreventivi", JSON.stringify(allSelectedData));
-		location.href = 'riepilogo.html';*/
+		location.href = 'riepilogo.html';
 		console.log(allSelectedData.totalItemsSelected);
-		console.log(JSON.stringify(allSelectedData.totalItemsSelected));
+		console.log(JSON.stringify(totalItemsSelected));
 	}
 });
