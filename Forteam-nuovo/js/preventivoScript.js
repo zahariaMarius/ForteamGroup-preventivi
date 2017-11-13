@@ -4,13 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
-<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-13T10:16:28+01:00
-=======
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-13T10:17:53+01:00
->>>>>>> 737af7e5a52a2fec24c8d501d94b96404bf69e9b
+ * @Last modified time: 2017-11-13T12:36:24+01:00
  */
 
 "use strict";
@@ -164,6 +159,7 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 		distributore.Ricavo = distributore.Prezzo_listino - distributore.Prezzo_acquisto;
 		distributore.Ricavo_percentuale = (distributore.Ricavo * 100) / distributore.Prezzo_listino;
 		distributore.Sconto = 0;
+		distributore.Prezzo_listino_quantita = distributore.Prezzo_listino;
 		totalItemsSelected["distributoreSelectedRevenue"] = distributore.Ricavo;
 		totalItemsSelected["distributoreSelectedPercentageRevenue"] = distributore.Ricavo_percentuale;
 	}else {
@@ -697,6 +693,7 @@ app.controller('preventivoController', function($scope, $http) {
 			//open the create new element form
 			$('#modalCustomizeProduct').modal('show');
 			console.log("User qualified");
+			$("i[id='codiceProdottoIcon']").removeClass('red-text');
 		}else {
 			//open the login form
 			$('#modalLogin').modal('show');
@@ -710,7 +707,6 @@ app.controller('preventivoController', function($scope, $http) {
 	 * @return {[type]} [description]
 	 */
 	$scope.createCustomizedProduct = function() {
-		$("i[id='codiceProdottoIcon']").removeClass('animated shake');
 		//get all Object items from sessionStorage
 		var prodottiHardware = $scope.prodottiHardware;
 		var licenze = $scope.licenze;
@@ -755,12 +751,14 @@ app.controller('preventivoController', function($scope, $http) {
 					$scope.canoni.push(customizedProduct);
 					break;
 			}
-			$("i[id='codiceProdottoIcon']").removeClass('animated shake');
+
+			//hide the modal
 			$('#modalCustomizeProduct').modal('hide');
+			//clear the form
 		}else {
 			//messaggio di errore che il codice esiste già
 			console.log("esiste");
-			$("i[id='codiceProdottoIcon']").addClass('animated shake');
+			$("i[id='codiceProdottoIcon']").addClass('red-text');
 		}
 	}
 
@@ -796,6 +794,18 @@ app.controller('preventivoController', function($scope, $http) {
 		localStorage.setItem("allDataFromPreventivi", JSON.stringify(allSelectedData));
 		location.href = 'riepilogo.html';*/
 		console.log(allSelectedData.totalItemsSelected);
-		console.log(JSON.stringify(allSelectedData.totalItemsSelected));
+		console.log(JSON.stringify(allSelectedData.distributoreSelected));
+	}
+});
+
+/**
+ * [clienteFormValidation controller that check if the inputs are valid]
+ * @param  {[type]} $scope [description]
+ * @return {[type]}        [description]
+ */
+app.controller('clienteFormValidation', function($scope) {
+
+	$scope.changeNomeCliente = function() {
+		$scope.formCheck = $scope.clienteForm.$valid
 	}
 });

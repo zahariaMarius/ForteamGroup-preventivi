@@ -77,7 +77,7 @@
 	<!--Main Navigation-->
 
 	<!--section form dati cliente-->
-	<section class="formDatiCliente py-5" id="formDatiCliente">
+	<section class="formDatiCliente py-5" id="formDatiCliente" ng-controller="clienteFormValidation">
 	    <div class="container-fluid">
 	        <div class="row">
 	            <div class="col-md-9 py-5 mx-auto">
@@ -85,39 +85,42 @@
 					<div class="card">
 						<h4 class="card-header primary-color white-text text-center">Cliente richiedente preventivo</h4>
 						<div class="card-body">
-							<!-- input dati del cliente - start -->
-							<div class="md-form">
-							    <i class="fa fa-users prefix"></i>
-							    <input type="text" id="nomeCliente" class="form-control" name="nomeCliente">
-							    <label for="nomeCliente">Nome</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-road prefix"></i>
-							    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente">
-							    <label for="indirizzoCliente">Indirizzo</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-envelope prefix"></i>
-							    <input type="text" id="emailCliente" class="form-control" name="emailCliente">
-							    <label for="emailCliente">Email</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-university prefix"></i>
-							    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente">
-							    <label for="partitaIvaCliente">Partita IVA</label>
-							</div>
-							<div class="md-form">
-							    <i class="fa fa-id-card prefix"></i>
-							    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente">
-							    <label for="codiceFiscaleCliente">Codice fiscale</label>
-							</div>
-							<!-- input dati del cliente - end -->
+							<form name="clienteForm">
+								<!-- input dati del cliente - start -->
+								<div class="md-form">
+								    <i class="fa fa-users prefix"></i>
+								    <input type="text" id="nomeCliente" class="form-control" name="nomeCliente" ng-model="nomeCliente" ng-change="changeNomeCliente()" required>
+								    <label for="nomeCliente">Nome</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-road prefix"></i>
+								    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente" ng-model="indirizzoCliente" required>
+								    <label for="indirizzoCliente">Indirizzo</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-envelope prefix"></i>
+								    <input type="text" id="emailCliente" class="form-control" name="emailCliente" ng-model="emailCliente" required>
+								    <label for="emailCliente">Email</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-university prefix"></i>
+								    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente" ng-model="partitaIVACliente" required>
+								    <label for="partitaIvaCliente">Partita IVA</label>
+								</div>
+								<div class="md-form">
+								    <i class="fa fa-id-card prefix"></i>
+								    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" required>
+								    <label for="codiceFiscaleCliente">Codice fiscale</label>
+								</div>
+								<!-- input dati del cliente - end -->
+							</form>
 						</div>
 					</div>
 					<!--/.panel-->
 	           </div>
 	        </div>
 	    </div>
+		{{formCheck}}
 	</section>
 	<!--section form dati cliente-->
 
@@ -613,7 +616,7 @@
 			</div>
 			<!--Body-->
 			<div class="modal-body">
-				<form>
+				<form name="customizedProductForm">
 					<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct" required>
 						<option disabled selected value="">Seleziona una categoria</option>
 						<option value="0">Prodotti Hardware</option>
