@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-13T12:36:24+01:00
+ * @Last modified time: 2017-11-14T17:47:56+01:00
  */
 
 "use strict";
@@ -319,38 +319,6 @@ function callBackAssingnUser() {
  * @type {[Object]}
  */
 var app = angular.module('preventivoAngularApp', []);
-
-app.directive('myPartitaIva', function() {
-return {
-	require: 'ngModel',
-	link: function(scope, element, attr, mCtrl) {
-		function checkIfPartitaIvaClienteIsValid(value) {
-			if( value == '' ){
-				mCtrl.$setValidity('iva', true);
-			}
-			if( ! /^[0-9]{11}$/.test(value) ){
-				mCtrl.$setValidity('iva', false);
-			}
-			var s = 0;
-			for( i = 0; i <= 9; i += 2 )
-				s += value.charCodeAt(i) - '0'.charCodeAt(0);
-				for(var i = 1; i <= 9; i += 2 ){
-					var c = 2*( value.charCodeAt(i) - '0'.charCodeAt(0) );
-					if( c > 9 )  c = c - 9;
-						s += c;
-				}
-				var atteso = ( 10 - s%10 )%10;
-				if( atteso != value.charCodeAt(10) - '0'.charCodeAt(0) ){
-					mCtrl.$setValidity('iva', false);
-				}else{
-					mCtrl.$setValidity('iva', true);
-				}
-				return value;
-		}
-		mCtrl.$parsers.push(checkIfPartitaIvaClienteIsValid);
-	}
-};
-});
 
 app.directive('myCodfiscale', function() {
 return {
@@ -781,7 +749,7 @@ app.controller('preventivoController', function($scope, $http) {
 
 	$scope.goToRiepilogo = function() {
 		var allSelectedData = {
-			 user,
+			user,
 			cliente,
 	        distributoreSelected,
 		    prodottiHardwareSelected,
@@ -805,7 +773,63 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
-	$scope.changeNomeCliente = function() {
-		$scope.formCheck = $scope.clienteForm.$valid
+	/**
+	 * [nomeClienteChange scope that control all user input]
+	 * @return {[type]} [description]
+	 */
+	$scope.nomeClienteChange = function() {
+		$scope.nomeClienteNotValid = true;
+		if ($scope.nomeCliente) {
+			if($scope.nomeCliente.length > 2) {
+				$scope.nomeClienteNotValid = false;
+			}else {
+				$scope.nomeClienteNotValid = true;
+			}
+		}
 	}
+
+	$scope.indirizzoClienteChange = function() {
+		$scope.indirizzoClienteNotValid = true;
+		if ($scope.indirizzoCliente) {
+			if ($scope.indirizzoCliente.length > 6) {
+				$scope.indirizzoClienteNotValid = false;
+			} else {
+				$scope.indirizzoClienteNotValid = true;
+			}
+		}
+	}
+
+	$scope.partitaIvaClienteChange = function() {
+		var partitaIva = checkIfPartitaIvaClienteIsValid($scope.partitaIVACliente);
+		$scope.partitaIvaClienteNotValid = true;
+		if ($scope.partitaIVACliente) {
+
+		}
+
+
+		function checkIfPartitaIvaClienteIsValid(value) {
+			if( value == '' ){
+				return true;
+			}
+			if( ! /^[0-9]{11}$/.test(value) ){
+				mCtrl.$setValidity('iva', false);
+			}
+			var s = 0;
+			for( i = 0; i <= 9; i += 2 )
+				s += value.charCodeAt(i) - '0'.charCodeAt(0);
+				for(var i = 1; i <= 9; i += 2 ){
+					var c = 2*( value.charCodeAt(i) - '0'.charCodeAt(0) );
+					if( c > 9 )  c = c - 9;
+						s += c;
+				}
+				var atteso = ( 10 - s%10 )%10;
+				if( atteso != value.charCodeAt(10) - '0'.charCodeAt(0) ){
+					return false;
+				}else{
+					return true;
+				}
+		}
+
+	}
+
 });
