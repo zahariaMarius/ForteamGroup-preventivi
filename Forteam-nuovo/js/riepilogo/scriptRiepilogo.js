@@ -4,8 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-10-27T15:48:29+02:00
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-13T12:38:33+01:00
  */
 
 
@@ -15,8 +15,8 @@ var app = angular.module('myApp', []);
 var allDataFromPreventivi = JSON.parse(localStorage.getItem("allDataFromPreventivi"));
 console.log(allDataFromPreventivi);
 // suddivisione di tutti i dati nelle varie sezioni
-var azienda = [allDataFromPreventivi["azienda"]];
-var distributore = allDataFromPreventivi["distributore"];
+var cliente = [allDataFromPreventivi["cliente"]];
+var distributoreSelected = allDataFromPreventivi["distributoreSelected"];
 var accessori = allDataFromPreventivi["accessori"];
 var software = allDataFromPreventivi["software"];
 var licenze = allDataFromPreventivi["licenze"];
@@ -53,7 +53,7 @@ if (link) {
 }
 
 function goToAnteprima() {
-	var allDataFromRiepilogo = {azienda, distributore, accessori, software, licenze, servizi, totale, noteAggiuntive};
+	var allDataFromRiepilogo = {cliente, distributoreSelected, accessori, software, licenze, servizi, totale, noteAggiuntive};
 	localStorage.setItem("allDataFromRiepilogo", JSON.stringify(allDataFromRiepilogo));
 	var local = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
 	console.log(local);
@@ -75,21 +75,21 @@ document.getElementById('cardServiziCliente').style.display = 'none';
 
 app.controller('allTabDataFromPreventivi', function($scope) {
 
-	if (allDataFromPreventivi["azienda"]) {
-		$scope.azienda = azienda;
+	if (allDataFromPreventivi["cliente"]) {
+		$scope.azienda = cliente;
 	}
 
-	console.log(allDataFromPreventivi["distributore"][0]);
+	console.log(allDataFromPreventivi["distributoreSelected"][0]);
 
-	if (allDataFromPreventivi["distributore"]) {
-		var checkIfDistributoreExist = Object.keys(distributore).length;
-		if ((checkIfDistributoreExist != 0) && (allDataFromPreventivi["distributore"][0].Codice != "null")) {
+	if (allDataFromPreventivi["distributoreSelected"]) {
+		var checkIfDistributoreExist = Object.keys(distributoreSelected).length;
+		if ((checkIfDistributoreExist != 0) && (allDataFromPreventivi["ditributoreSelected"][0].Codice != "null")) {
 			document.getElementById('cardDistributore').style.display = 'block';
 			document.getElementById('cardDistributoreCliente').style.display = 'block';
-			$scope.distributore = allDataFromPreventivi["distributore"];
-			$scope.Ricavo_distributore = distributore[0].Ricavo_scontato;
-			$scope.Guadagno_distributore = distributore[0].Guadagno;
-			$scope.Guadagno_distributore_percentuale = distributore[0].Guadagno_percentuale;
+			$scope.distributore = allDataFromPreventivi["distributoreSelected"];
+			$scope.Ricavo_distributore = distributoreSelected[0].Prezzo_listino;
+			$scope.Guadagno_distributore = distributoreSelected[0].Ricavo;
+			$scope.Guadagno_distributore_percentuale = distributoreSelected[0].Ricavo_percentuale;
 
 		}
 	}
@@ -170,8 +170,8 @@ app.controller('allTabDataFromPreventivi', function($scope) {
 		}
 	}
 
-     totale.Ricavo_totale = parseFloat(distributore[0].Ricavo_scontato) + totale.Ricavo_accessori + totale.Ricavo_software + totale.Ricavo_licenze + totale.Ricavo_servizi;
-	 totale.Guadagno_totale = distributore[0].Guadagno + totale.Guadagno_accessori + totale.Guadagno_software + totale.Guadagno_licenze + totale.Guadagno_servizi;
+     totale.Ricavo_totale = parseFloat(distributoreSelected[0].Ricavo_scontato) + totale.Ricavo_accessori + totale.Ricavo_software + totale.Ricavo_licenze + totale.Ricavo_servizi;
+	 totale.Guadagno_totale = distributoreSelected[0].Ricavo + totale.Guadagno_accessori + totale.Guadagno_software + totale.Guadagno_licenze + totale.Guadagno_servizi;
 	 totale.Guadagno_totale_percentuale = totale.Guadagno_totale *100 / totale.Ricavo_totale;
 	 $scope.Ricavo_totale = totale.Ricavo_totale;
 	 $scope.Guadagno_totale = totale.Guadagno_totale;
@@ -208,10 +208,10 @@ app.controller('allTabDataFromPreventivi', function($scope) {
 	 * @param  {[int]} index  [index of row]
 	 */
     $scope.changeScontoDistributore = function(sconto, index) {
-		distributore[index]["Sconto"] = sconto;
-		distributore[index].Ricavo_scontato = distributore[index].Prezzo_listino - (sconto * distributore[index].Prezzo_listino / 100);
-		distributore[index].Guadagno = distributore[index].Ricavo_scontato - distributore[index].Prezzo_acquisto;
-		distributore[index].Guadagno_percentuale = distributore[index].Guadagno * 100 / distributore[index].Ricavo_scontato;
+		distributoreSelected[index].Sconto = sconto;
+		distributoreSelected[index].Ricavo = distributoreSelected[index].Prezzo_listino - (sconto * distributoreSelected[index].Prezzo_listino / 100);
+		distributoreSelected[index].Guadagno = distributoreSelected[index].Ricavo - distributoreSelected[index].Prezzo_acquisto;
+		distributoreSelected[index].Guadagno_percentuale = distributoreSelected[index].Ricavo * 100 / distributore[index].Ricavo_scontato;
 		$scope.distributore = distributore;
 		$scope.Ricavo_distributore = distributore[0].Ricavo_scontato;
 		$scope.Guadagno_distributore = distributore[0].Guadagno;
@@ -247,7 +247,7 @@ app.controller('allTabDataFromPreventivi', function($scope) {
 		$scope.Ricavo_accessori = totale.Ricavo_accessori;
 		$scope.Guadagno_accessori = totale.Guadagno_accessori;
 		$scope.Guadagno_accessori_percentuale = totale.Guadagno_accessori_percentuale;
-		totale.Ricavo_totale = parseFloat(distributore[0].Ricavo_scontato) + totale.Ricavo_accessori + totale.Ricavo_software + totale.Ricavo_licenze + totale.Ricavo_servizi;
+		totale.Ricavo_totale = parseFloat(distributoreSelected[0].Ricavo_scontato) + totale.Ricavo_accessori + totale.Ricavo_software + totale.Ricavo_licenze + totale.Ricavo_servizi;
 		totale.Guadagno_totale = distributore[0].Guadagno + totale.Guadagno_accessori + totale.Guadagno_software + totale.Guadagno_licenze + totale.Guadagno_servizi;
 		totale.Guadagno_totale_percentuale = totale.Guadagno_totale *100 / totale.Ricavo_totale;
 		$scope.Ricavo_totale = totale.Ricavo_totale;

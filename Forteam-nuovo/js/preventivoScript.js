@@ -4,8 +4,17 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
+<<<<<<< HEAD
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-13T11:50:01+01:00
+=======
  * @Last modified by:   Zaharia Laurentiu Jr Marius
+<<<<<<< HEAD
  * @Last modified time: 2017-11-14T17:47:56+01:00
+=======
+ * @Last modified time: 2017-11-13T12:36:24+01:00
+>>>>>>> 096523a045486f0439077e7d95d175dcb2108b19
+>>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
  */
 
 "use strict";
@@ -49,7 +58,7 @@ var canoniSelected = [];
  * [totalItemsSelected contains all total from selected items]
  * @type {Array}
  */
-var totalItemsSelected = [];
+var totalItemsSelected = {};
 //all totalItemsSelected distributore variables
 totalItemsSelected["totalDistributoreSelected"] = 0;
 totalItemsSelected["distributoreSelectedRevenue"] = 0;
@@ -758,10 +767,13 @@ app.controller('preventivoController', function($scope, $http) {
 			canoniSelected,
             totalItemsSelected
 		};
-	   /* localStorage.clear();
+	    localStorage.clear();
 		localStorage.setItem("allDataFromPreventivi", JSON.stringify(allSelectedData));
-		location.href = 'riepilogo.html';*/
+		location.href = 'riepilogo.html';
 		console.log(allSelectedData.totalItemsSelected);
+<<<<<<< HEAD
+		console.log(JSON.stringify(totalItemsSelected));
+=======
 		console.log(JSON.stringify(allSelectedData.distributoreSelected));
 	}
 });
@@ -773,6 +785,7 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
+<<<<<<< HEAD
 	/**
 	 * [nomeClienteChange scope that control all user input]
 	 * @return {[type]} [description]
@@ -786,6 +799,11 @@ app.controller('clienteFormValidation', function($scope) {
 				$scope.nomeClienteNotValid = true;
 			}
 		}
+=======
+	$scope.changeNomeCliente = function() {
+		$scope.formCheck = $scope.clienteForm.$valid
+>>>>>>> 096523a045486f0439077e7d95d175dcb2108b19
+>>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
 	}
 
 	$scope.indirizzoClienteChange = function() {

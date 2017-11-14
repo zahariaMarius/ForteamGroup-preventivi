@@ -112,9 +112,9 @@
 															<span ng-hide="hoverSconto">%{{x.Sconto + 0}}</span>
 															<input ng-show="hoverSconto" type="number" min="0" placeholder="0" step="any" ng-model="scontoDistibutore" ng-change="changeScontoDistributore(scontoDistibutore, $index)">
 														</td>
-														<td>{{x.Ricavo_scontato | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
+														<td>{{x.Totale_scontato | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Ricavo | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
 													</tr>
 												</tbody>
 												<tfoot>
