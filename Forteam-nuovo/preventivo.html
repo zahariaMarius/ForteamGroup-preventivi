@@ -108,9 +108,9 @@
 								    <label for="partitaIvaCliente" ng-class="{'incorrectDatiClienteLabel': partitaIvaClienteNotValid}">Partita IVA*</label>
 								</div>
 								<div class="md-form">
-								    <i class="fa fa-id-card prefix"></i>
-								    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" required>
-								    <label for="codiceFiscaleCliente">Codice fiscale</label>
+								    <i class="fa fa-id-card prefix" ng-class="{'incorrectDatiClienteIcon': codiceFiscaleClienteNotValid}"></i>
+								    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" ng-change="codiceFiscaleChange()" ng-class="{'incorrectDatiClienteTextField': codiceFiscaleClienteNotValid}">
+								    <label for="codiceFiscaleCliente" ng-class="{'incorrectDatiClienteLabel': codiceFiscaleClienteNotValid}">Codice fiscale</label>
 								</div>
 								<!-- input dati del cliente - end -->
 							</form>

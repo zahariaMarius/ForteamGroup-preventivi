@@ -4,16 +4,11 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
-<<<<<<< HEAD
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-13T11:50:01+01:00
-=======
  * @Last modified by:   Zaharia Laurentiu Jr Marius
 <<<<<<< HEAD
- * @Last modified time: 2017-11-14T17:47:56+01:00
-=======
- * @Last modified time: 2017-11-13T12:36:24+01:00
->>>>>>> 096523a045486f0439077e7d95d175dcb2108b19
+ * @Last modified time: 2017-11-14T21:03:32+01:00
+
+
 >>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
  */
 
@@ -316,6 +311,64 @@ function checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, 
 }
 
 /**
+ * [checkIfPartitaIvaClienteIsValid check if the partita iva inserted is valid]
+ * @param  {[String]} value [partita iva]
+ * @return {[Bool]}       [description]
+ */
+function checkIfPartitaIvaClienteIsValid(value) {
+	if( value == '' ){
+		return false;
+	}
+	if( ! /^[0-9]{11}$/.test(value) ){
+		return false;
+	}
+	var s = 0;
+	for( i = 0; i <= 9; i += 2 )
+		s += value.charCodeAt(i) - '0'.charCodeAt(0);
+		for(var i = 1; i <= 9; i += 2 ){
+			var c = 2*( value.charCodeAt(i) - '0'.charCodeAt(0) );
+			if( c > 9 )  c = c - 9;
+				s += c;
+		}
+		var atteso = ( 10 - s%10 )%10;
+		if( atteso != value.charCodeAt(10) - '0'.charCodeAt(0) ){
+			return false;
+		}else{
+			return true;
+		}
+}
+
+/**
+ * [checkIfCodiceFiscaleClienteIsValid check if the codice fiscale inserted is valid]
+ * @param  {[String]} value [codice fiscale]
+ * @return {[Bool]}       [description]
+ */
+function checkIfCodiceFiscaleClienteIsValid(value) {
+	value = value.toUpperCase();
+	if( value == '' )  return false;
+	if( ! /^[0-9A-Z]{16}$/.test(value) )
+		return false;
+	var map = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17,
+		19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23];
+	var s = 0;
+	for(var i = 0; i < 15; i++){
+		var c = value.charCodeAt(i);
+		if( c < 65 )
+			c = c - 48;
+		else
+			c = c - 55;
+		if( i % 2 == 0 )
+			s += map[c];
+		else
+			s += c < 10? c : c - 10;
+	}
+	var atteso = String.fromCharCode(65 + s % 26);
+	if( atteso != value.charAt(15) )
+		return false;
+	return true;
+}
+
+/**
  * [callBackAssingnUser function that assing the user value]
  * @return {[type]}      [description]
  */
@@ -328,39 +381,6 @@ function callBackAssingnUser() {
  * @type {[Object]}
  */
 var app = angular.module('preventivoAngularApp', []);
-
-app.directive('myCodfiscale', function() {
-return {
-	require: 'ngModel',
-	link: function(scope, element, attr, mCtrl) {
-		function checkIfCodiceFiscaleClienteIsValid(value) {
-			value = value.toUpperCase();
-			if( value == '' )  mCtrl.$setValidity('codFiscale', true);
-			if( ! /^[0-9A-Z]{16}$/.test(value) )
-				mCtrl.$setValidity('codFiscale', false);
-			var map = [1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17,
-				19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23];
-			var s = 0;
-			for(var i = 0; i < 15; i++){
-				var c = value.charCodeAt(i);
-				if( c < 65 )
-					c = c - 48;
-				else
-					c = c - 55;
-				if( i % 2 == 0 )
-					s += map[c];
-				else
-					s += c < 10? c : c - 10;
-			}
-			var atteso = String.fromCharCode(65 + s % 26);
-			if( atteso != value.charAt(15) )
-				mCtrl.$setValidity('codFiscale', false);
-			mCtrl.$setValidity('codFiscale', true);
-		}
-		mCtrl.$parsers.push(checkIfCodiceFiscaleClienteIsValid);
-	}
-};
-});
 
 /**
  * [description]
@@ -771,9 +791,6 @@ app.controller('preventivoController', function($scope, $http) {
 		localStorage.setItem("allDataFromPreventivi", JSON.stringify(allSelectedData));
 		location.href = 'riepilogo.html';
 		console.log(allSelectedData.totalItemsSelected);
-<<<<<<< HEAD
-		console.log(JSON.stringify(totalItemsSelected));
-=======
 		console.log(JSON.stringify(allSelectedData.distributoreSelected));
 	}
 });
@@ -785,9 +802,9 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
-<<<<<<< HEAD
+
 	/**
-	 * [nomeClienteChange scope that control all user input]
+	 * [nomeClienteChange scope that control all user input into Nome]
 	 * @return {[type]} [description]
 	 */
 	$scope.nomeClienteChange = function() {
@@ -795,59 +812,51 @@ app.controller('clienteFormValidation', function($scope) {
 		if ($scope.nomeCliente) {
 			if($scope.nomeCliente.length > 2) {
 				$scope.nomeClienteNotValid = false;
-			}else {
-				$scope.nomeClienteNotValid = true;
 			}
 		}
-=======
-	$scope.changeNomeCliente = function() {
-		$scope.formCheck = $scope.clienteForm.$valid
->>>>>>> 096523a045486f0439077e7d95d175dcb2108b19
->>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
 	}
 
+	/**
+	 * [nomeClienteChange scope that control all user input into indirizzo]
+	 * @return {[type]} [description]
+	 */
 	$scope.indirizzoClienteChange = function() {
 		$scope.indirizzoClienteNotValid = true;
 		if ($scope.indirizzoCliente) {
 			if ($scope.indirizzoCliente.length > 6) {
 				$scope.indirizzoClienteNotValid = false;
-			} else {
-				$scope.indirizzoClienteNotValid = true;
 			}
 		}
 	}
 
+	/**
+	 * [nomeClienteChange scope that control all user input into partita iva]
+	 * @return {[type]} [description]
+	 */
 	$scope.partitaIvaClienteChange = function() {
-		var partitaIva = checkIfPartitaIvaClienteIsValid($scope.partitaIVACliente);
 		$scope.partitaIvaClienteNotValid = true;
 		if ($scope.partitaIVACliente) {
+			if (checkIfPartitaIvaClienteIsValid($scope.partitaIVACliente)) {
+				$scope.partitaIvaClienteNotValid = false;
+			}
+		}
+	}
 
+	/**
+	 * [nomeClienteChange scope that control all user input into codice fiscale]
+	 * @return {[type]} [description]
+	 */
+	$scope.codiceFiscaleChange = function() {
+		$scope.codiceFiscaleClienteNotValid = true;
+		if ($scope.codiceFiscaleCliente) {
+			if (checkIfCodiceFiscaleClienteIsValid($scope.codiceFiscaleCliente)) {
+				$scope.codiceFiscaleClienteNotValid = false;
+			}
 		}
 
-
-		function checkIfPartitaIvaClienteIsValid(value) {
-			if( value == '' ){
-				return true;
-			}
-			if( ! /^[0-9]{11}$/.test(value) ){
-				mCtrl.$setValidity('iva', false);
-			}
-			var s = 0;
-			for( i = 0; i <= 9; i += 2 )
-				s += value.charCodeAt(i) - '0'.charCodeAt(0);
-				for(var i = 1; i <= 9; i += 2 ){
-					var c = 2*( value.charCodeAt(i) - '0'.charCodeAt(0) );
-					if( c > 9 )  c = c - 9;
-						s += c;
-				}
-				var atteso = ( 10 - s%10 )%10;
-				if( atteso != value.charCodeAt(10) - '0'.charCodeAt(0) ){
-					return false;
-				}else{
-					return true;
-				}
+		if ($scope.codiceFiscaleCliente === '') {
+			$scope.codiceFiscaleClienteNotValid = false;
 		}
-
 	}
 
 });
