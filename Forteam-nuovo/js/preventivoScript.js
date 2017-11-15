@@ -6,7 +6,7 @@
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
 <<<<<<< HEAD
- * @Last modified time: 2017-11-14T21:03:32+01:00
+ * @Last modified time: 2017-11-15T10:23:32+01:00
 
 
 >>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
@@ -802,48 +802,66 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
+	function checkIfFormIsValid(formInputs) {
+		var flag = false;
+		if ((formInputs["nomeCliente"] == false) && (formInputs["indirizzoCliente"] == false) && (formInputs["partitaIVACliente"] == false)) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	var formInputs = [];
 
 	/**
-	 * [nomeClienteChange scope that control all user input into Nome]
+	 * [nomeClienteChange scope that control all user input into Nome true=notValid]
 	 * @return {[type]} [description]
 	 */
 	$scope.nomeClienteChange = function() {
 		$scope.nomeClienteNotValid = true;
+		formInputs["nomeCliente"] = true;
 		if ($scope.nomeCliente) {
 			if($scope.nomeCliente.length > 2) {
 				$scope.nomeClienteNotValid = false;
+				formInputs["nomeCliente"] = false;
 			}
 		}
+		checkIfFormIsValid(formInputs);
 	}
 
 	/**
-	 * [nomeClienteChange scope that control all user input into indirizzo]
+	 * [nomeClienteChange scope that control all user input into indirizzo true=notValid]
 	 * @return {[type]} [description]
 	 */
 	$scope.indirizzoClienteChange = function() {
 		$scope.indirizzoClienteNotValid = true;
+		formInputs["indirizzoCliente"] = true;
 		if ($scope.indirizzoCliente) {
 			if ($scope.indirizzoCliente.length > 6) {
 				$scope.indirizzoClienteNotValid = false;
+				formInputs["indirizzoCliente"] = false;
 			}
 		}
+		checkIfFormIsValid(formInputs);
 	}
 
 	/**
-	 * [nomeClienteChange scope that control all user input into partita iva]
+	 * [nomeClienteChange scope that control all user input into partita iva true=notValid]
 	 * @return {[type]} [description]
 	 */
 	$scope.partitaIvaClienteChange = function() {
 		$scope.partitaIvaClienteNotValid = true;
+		formInputs["partitaIVACliente"] = true;
 		if ($scope.partitaIVACliente) {
 			if (checkIfPartitaIvaClienteIsValid($scope.partitaIVACliente)) {
 				$scope.partitaIvaClienteNotValid = false;
+				formInputs["partitaIVACliente"] = false;
 			}
 		}
+		checkIfFormIsValid(formInputs);
 	}
 
 	/**
-	 * [nomeClienteChange scope that control all user input into codice fiscale]
+	 * [nomeClienteChange scope that control all user input into codice fiscale true=notValid]
 	 * @return {[type]} [description]
 	 */
 	$scope.codiceFiscaleChange = function() {
@@ -858,5 +876,7 @@ app.controller('clienteFormValidation', function($scope) {
 			$scope.codiceFiscaleClienteNotValid = false;
 		}
 	}
+
+
 
 });

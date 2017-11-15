@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-14T15:04:53+01:00
+ * @Last modified time: 2017-11-15T09:48:16+01:00
  */
 
  .view {
@@ -131,12 +131,3 @@
 .incorrectDatiClienteIcon {
 	color: #F44336 !important;
 }
-
-/*input[type=text]:focus:not([readonly]).ng-invalid{
-	border-bottom: 1px solid red !important;
-	box-shadow: 0 1px 0 0 red !important;
-}*/
-
-/*#bo.ng-invalid {
-	color: red !important;
-}*/
