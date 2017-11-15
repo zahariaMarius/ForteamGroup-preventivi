@@ -4,12 +4,17 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
+<<<<<<< HEAD
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-13T12:44:20+01:00
+=======
  * @Last modified by:   Zaharia Laurentiu Jr Marius
 <<<<<<< HEAD
  * @Last modified time: 2017-11-15T10:23:32+01:00
 
 
 >>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
+>>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
  */
 
 "use strict";
@@ -802,6 +807,7 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
+<<<<<<< HEAD
 	function checkIfFormIsValid(formInputs) {
 		var flag = false;
 		if ((formInputs["nomeCliente"] == false) && (formInputs["indirizzoCliente"] == false) && (formInputs["partitaIVACliente"] == false)) {
@@ -811,6 +817,12 @@ app.controller('clienteFormValidation', function($scope) {
 	}
 
 	var formInputs = [];
+=======
+<<<<<<< HEAD
+	$scope.changeNomeCliente = function() {
+		$scope.formCheck = $scope.clienteForm.$valid
+=======
+>>>>>>> fe1a1026ea5c4f194e3b9cba538d9ba071e9a19e
 
 	/**
 	 * [nomeClienteChange scope that control all user input into Nome true=notValid]
@@ -825,7 +837,11 @@ app.controller('clienteFormValidation', function($scope) {
 				formInputs["nomeCliente"] = false;
 			}
 		}
+<<<<<<< HEAD
 		checkIfFormIsValid(formInputs);
+=======
+>>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
+>>>>>>> fe1a1026ea5c4f194e3b9cba538d9ba071e9a19e
 	}
 
 	/**
