@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-12T20:53:12+01:00
+ * @Last modified time: 2017-11-14T15:04:53+01:00
  */
 
  .view {
@@ -118,3 +118,25 @@
 #iconModalCart {
 	margin-bottom: 35px !important;
 }
+
+.incorrectDatiClienteTextField {
+	border-bottom: 1px solid #F44336 !important;
+	box-shadow: 0 1px 0 0 #F44336 !important;
+}
+
+.incorrectDatiClienteLabel {
+	color: #F44336 !important;
+}
+
+.incorrectDatiClienteIcon {
+	color: #F44336 !important;
+}
+
+/*input[type=text]:focus:not([readonly]).ng-invalid{
+	border-bottom: 1px solid red !important;
+	box-shadow: 0 1px 0 0 red !important;
+}*/
+
+/*#bo.ng-invalid {
+	color: red !important;
+}*/

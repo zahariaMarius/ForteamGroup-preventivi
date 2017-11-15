@@ -88,29 +88,29 @@
 							<form name="clienteForm">
 								<!-- input dati del cliente - start -->
 								<div class="md-form">
-								    <i class="fa fa-users prefix"></i>
-								    <input type="text" id="nomeCliente" class="form-control" name="nomeCliente" ng-model="nomeCliente" ng-change="changeNomeCliente()" required>
-								    <label for="nomeCliente">Nome</label>
+								    <i class="fa fa-users prefix" ng-class="{'incorrectDatiClienteIcon': nomeClienteNotValid}"></i>
+								    <input id="input-char-counter" type="text" id="nomeCliente" class="form-control" name="nomeCliente" ng-model="nomeCliente" ng-change="nomeClienteChange()" ng-class="{'incorrectDatiClienteTextField': nomeClienteNotValid}">
+								    <label for="nomeCliente" ng-class="{'incorrectDatiClienteLabel': nomeClienteNotValid}">Nome*</label>
 								</div>
 								<div class="md-form">
-								    <i class="fa fa-road prefix"></i>
-								    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente" ng-model="indirizzoCliente" required>
-								    <label for="indirizzoCliente">Indirizzo</label>
+								    <i class="fa fa-road prefix" ng-class="{'incorrectDatiClienteIcon': indirizzoClienteNotValid}"></i>
+								    <input type="text" id="indirizzoCliente" class="form-control" name="indirizzoCliente" ng-model="indirizzoCliente" ng-change="indirizzoClienteChange()" ng-class="{'incorrectDatiClienteTextField': indirizzoClienteNotValid}">
+								    <label for="indirizzoCliente" ng-class="{'incorrectDatiClienteLabel': indirizzoClienteNotValid}">Indirizzo*</label>
 								</div>
 								<div class="md-form">
-								    <i class="fa fa-envelope prefix"></i>
-								    <input type="text" id="emailCliente" class="form-control" name="emailCliente" ng-model="emailCliente" required>
-								    <label for="emailCliente">Email</label>
+								    <i class="fa fa-envelope prefix" ng-class="{'incorrectDatiClienteIcon': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}"></i>
+								    <input type="email" id="emailCliente" class="form-control" name="emailCliente" ng-model="emailCliente" ng-class="{'incorrectDatiClienteTextField': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}" required>
+								    <label for="emailCliente" ng-class="{'incorrectDatiClienteLabel': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}">Email*</label>
 								</div>
 								<div class="md-form">
-								    <i class="fa fa-university prefix"></i>
-								    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente" ng-model="partitaIVACliente" required>
-								    <label for="partitaIvaCliente">Partita IVA</label>
+								    <i class="fa fa-university prefix" ng-class="{'incorrectDatiClienteIcon': partitaIvaClienteNotValid}"></i>
+								    <input type="text" id="partitaIvaCliente" class="form-control" name="partitaIVACliente" ng-model="partitaIVACliente" ng-change="partitaIvaClienteChange()" ng-class="{'incorrectDatiClienteTextField': partitaIvaClienteNotValid}">
+								    <label for="partitaIvaCliente" ng-class="{'incorrectDatiClienteLabel': partitaIvaClienteNotValid}">Partita IVA*</label>
 								</div>
 								<div class="md-form">
-								    <i class="fa fa-id-card prefix"></i>
-								    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" required>
-								    <label for="codiceFiscaleCliente">Codice fiscale</label>
+								    <i class="fa fa-id-card prefix" ng-class="{'incorrectDatiClienteIcon': codiceFiscaleClienteNotValid}"></i>
+								    <input type="text" id="codiceFiscaleCliente" class="form-control" name="codiceFiscaleCliente" ng-model="codiceFiscaleCliente" ng-change="codiceFiscaleChange()" ng-class="{'incorrectDatiClienteTextField': codiceFiscaleClienteNotValid}">
+								    <label for="codiceFiscaleCliente" ng-class="{'incorrectDatiClienteLabel': codiceFiscaleClienteNotValid}">Codice fiscale</label>
 								</div>
 								<!-- input dati del cliente - end -->
 							</form>
