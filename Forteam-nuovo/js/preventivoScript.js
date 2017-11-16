@@ -4,16 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
-<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-13T12:44:20+01:00
-=======
- * @Last modified by:   Zaharia Laurentiu Jr Marius
-<<<<<<< HEAD
- * @Last modified time: 2017-11-14T21:03:32+01:00
-
-
->>>>>>> 1b6224c1449bf489e719fa550180632dca2e7ff0
+ * @Last modified time: 2017-11-15T09:47:00+01:00
 >>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
  */
 
@@ -807,10 +799,6 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
-<<<<<<< HEAD
-	$scope.changeNomeCliente = function() {
-		$scope.formCheck = $scope.clienteForm.$valid
-=======
 
 	/**
 	 * [nomeClienteChange scope that control all user input into Nome]
@@ -823,7 +811,6 @@ app.controller('clienteFormValidation', function($scope) {
 				$scope.nomeClienteNotValid = false;
 			}
 		}
->>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
 	}
 
 	/**
@@ -838,7 +825,7 @@ app.controller('clienteFormValidation', function($scope) {
 			}
 		}
 	}
-
+	
 	/**
 	 * [nomeClienteChange scope that control all user input into partita iva]
 	 * @return {[type]} [description]
