@@ -4,7 +4,7 @@
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: component.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-09T16:49:16+01:00
+ * @Last modified time: 2017-11-18T15:13:25+01:00
  */
 .centerFooter{
 	width: 100%;
@@ -56,11 +56,11 @@
 
 @font-face {
 	font-family: 'icomoon';
-	src:url('../fonts/icomoon.eot');
-	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/icomoon.woff') format('woff'),
-		url('../fonts/icomoon.ttf') format('truetype'),
-		url('../fonts/icomoon.svg#icomoon') format('svg');
+	src:url('../../fonts/icomoon.eot');
+	src:url('../../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../../fonts/icomoon.woff') format('woff'),
+		url('../../fonts/icomoon.ttf') format('truetype'),
+		url('../../fonts/icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
