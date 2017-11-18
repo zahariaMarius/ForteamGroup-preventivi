@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: indexScript.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-10T21:34:22+01:00
+ * @Last modified time: 2017-11-16T14:27:32+01:00
  */
 
 'use strict'

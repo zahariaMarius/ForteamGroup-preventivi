@@ -4,12 +4,18 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
+<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
  * @Last modified time: 2017-11-18T14:55:20+01:00
 >>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
  */
+=======
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+*/
+>>>>>>> d8077aea097254b18909da8552524dbac1d3d4b5
 
 "use strict";
+
 /**
  * [user contain user Object from DB]
  * @type {Object}
@@ -762,6 +768,10 @@ app.controller('preventivoController', function($scope, $http) {
 		}
 	}
 
+	/**
+	 * [goToRiepilogo function that bring the user to riepilogo.html page with all selected data]
+	 * @return {[type]} [description]
+	 */
 	$scope.goToRiepilogo = function() {
 		var allSelectedData = {
 			user,
@@ -779,6 +789,23 @@ app.controller('preventivoController', function($scope, $http) {
 		console.log(allSelectedData.totalItemsSelected);
 		console.log(JSON.stringify(allSelectedData.distributoreSelected));
 	}
+
+	/**
+	 * [showLogoutModal function that show the logout modal]
+	 * @return {[type]} [description]
+	 */
+	$scope.showLogoutModal = function() {
+		$('#logoutModal').modal('show');
+	}
+
+	/**
+	 * [goToIndex function that bring the user to index.html page]
+	 * @return {[type]} [description]
+	 */
+	$scope.goToIndex = function() {
+		location.href = 'index.html';
+	}
+
 });
 
 /**
@@ -788,6 +815,25 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
+<<<<<<< HEAD
+=======
+	// document.getElementById('tabelleProdotti').style.display = 'none';
+
+	/**
+	 * [checkIfFormIsValid function that check if the form with data client is valid, and show the products item]
+	 * @param  {[Array]} formInputs [contain the validity of inputs form]
+	 * @return {[type]}            [description]
+	 */
+	function checkIfFormIsValid(formInputs) {
+		if ((formInputs["nomeCliente"] == false) && (formInputs["indirizzoCliente"] == false) && (formInputs["partitaIVACliente"] == false) && (formInputs["emailCliente"] == true)) {
+	 		document.getElementById('tabelleProdotti').style.display = 'block';
+		}else {
+			document.getElementById('tabelleProdotti').style.display = 'none';
+		}
+	}
+
+	var formInputs = [];
+>>>>>>> d8077aea097254b18909da8552524dbac1d3d4b5
 
 	/**
 	 * [nomeClienteChange scope that control all user input into Nome true=notValid]
@@ -818,6 +864,11 @@ app.controller('clienteFormValidation', function($scope) {
 				formInputs["indirizzoCliente"] = false;
 			}
 		}
+		checkIfFormIsValid(formInputs);
+	}
+
+	$scope.emailClienteChange = function() {
+		formInputs["emailCliente"] = $scope.clienteForm.emailCliente.$valid;
 		checkIfFormIsValid(formInputs);
 	}
 
@@ -853,7 +904,5 @@ app.controller('clienteFormValidation', function($scope) {
 			$scope.codiceFiscaleClienteNotValid = false;
 		}
 	}
-
-
 
 });
