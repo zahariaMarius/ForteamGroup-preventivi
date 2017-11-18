@@ -4,8 +4,16 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
+<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
  * @Last modified time: 2017-11-18T16:30:44+01:00
+=======
+<<<<<<< HEAD
+=======
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-18T16:38:25+01:00
+>>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
+>>>>>>> 3e1c7dad615f1a6620ae2756b47322b64b1459b4
 >>>>>>> 1e8ee5e814b4d572534e4ce5fff0dd0559b45637
  */
 
@@ -176,7 +184,18 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 	console.log(totalItemsSelected);
 }
 
-
+/**
+ * [calculateTotalItemsSelected calculate the total of specified items in cart]
+ * @param  {[Array]} items [items array of item]
+ * @return {[Number]}       [return the total of specified selectedItems]
+ */
+function calculateTotalItemsSelected(items) {
+   var total = 0;
+   for (var i = 0; i < items.length; i++) {
+	   total += items[i].Prezzo_listino_quantita;
+   }
+   return total;
+}
 
 /**
  * [calculateRevenueItemsSelected calculate revenue of all selected items]
