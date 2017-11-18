@@ -4,8 +4,13 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
+<<<<<<< HEAD
  * @Last modified by:   Zaharia Laurentiu Jr Marius
  * @Last modified time: 2017-11-18T16:28:14+01:00
+=======
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-18T16:28:30+01:00
+>>>>>>> 1e8ee5e814b4d572534e4ce5fff0dd0559b45637
  */
  var app = angular.module('myApp', []);
  //varibile contenente tutti i dati provenienti dalla pagina preventivo in formato {obj assoc}
@@ -80,14 +85,14 @@
   //tutte le card sono inizialmente non visibili
   document.getElementById('cardDistributore').style.display = 'none';
   document.getElementById('cardHardware').style.display = 'none';
-  document.getElementById('cardSoftware').style.display = 'none';
   document.getElementById('cardLicenze').style.display = 'none';
+  document.getElementById('cardCanoni').style.display = 'none';
   document.getElementById('cardServizi').style.display = 'none';
   //tutte le card anche della tabella cliente non sono visibili
   document.getElementById('cardDistributoreCliente').style.display = 'none';
   document.getElementById('cardHardwareCliente').style.display = 'none';
-  document.getElementById('cardSoftwareCliente').style.display = 'none';
   document.getElementById('cardLicenzeCliente').style.display = 'none';
+  document.getElementById('cardCanoniCliente').style.display = 'none';
   document.getElementById('cardServiziCliente').style.display = 'none';
 
   app.controller('allTabDataFromPreventivi', function($scope) {
@@ -110,17 +115,56 @@
   	}
 
     if (allDataFromPreventivi["prodottiHardwareSelected"]) {
- 		var checkIfAccessoriExist = Object.keys(prodottiHardwareSelected).length;
- 		if (checkIfAccessoriExist != 0) {
+ 		var checkIfHardwareExist = Object.keys(prodottiHardwareSelected).length;
+ 		if (checkIfHardwareExist != 0) {
  			document.getElementById('cardHardware').style.display = 'block';
  			document.getElementById('cardHardwareCliente').style.display = 'block';
  			$scope.hardware = allDataFromPreventivi["prodottiHardwareSelected"];
+            //calculate and assign to array the total overall of selected items
             totalItemsSelected.totalProdottiHardwareSelected = calculateTotalItemsSelected(prodottiHardwareSelected);
+            //calculate and assign to array the total revenue of selected items
             totalItemsSelected.prodottiHardwareSelectedRevenue = calculateRevenueItemsSelected(prodottiHardwareSelected);
+            //calculate and assign to array the total percentage revenue of selected items
  			totalItemsSelected.prodottiHardwareSelectedPercentageRevenue = calculatePercentageRevenueItemsSelected(totalItemsSelected["prodottiHardwareSelectedRevenue"], totalItemsSelected["totalProdottiHardwareSelected"]);
  			$scope.totalProdottiHardwareSelected = 	totalItemsSelected.totalProdottiHardwareSelected;
  			$scope.prodottiHardwareSelectedRevenue = totalItemsSelected.prodottiHardwareSelectedRevenue;
  			$scope.prodottiHardwareSelectedPercentageRevenue = totalItemsSelected.prodottiHardwareSelectedPercentageRevenue;
  		}
  	}
+
+    if (allDataFromPreventivi["licenzeSelected"]) {
+        var checkIfLicenzeExist = Object.keys(licenzeSelected).length;
+        if (checkIfLicenzeExist != 0) {
+            document.getElementById('cardLicenze').style.display = 'block';
+            document.getElementById('cardLicenzeCliente').style.display = 'block';
+            $scope.licenze = allDataFromPreventivi["licenzeSelected"];
+            //calculate and assign to array the total overall of selected items
+            totalItemsSelected["totalLicenzeSelected"] = calculateTotalItemsSelected(licenzeSelected);
+            //calculate and assign to array the total revenue of selected items
+            totalItemsSelected["licenzeSelectedRevenue"] = calculateRevenueItemsSelected(licenzeSelected);
+            //calculate and assign to array the total percentage revenue of selected items
+            totalItemsSelected["licenzeSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["licenzeSelectedRevenue"], totalItemsSelected["totalLicenzeSelected"]);
+            $scope.totalLicenzeSelected = totalItemsSelected.totalLicenzeSelected;
+            $scope.licenzeSelectedRevenue = totalItemsSelected.licenzeSelectedRevenue;
+            $scope.licenzeSelectedPercentageRevenue = totalItemsSelected.licenzeSelectedPercentageRevenue;
+        }
+    }
+
+    if (allDataFromPreventivi["canoniSelected"]) {
+        var checkIfCanoniExist = Object.keys(canoniSelected).length;
+        if (checkIfCanoniExist != 0) {
+            document.getElementById('cardCanoni').style.display = 'block';
+            document.getElementById('cardCanoniCliente').style.display = 'block';
+            $scope.canoni = allDataFromPreventivi["canoniSelected"];
+            //calculate and assign to array the total overall of selected items
+    		totalItemsSelected["totalLocalSelected"] = calculateTotalItemsSelected(localSelected);
+    		//calculate and assign to array the total revenue of selected items
+    		totalItemsSelected["localSelectedRevenue"] = calculateRevenueItemsSelected(localSelected);
+    		//calculate and assign to array the total percentage revenue of selected items
+    		totalItemsSelected["localSelectedPercentageRevenue"] = calculatePercentageRevenueItemsSelected(totalItemsSelected["localSelectedRevenue"], totalItemsSelected["totalLocalSelected"]);
+            $scope.totalLicenzeSelected = totalItemsSelected.totalLicenzeSelected;
+            $scope.licenzeSelectedRevenue = totalItemsSelected.licenzeSelectedRevenue;
+            $scope.licenzeSelectedPercentageRevenue = totalItemsSelected.licenzeSelectedPercentageRevenue;
+        }
+    }
   });
