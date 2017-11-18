@@ -4,8 +4,13 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
+<<<<<<< HEAD
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-18T16:28:14+01:00
+=======
  * @Last modified by:   Toqir Nasir
  * @Last modified time: 2017-11-18T16:28:30+01:00
+>>>>>>> 1e8ee5e814b4d572534e4ce5fff0dd0559b45637
  */
  var app = angular.module('myApp', []);
  //varibile contenente tutti i dati provenienti dalla pagina preventivo in formato {obj assoc}
@@ -21,10 +26,12 @@
  var localSelected = allDataFromPreventivi["localSelected"];
  var totalItemsSelected = allDataFromPreventivi["totalItemsSelected"];
  console.log(allDataFromPreventivi);
+
  var noteAggiuntive = {
  	aziendali: "",
  	cliente: ""
  }
+
  //actionlistener sul link per andare all'anteprima
  var link = document.getElementById("linkToAnteprima");
 
@@ -38,6 +45,7 @@
  	var local = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
  	console.log(local);
  }
+ 
  /**
   * [calculateTotalItemsSelected calculate the total of specified items in cart]
   * @param  {[Array]} items [items array of item]
@@ -73,6 +81,7 @@
  	total = (totalItemsSelectedRevenue * 100) / totalItemsSelected;
  	return total;
  }
+
   //tutte le card sono inizialmente non visibili
   document.getElementById('cardDistributore').style.display = 'none';
   document.getElementById('cardHardware').style.display = 'none';
