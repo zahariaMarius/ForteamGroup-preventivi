@@ -113,8 +113,8 @@
 															<input ng-show="hoverSconto" type="number" min="0" placeholder="0" step="any" ng-model="scontoDistibutore" ng-change="changeScontoDistributore(scontoDistibutore, $index)">
 														</td>
 														<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Ricavo | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+														<td ng-class='{guadagno: x.Ricavo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
 													</tr>
 												</tbody>
 												<tfoot>
@@ -161,8 +161,8 @@
 															<input ng-show="hoverSconto" type="number" min="0" step="any" placeholder="0" ng-model="scontoAccessori" ng-change="changeScontoAccessori(scontoAccessori, x.Codice)">
 														</td>
 														<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Ricavo | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+														<td ng-class='{guadagno: x.Ricavo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
 													</tr>
 												</tbody>
 												<tfoot>
@@ -179,57 +179,8 @@
 									<!-- card accessori - end -->
 
 									<!-- card software - start -->
-									<div class="card" id="cardSoftware">
-										<div class="card-header text-center font-weight-bold lead">Software</div>
-										<div class="card-body">
-											<table class="table table-hover table-responsive" id="tabProdottiRiepilogo">
-												<thead>
-													<tr>
-														<th>Codice</th>
-														<th>Prodotto</th>
-														<th>Desrizione</th>
-														<th>Quantità</th>
-														<th>Prezzo acquisto</th>
-														<th>Prezzo listino</th>
-														<th>Sconto</th>
-														<th>Totale vendita</th>
-														<th>Ricavo</th>
-														<th>%Ricavo</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr ng-repeat="x in software">
-														<td>{{x.Codice}}</td>
-														<td>{{x.Tipologia}}</td>
-														<td>{{x.Descrizione}}</td>
-														<td>{{x.Quantita}}</td>
-														<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
-														<td>{{x.Prezzo_listino | currency:"€"}}</td>
-														<td ng-mouseover="hoverSconto = true" ng-mouseleave="hoverSconto = false">
-															<span ng-hide="hoverSconto">%{{x.Sconto + 0}}</span>
-															<input ng-show="hoverSconto" type="number" min="0" step="any" placeholder="0" name="scontoSoftware" ng-model="scontoSoftware" ng-change="changeScontoSoftware(scontoSoftware, x.Codice)">
-														</td>
-														<td>{{x.Ricavo_scontato | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
-													</tr>
-												</tbody>
-												<tfoot>
-													<tr>
-														<th colspan="7">TOTALE</th>
-														<th id="priceCardSoftware">{{Ricavo_software | currency:"€"}}</th>
-														<th ng-class='{guadagno: Guadagno_software >= 0, perdita: Guadagno_software < 0}' id="priceCardSoftware">{{Guadagno_software | currency:"€"}}</th>
-														<th ng-class='{guadagno: Guadagno_software_percentuale >= 0, perdita: Guadagno_software_percentuale < 0}' id="priceCardSoftware">%{{Guadagno_software_percentuale | number}}</th>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-									</div>
-									<!-- card software - end -->
-
-									<!-- card licenze - start -->
 									<div class="card" id="cardLicenze">
-										<div class="card-header text-center font-weight-bold lead">Licenze</div>
+										<div class="card-header text-center font-weight-bold lead">Licenze (Webserver)</div>
 										<div class="card-body">
 											<table class="table table-hover table-responsive" id="tabProdottiRiepilogo">
 												<thead>
@@ -256,11 +207,60 @@
 														<td>{{x.Prezzo_listino | currency:"€"}}</td>
 														<td ng-mouseover="hoverSconto = true" ng-mouseleave="hoverSconto = false">
 															<span ng-hide="hoverSconto">%{{x.Sconto + 0}}</span>
+															<input ng-show="hoverSconto" type="number" min="0" step="any" placeholder="0" name="scontoSoftware" ng-model="scontoSoftware" ng-change="changeScontoSoftware(scontoSoftware, x.Codice)">
+														</td>
+														<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Ricavo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<th colspan="7">TOTALE</th>
+														<th id="priceCardSoftware">{{totalLicenzeSelected | currency:"€"}}</th>
+														<th ng-class='{guadagno: licenzeSelectedRevenue >= 0, perdita: licenzeSelectedRevenue < 0}' id="priceCardSoftware">{{licenzeSelectedRevenue | currency:"€"}}</th>
+														<th ng-class='{guadagno: licenzeSelectedPercentageRevenue >= 0, perdita: licenzeSelectedPercentageRevenue < 0}' id="priceCardSoftware">%{{licenzeSelectedPercentageRevenue | number}}</th>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<!-- card software - end -->
+
+									<!-- card licenze - start -->
+									<div class="card" id="cardCanoni">
+										<div class="card-header text-center font-weight-bold lead"> Canoni collengamento e aggiornamenti web</div>
+										<div class="card-body">
+											<table class="table table-hover table-responsive" id="tabProdottiRiepilogo">
+												<thead>
+													<tr>
+														<th>Codice</th>
+														<th>Prodotto</th>
+														<th>Desrizione</th>
+														<th>Quantità</th>
+														<th>Prezzo acquisto</th>
+														<th>Prezzo listino</th>
+														<th>Sconto</th>
+														<th>Totale vendita</th>
+														<th>Ricavo</th>
+														<th>%Ricavo</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="x in canoni">
+														<td>{{x.Codice}}</td>
+														<td>{{x.Tipologia}}</td>
+														<td>{{x.Descrizione}}</td>
+														<td>{{x.Quantita}}</td>
+														<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
+														<td>{{x.Prezzo_listino | currency:"€"}}</td>
+														<td ng-mouseover="hoverSconto = true" ng-mouseleave="hoverSconto = false">
+															<span ng-hide="hoverSconto">%{{x.Sconto + 0}}</span>
 															<input ng-show="hoverSconto" type="number" min="0" step="any" placeholder="0" name="scontoLicenze" ng-model="scontoLicenze" ng-change="changeScontoLicenze(scontoLicenze, x.Codice)">
 														</td>
-														<td>{{x.Ricavo_scontato | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
-														<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
+														<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Ricavo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
+														<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
 													</tr>
 												</tbody>
 												<tfoot>
@@ -278,7 +278,7 @@
 
 									<!-- card servizi - start -->
 									<div class="card" id="cardServizi">
-										<div class="card-header text-center font-weight-bold lead">Servizi & Assistenza</div>
+										<div class="card-header text-center font-weight-bold lead"> Licenze Local Usage </div>
 										<div class="card-body">
 											<table class="table table-hover table-responsive" id="tabProdottiRiepilogo">
 												<thead>
@@ -473,7 +473,7 @@
 								<!-- card accessori - end -->
 
 								<!-- card software - start -->
-								<div class="card" id="cardSoftwareCliente">
+								<div class="card" id="cardLicenzeCliente">
 									<div class="card-header text-center font-weight-bold lead">Software</div>
 									<div class="card-body">
 										<table class="table table-hover">
@@ -490,7 +490,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng-repeat="x in software">
+												<tr ng-repeat="x in licenze">
 													<td>{{x.Codice}}</td>
 													<td>{{x.Tipologia}}</td>
 													<td>{{x.Descrizione}}</td>
@@ -512,7 +512,7 @@
 								<!-- card software - end -->
 
 								<!-- card licenze - start -->
-								<div class="card" id="cardLicenzeCliente">
+								<div class="card" id="cardCanoniCliente">
 									<div class="card-header text-center font-weight-bold lead">Licenze</div>
 									<div class="card-body">
 										<table class="table table-hover">
@@ -529,7 +529,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng-repeat="x in licenze">
+												<tr ng-repeat="x in canoni">
 													<td>{{x.Codice}}</td>
 													<td>{{x.Tipologia}}</td>
 													<td>{{x.Descrizione}}</td>
