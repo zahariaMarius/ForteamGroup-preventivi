@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-15T09:47:00+01:00
+ * @Last modified time: 2017-11-18T14:52:48+01:00
 >>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
  */
 
@@ -175,18 +175,7 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 	console.log(totalItemsSelected);
 }
 
-/**
- * [calculateTotalItemsSelected calculate the total of specified items in cart]
- * @param  {[Array]} items [items array of item]
- * @return {[Number]}       [return the total of specified selectedItems]
- */
-function calculateTotalItemsSelected(items) {
-	var total = 0;
-	for (var i = 0; i < items.length; i++) {
-		total += items[i].Prezzo_listino_quantita;
-	}
-	return total;
-}
+
 
 /**
  * [calculateRevenueItemsSelected calculate revenue of all selected items]
@@ -825,7 +814,7 @@ app.controller('clienteFormValidation', function($scope) {
 			}
 		}
 	}
-	
+
 	/**
 	 * [nomeClienteChange scope that control all user input into partita iva]
 	 * @return {[type]} [description]
