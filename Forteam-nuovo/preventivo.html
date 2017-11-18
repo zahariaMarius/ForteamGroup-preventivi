@@ -47,7 +47,7 @@
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 		                    <a class="dropdown-item" href="#">Profilo</a>
 							<div class="divider dropdown-divider"></div>
-        					<a class="dropdown-item" href="#">Log out</a>
+        					<a class="dropdown-item" ng-click="showLogoutModal()">Log out</a>
 		                </div>
 		            </li>
         		</ul>
@@ -67,7 +67,7 @@
 					<div class="contattiAiuto">
 						<a href="https://www.facebook.com/vendingsumisura/"><i class="fa fa-facebook-square white-text fa-lg" aria-hidden="true"></i></a>
 						<a href="#"><i class="fa fa-envelope white-text fa-lg" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-phone-square white-text fa-lg" aria-hidden="true"></i></a>
+						<a href="#" ng-click="showPhoneSnackbar()"><i class="fa fa-phone-square white-text fa-lg" aria-hidden="true"></i></a>
 					</div>
 					<a href="#formDatiCliente" class="downIndicationArrow"><i class="fa fa-angle-double-down animated bounce infinite fa-2x" aria-hidden="true"></i></a>
 	            </div>
@@ -99,7 +99,7 @@
 								</div>
 								<div class="md-form">
 								    <i class="fa fa-envelope prefix" ng-class="{'incorrectDatiClienteIcon': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}"></i>
-								    <input type="email" id="emailCliente" class="form-control" name="emailCliente" ng-model="emailCliente" ng-class="{'incorrectDatiClienteTextField': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}" required>
+								    <input type="email" id="emailCliente" class="form-control" name="emailCliente" ng-model="emailCliente" ng-change="emailClienteChange()" ng-class="{'incorrectDatiClienteTextField': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}" required>
 								    <label for="emailCliente" ng-class="{'incorrectDatiClienteLabel': clienteForm.emailCliente.$invalid && clienteForm.emailCliente.$dirty}">Email*</label>
 								</div>
 								<div class="md-form">
@@ -124,7 +124,7 @@
 	<!--section form dati cliente-->
 
 
-	<section class="tabelleProdotti " id="tabelleCliente">
+	<section id="tabelleProdotti">
 		<div class="container-fluid">
 			<!-- bottone del carrello - start -->
 			<button type="button" class="cartButton btn" ng-show="cartOverallTotalAllItemsSelected > 0" ng-click="openCart()"><i class="fa fa-shopping-bag white-text"></i></button>
@@ -335,7 +335,7 @@
 				 								</tbody>
 				 								<tfoot>
 				 									<tr>
-				 										<th>TOTALE</th>
+				 										<th colspan="3">TOTALE</th>
 				 										<th>{{cartTotalDistributoreSelected | currency:"€"}}</th>
 				 									</tr>
 				 								</tfoot>
@@ -389,7 +389,7 @@
 				 							</tbody>
 				 							<tfoot>
 				 								<tr>
-				 									<th>TOTALE</th>
+				 									<th colspan="3">TOTALE</th>
 				 									<th>{{cartTotalProdottiHardwareSelected | currency:"€"}}</th>
 				 								</tr>
 				 							</tfoot>
@@ -441,7 +441,7 @@
 				 							</tbody>
 				 							<tfoot>
 				 								<tr>
-				 									<th>TOTALE</th>
+				 									<th colspan="3">TOTALE</th>
 				 									<th>{{cartTotalLicenzeSelected | currency:"€"}}</th>
 				 								</tr>
 				 							</tfoot>
@@ -493,7 +493,7 @@
 				 							</tbody>
 				 							<tfoot>
 				 								<tr>
-				 									<th>TOTALE</th>
+				 									<th colspan="3">TOTALE</th>
 				 									<th>{{cartTotalCanoniSelected | currency:"€"}}</th>
 				 								</tr>
 				 							</tfoot>
@@ -545,7 +545,7 @@
 				 							</tbody>
 				 							<tfoot>
 				 								<tr>
-				 									<th>TOTALE</th>
+				 									<th colspan="3">TOTALE</th>
 				 									<th>{{cartTotalLocalSelected | currency:"€"}}</th>
 				 								</tr>
 				 							</tfoot>
@@ -715,6 +715,42 @@
 	    </div>
 	    <!--Modal: Login Form-->
 		<!-- Login form se cliente non autorizzato a creare un nuovo prodotto -->
+
+		<!-- Frame Modal Logout -->
+			<!-- Central Modal Medium Danger -->
+		    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		        <div class="modal-dialog modal-notify modal-danger" role="document">
+		            <!--Content-->
+		            <div class="modal-content">
+		                <!--Header-->
+		                <div class="modal-header">
+		                    <p class="heading lead">Logout</p>
+
+		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                        <span aria-hidden="true" class="white-text">&times;</span>
+		                    </button>
+		                </div>
+
+		                <!--Body-->
+		                <div class="modal-body">
+		                    <div class="text-center">
+								<i class="fa fa-sign-out fa-4x mb-3"></i>
+		                       	<p>Confermando il logout tornerai alla pagina principale perdendo tutti i dati inseriti!</p>
+								<p>Sicuro di voler uscire?</p>
+		                    </div>
+		                </div>
+
+		                <!--Footer-->
+		                <div class="modal-footer justify-content-center">
+							<button type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Annulla</button>
+							<button type="button" class="btn btn-danger waves-effect" ng-click="goToIndex()">Esci</button>
+		                </div>
+		            </div>
+		            <!--/.Content-->
+		        </div>
+		    </div>
+		    <!-- Central Modal Medium Danger-->
+		<!-- Frame Modal Logout -->
 
 		<!-- SCRIPTS -->
 	    <!-- JQuery -->

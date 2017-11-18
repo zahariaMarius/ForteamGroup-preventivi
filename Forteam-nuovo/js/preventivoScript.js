@@ -5,14 +5,10 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
-<<<<<<< HEAD
- * @Last modified time: 2017-11-15T12:49:41+01:00
-
-
->>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
- */
+*/
 
 "use strict";
+
 /**
  * [user contain user Object from DB]
  * @type {Object}
@@ -776,6 +772,10 @@ app.controller('preventivoController', function($scope, $http) {
 		}
 	}
 
+	/**
+	 * [goToRiepilogo function that bring the user to riepilogo.html page with all selected data]
+	 * @return {[type]} [description]
+	 */
 	$scope.goToRiepilogo = function() {
 		var allSelectedData = {
 			user,
@@ -793,6 +793,23 @@ app.controller('preventivoController', function($scope, $http) {
 		console.log(allSelectedData.totalItemsSelected);
 		console.log(JSON.stringify(allSelectedData.distributoreSelected));
 	}
+
+	/**
+	 * [showLogoutModal function that show the logout modal]
+	 * @return {[type]} [description]
+	 */
+	$scope.showLogoutModal = function() {
+		$('#logoutModal').modal('show');
+	}
+
+	/**
+	 * [goToIndex function that bring the user to index.html page]
+	 * @return {[type]} [description]
+	 */
+	$scope.goToIndex = function() {
+		location.href = 'index.html';
+	}
+
 });
 
 /**
@@ -802,12 +819,19 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
+	// document.getElementById('tabelleProdotti').style.display = 'none';
+
+	/**
+	 * [checkIfFormIsValid function that check if the form with data client is valid, and show the products item]
+	 * @param  {[Array]} formInputs [contain the validity of inputs form]
+	 * @return {[type]}            [description]
+	 */
 	function checkIfFormIsValid(formInputs) {
-		var flag = false;
-		if ((formInputs["nomeCliente"] == false) && (formInputs["indirizzoCliente"] == false) && (formInputs["partitaIVACliente"] == false)) {
-			flag = true;
+		if ((formInputs["nomeCliente"] == false) && (formInputs["indirizzoCliente"] == false) && (formInputs["partitaIVACliente"] == false) && (formInputs["emailCliente"] == true)) {
+	 		document.getElementById('tabelleProdotti').style.display = 'block';
+		}else {
+			document.getElementById('tabelleProdotti').style.display = 'none';
 		}
-		return flag;
 	}
 
 	var formInputs = [];
@@ -844,6 +868,11 @@ app.controller('clienteFormValidation', function($scope) {
 		checkIfFormIsValid(formInputs);
 	}
 
+	$scope.emailClienteChange = function() {
+		formInputs["emailCliente"] = $scope.clienteForm.emailCliente.$valid;
+		checkIfFormIsValid(formInputs);
+	}
+
 	/**
 	 * [nomeClienteChange scope that control all user input into partita iva true=notValid]
 	 * @return {[type]} [description]
@@ -876,7 +905,5 @@ app.controller('clienteFormValidation', function($scope) {
 			$scope.codiceFiscaleClienteNotValid = false;
 		}
 	}
-
-
 
 });
