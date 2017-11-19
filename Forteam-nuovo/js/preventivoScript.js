@@ -4,13 +4,9 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
-<<<<<<< HEAD
-=======
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-18T18:59:26+01:00
->>>>>>> a938e81c1b51ecdbff940323ed4d717b39958095
->>>>>>> 1e8ee5e814b4d572534e4ce5fff0dd0559b45637
- */
+ * @Last modified time: 2017-11-19T20:29:48+01:00
+*/
 
 "use strict";
 
@@ -826,11 +822,15 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
+<<<<<<< HEAD
 
 
 
 	// document.getElementById('tabelleProdotti').style.display = 'none';
 
+=======
+	document.getElementById('tabelleProdotti').style.display = 'none';
+>>>>>>> a87293d5292270e592b213ae4b887ea399c9257b
 
 	/**
 	 * [checkIfFormIsValid function that check if the form with data client is valid, and show the products item]
