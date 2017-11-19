@@ -4,7 +4,7 @@
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: componentRiepilogo.css
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-12T14:37:54+01:00
+ * @Last modified time: 2017-11-19T20:08:50+01:00
  */
 
 
@@ -88,7 +88,7 @@ button.slider-switch {
 	color: transparent;
 	position: relative;
 	border: none;
-	background: url(../images/switchmin.svg) no-repeat center center;
+	background: url(../../img/switchmin.svg) no-repeat center center;
 	background-size: 90%;
 	float: right;
 	outline: none;
@@ -104,7 +104,7 @@ button.slider-switch {
 }
 
 button.slider-switch.view-maxi {
-	background-image: url(../images/switchmax.svg)
+	background-image: url(../../img/switchmax.svg)
 }
 
 button.slider-switch:hover {
