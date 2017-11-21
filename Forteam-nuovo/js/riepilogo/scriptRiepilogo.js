@@ -4,18 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
-<<<<<<< HEAD
-<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-19T20:26:01+01:00
-
-
-
->>>>>>> 1e8ee5e814b4d572534e4ce5fff0dd0559b45637
-=======
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-18T16:30:45+01:00
->>>>>>> a87293d5292270e592b213ae4b887ea399c9257b
+ * @Last modified time: 2017-11-19T21:07:07+01:00
  */
  var app = angular.module('myApp', []);
  //varibile contenente tutti i dati provenienti dalla pagina preventivo in formato {obj assoc}

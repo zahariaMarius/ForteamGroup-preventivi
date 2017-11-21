@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-19T20:29:48+01:00
+ * @Last modified time: 2017-11-19T21:07:10+01:00
 */
 
 "use strict";
@@ -822,15 +822,11 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
-<<<<<<< HEAD
 
 
 
 	// document.getElementById('tabelleProdotti').style.display = 'none';
 
-=======
-	document.getElementById('tabelleProdotti').style.display = 'none';
->>>>>>> a87293d5292270e592b213ae4b887ea399c9257b
 
 	/**
 	 * [checkIfFormIsValid function that check if the form with data client is valid, and show the products item]

@@ -407,8 +407,6 @@
 													<th>Quantità</th>
 													<th>Prezzo listino</th>
 													<th>Totale</th>
-													<th>Sconto</th>
-													<th>Totale(scontato)</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -418,14 +416,12 @@
 													<td>{{x.Descrizione}}</td>
 													<td>{{x.Quantita}}</td>
 													<td>{{x.Prezzo_listino | currency:"€"}}</td>
-													<td>{{x.Prezzo_listino | currency:"€"}}</td>
-													<td>{{Sconto_distributore + 0}}%</td>
-													<td ng-class="{guadagno: Sconto_distributore > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+										            <td ng-class="{guadagno: Sconto_distributore > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 												</tr>
 											</tbody>
 											<tfoot>
 												<tr>
-													<th colspan="7">TOTALE</th>
+													<th colspan="5">TOTALE</th>
 													<th id="priceCardDistributoreCliente">{{Ricavo_distributore | currency:"€"}}</th>
 												</tr>
 											</tfoot>
@@ -446,8 +442,6 @@
 													<th>Quantità</th>
 													<th>Prezzo listino</th>
 													<th>Totale</th>
-													<th>Sconto</th>
-													<th>Totale(scontato)</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -457,15 +451,13 @@
 													<td>{{x.Descrizione}}</td>
 													<td>{{x.Quantita}}</td>
 													<td>{{x.Prezzo_listino | currency:"€"}}</td>
-													<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-													<td>{{x.Sconto + 0}}%</td>
-													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 												</tr>
 											</tbody>
 											<tfoot>
 												<tr>
-													<th colspan="7">TOTALE</th>
-													<th id="priceCardAccessoriCliente">{{Ricavo_accessori | currency:"€"}}</th>
+													<th colspan="5">TOTALE</th>
+													<th id="priceCardAccessoriCliente">{{totalProdottiHardwareSelected | currency:"€"}}</th>
 											</tfoot>
 										</table>
 									</div>
@@ -474,7 +466,7 @@
 
 								<!-- card software - start -->
 								<div class="card" id="cardLicenzeCliente">
-									<div class="card-header text-center font-weight-bold lead">Software</div>
+									<div class="card-header text-center font-weight-bold lead">Licenze (Webserver)</div>
 									<div class="card-body">
 										<table class="table table-hover">
 											<thead>
@@ -485,8 +477,6 @@
 													<th>Quantità</th>
 													<th>Prezzo listino</th>
 													<th>Totale</th>
-													<th>Sconto</th>
-													<th>Totale(scontato)</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -496,14 +486,12 @@
 													<td>{{x.Descrizione}}</td>
 													<td>{{x.Quantita}}</td>
 													<td>{{x.Prezzo_listino | currency:"€"}}</td>
-													<td>{{x.Totale | currency:"€"}}</td>
-													<td>{{x.Sconto + 0}}%</td>
-													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+												    <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 											</tbody>
 											<tfoot>
 												<tr>
-													<th colspan="7">TOTALE</th>
-													<th id="priceCardSoftwareCliente">{{Ricavo_software | currency:"€"}}</th>
+													<th colspan="5">TOTALE</th>
+													<th id="priceCardSoftwareCliente">{{totalLicenzeSelected | currency:"€"}}</th>
 												</tr>
 											</tfoot>
 										</table>
@@ -513,7 +501,7 @@
 
 								<!-- card licenze - start -->
 								<div class="card" id="cardCanoniCliente">
-									<div class="card-header text-center font-weight-bold lead">Licenze</div>
+									<div class="card-header text-center font-weight-bold lead">Canoni collengamento e aggiornamenti web</div>
 									<div class="card-body">
 										<table class="table table-hover">
 											<thead>
@@ -524,8 +512,6 @@
 													<th>Quantità</th>
 													<th>Prezzo listino</th>
 													<th>Totale</th>
-													<th>Sconto</th>
-													<th>Totale(scontato)</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -535,15 +521,13 @@
 													<td>{{x.Descrizione}}</td>
 													<td>{{x.Quantita}}</td>
 													<td>{{x.Prezzo_listino | currency:"€"}}</td>
-													<td>{{x.Totale | currency:"€"}}</td>
-													<td>{{x.Sconto + 0}}%</td>
-													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 												</tr>
 											</tbody>
 											<tfoot>
 												<tr>
-													<th colspan="7">TOTALE</th>
-													<th id="priceCardLicenzeCliente">{{Ricavo_licenze | currency:"€"}}</th>
+													<th colspan="5">TOTALE</th>
+													<th id="priceCardLicenzeCliente">{{totalCanoniSelected | currency:"€"}}</th>
 												</tr>
 											</tfoot>
 										</table>
@@ -553,7 +537,7 @@
 
 								<!-- card servizi - start -->
 								<div class="card" id="cardLocalCliente">
-									<div class="card-header text-center font-weight-bold lead">Servizi & Assistenza</div>
+									<div class="card-header text-center font-weight-bold lead">Licenze Local Usage</div>
 									<div class="card-body">
 										<table class="table table-hover">
 											<thead>
@@ -564,8 +548,6 @@
 													<th>Quantità</th>
 													<th>Prezzo listino</th>
 													<th>Totale</th>
-													<th>Sconto</th>
-													<th>Totale(scontato)</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -575,15 +557,13 @@
 													<td>{{x.Descrizione}}</td>
 													<td>{{x.Quantita}}</td>
 													<td>{{x.Prezzo_listino | currency:"€"}}</td>
-													<td>{{x.Totale | currency:"€"}}</td>
-													<td>{{x.Sconto + 0}}%</td>
-													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+													<td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 												</tr>
 											</tbody>
 											<tfoot>
 												<tr>
-													<th colspan="7">TOTALE</th>
-													<th id="priceCardServiziCliente">{{Ricavo_servizi | currency:"€"}}</th>
+													<th colspan="5">TOTALE</th>
+													<th id="priceCardServiziCliente">{{totalLocalSelected | currency:"€"}}</th>
 												</tr>
 											</tfoot>
 										</table>
@@ -605,7 +585,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td><h2>{{Ricavo_totale | currency:'€'}}</h2></td>
+													<td><h2>{{overallTotalAllItemsSelected | currency:'€'}}</h2></td>
 													<td><h2>%{{Percentuale_iva}}</h2></td>
 													<td ng-class='{guadagno: Guadagno_totale >= 0, perdita: Guadagno_totale < 0}'><h2>{{ivaTotalElemensselected | currency:'€'}}</h2></td>
 											</tbody>
