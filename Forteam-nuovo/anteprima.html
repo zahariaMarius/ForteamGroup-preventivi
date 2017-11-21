@@ -42,19 +42,21 @@
 									<div class="col col-9">
 										<table class="table table-responsive cliente">
 											<thead>
-												<tr>
-													<th>NOME</th>
-													<th>INDIRIZZO</th>
-													<th>PARTITA IVA</th>
-													<th>CODICE FISCALE</th>
+												<tr class="row">
+													<th class="col">NOME</th>
+													<th class="col">INDIRIZZO</th>
+													<th class="col">EMAIL</th>
+													<th class="col">PARTITA IVA</th>
+													<th class="col">CODICE FISCALE</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng-repeat="x in azienda">
-													<td style="width: 25%">{{x.Nome_azienda | uppercase}}</td>
-													<td style="width: 25%">{{x.Indirizzo | uppercase}}</td>
-													<td style="width: 25%">{{x.Partita_iva | uppercase}}</td>
-													<td style="width: 25%">{{x.Codice_fiscale | uppercase}}</td>
+												<tr class="row" ng-repeat="x in cliente">
+													<td class="col">{{x.nomeCliente | uppercase}}</td>
+													<td class="col">{{x.indirizzoCliente | uppercase}}</td>
+													<td class="col">{{x.emailCliente | uppercase}}</td>
+													<td class="col">{{x.partitaIVACliente | uppercase}}</td>
+													<td class="col">{{x.codiceFiscaleCliente | uppercase}}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -369,23 +371,25 @@
 				                    <table class="table table-responsive" id="table-distributore">
 				                        <thead>
 											<tr>
-												<th colspan="8">
+												<th>
 													<div class="headerLogo text-center">
-									                        <img src="img/Logo.png" alt="logo azienda">
+									         			<img src="img/Logo.png" alt="logo azienda">
 									                </div>
 												</th>
 											</tr>
 											<tr>
-				                                <th colspan="2">NOME</th>
-				                                <th colspan="2">INDIRIZZO</th>
-				                                <th colspan="2">PARTITA IVA</th>
-				                                <th colspan="2">CODICE FISCALE</th>
+				                                <th>NOME</th>
+				                                <th>INDIRIZZO</th>
+												<th>EMAIL</th>
+				                                <th>PARTITA IVA</th>
+				                                <th>CODICE FISCALE</th>
 				                            </tr>
-											<tr ng-repeat="x in azienda">
-				                                <td colspan="2" style="width: 25%">{{x.Nome_azienda | uppercase}}</td>
-				                                <td colspan="2" style="width: 25%">{{x.Indirizzo | uppercase}}</td>
-				                                <td colspan="2" style="width: 25%">{{x.Partita_iva | uppercase}}</td>
-				                                <td colspan="2" style="width: 25%">{{x.Codice_fiscale | uppercase}}</td>
+											<tr ng-repeat="x in cliente">
+				                                <td >{{x.nomeCliente | uppercase}}</td>
+				                                <td >{{x.indirizzoCliente | uppercase}}</td>
+												<td >{{x.emailCliente}}</td>
+				                                <td >{{x.partitaIVACliente | uppercase}}</td>
+				                                <td >{{x.codiceFiscaleCliente | uppercase}}</td>
 				                            </tr>
 				                            <tr>
 				                                <th style="width: 5%">Codice</th>
@@ -394,8 +398,6 @@
 				                                <th>Quantità</th>
 				                                <th>Prezzo listino</th>
 				                                <th>Totale</th>
-				                                <th>Sconto</th>
-				                                <th>Totale scontato</th>
 				                            </tr>
 				                        </thead>
 
@@ -406,9 +408,7 @@
 				                                <td>{{x.Descrizione}}</td>
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                                <td>%{{x.Sconto + 0}}</td>
-				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 				                            </tr>
 											<tr ng-repeat="x in accessori">
 				                                <td>{{x.Codice}}</td>
@@ -416,9 +416,7 @@
 				                                <td>{{x.Descrizione}}</td>
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                                <td>{{x.Totale | currency:"€"}}</td>
-				                                <td>%{{x.Sconto + 0}}</td>
-				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+												<td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 				                            </tr>
 											<tr ng-repeat="x in software">
 				                                <td>{{x.Codice}}</td>
@@ -427,7 +425,6 @@
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
 				                                <td>{{x.Totale | currency:"€"}}</td>
-				                                <td>%{{x.Sconto + 0}}</td>
 				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
 											<tr ng-repeat="x in licenze">
@@ -437,7 +434,6 @@
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
 				                                <td>{{x.Totale | currency:"€"}}</td>
-				                                <td>%{{x.Sconto + 0}}</td>
 				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
 											<tr ng-repeat="x in servizi">
@@ -447,7 +443,6 @@
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
 				                                <td>{{x.Totale | currency:"€"}}</td>
-				                                <td>%{{x.Sconto + 0}}</td>
 				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
 				                        </tbody>
@@ -458,12 +453,12 @@
 				                                <th>Totale preventivo</th>
 				                            </tr>
 											<tr>
-				                                <td style="width: 33%"><h2>{{Totale_imponibile | currency:'€'}}</h2></td>
-				                                <td style="width: 33%"><h2>%{{Percentuale_iva | number}}</h2></td>
-				                                <td style="width: 33%"><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
+				                                <td><h2>{{Totale_imponibile | currency:'€'}}</h2></td>
+				                                <td><h2>%{{Percentuale_iva | number}}</h2></td>
+				                                <td><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
 				                            </tr>
 											<tr>
-												<td colspan="8" id="footerTd">
+												<td id="footerTd">
 													<div class="footer">
 														<p>FOTREAM GROUP SRL</p>
 														<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
