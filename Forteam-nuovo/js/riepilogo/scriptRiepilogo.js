@@ -4,6 +4,11 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
+<<<<<<< HEAD
+=======
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-19T21:07:07+01:00
+>>>>>>> 5a461fe85b3aaa280db67c4042b355873866de8d
  */
 
  var app = angular.module('myApp', []);
