@@ -4,7 +4,7 @@
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: component.css
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-21T15:19:16+01:00
+ * @Last modified time: 2017-11-21T15:40:33+01:00
  */
 .centerFooter{
 	width: 100%;
@@ -56,8 +56,8 @@
 
 @font-face {
 	font-family: 'icomoon';
-	src:url('../../fonts/anteprima/icomoon.ttf') format('truetype'),
-		url('../../fonts/anteprima/icomoon.svg#icomoon') format('svg');
+	src:url('') format('truetype'),
+		url('icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -114,8 +114,7 @@ a:hover {
 .bl-main > section:first-child {
 	top: 0;
 	left: 0;
-	/*background: #4BBE8E;*/
-	background: #b91463;
+	background: #4BBE8E;
 }
 
 .bl-main > section:nth-child(2) {
@@ -188,11 +187,11 @@ a:hover {
 }
 
 .bl-icon-works:before {
-	content: "\e001";
+	content: url('../../img/factory.png');
 }
 
 .bl-icon-blog:before {
-	content: "\e002";
+	content: url('../../img/users.png');
 }
 
 .bl-icon-contact:before {
@@ -210,7 +209,7 @@ a:hover {
 }
 
 .bl-icon-close:before {
-	content: "\e005";
+	content: url('../../img/close.png');
 }
 
 .bl-content,
