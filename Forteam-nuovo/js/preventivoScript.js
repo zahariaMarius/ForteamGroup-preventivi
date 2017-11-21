@@ -4,8 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-19T21:07:10+01:00
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-21T11:23:53+01:00
 */
 
 "use strict";
@@ -18,9 +18,9 @@ var user = JSON.parse(localStorage.getItem("user"));
 console.log(user);
 /**
  * [cliente contain all cliente Objects from inputForm]
- * @type {[Array]}
+ * @type {[Object]}
  */
-var cliente = [];
+var cliente = {};
 /**
  * [distributoreSelected contain all distributori Objects from table]
  * @type {[Array]}
@@ -835,7 +835,7 @@ app.controller('clienteFormValidation', function($scope) {
 	 */
 	function checkIfFormIsValid(formInputs) {
 		if ((formInputs["nomeCliente"] == false) && (formInputs["indirizzoCliente"] == false) && (formInputs["partitaIVACliente"] == false) && (formInputs["emailCliente"] == true)) {
-	 		document.getElementById('tabelleProdotti').style.display = 'block';
+	 		document.getElementById('tabelleProdotti').style.display = 'block'
 		}else {
 			document.getElementById('tabelleProdotti').style.display = 'none';
 		}
@@ -854,6 +854,7 @@ app.controller('clienteFormValidation', function($scope) {
 			if($scope.nomeCliente.length > 2) {
 				$scope.nomeClienteNotValid = false;
 				formInputs["nomeCliente"] = false;
+				cliente.nomeCliente = $scope.nomeCliente;
 			}
 		}
 		checkIfFormIsValid(formInputs);
@@ -870,6 +871,7 @@ app.controller('clienteFormValidation', function($scope) {
 			if ($scope.indirizzoCliente.length > 6) {
 				$scope.indirizzoClienteNotValid = false;
 				formInputs["indirizzoCliente"] = false;
+				cliente.indirizzoCliente = $scope.indirizzoCliente;
 			}
 		}
 		checkIfFormIsValid(formInputs);
@@ -877,6 +879,9 @@ app.controller('clienteFormValidation', function($scope) {
 
 	$scope.emailClienteChange = function() {
 		formInputs["emailCliente"] = $scope.clienteForm.emailCliente.$valid;
+		if (formInputs["emailCliente"]) {
+			cliente.emailCliente = $scope.emailCliente;
+		}
 		checkIfFormIsValid(formInputs);
 	}
 
@@ -891,6 +896,7 @@ app.controller('clienteFormValidation', function($scope) {
 			if (checkIfPartitaIvaClienteIsValid($scope.partitaIVACliente)) {
 				$scope.partitaIvaClienteNotValid = false;
 				formInputs["partitaIVACliente"] = false;
+				cliente.partitaIVACliente = $scope.partitaIVACliente;
 			}
 		}
 		checkIfFormIsValid(formInputs);
@@ -900,16 +906,20 @@ app.controller('clienteFormValidation', function($scope) {
 	 * [nomeClienteChange scope that control all user input into codice fiscale true=notValid]
 	 * @return {[type]} [description]
 	 */
+	cliente.codiceFiscaleCliente = 'non fornito';
 	$scope.codiceFiscaleChange = function() {
+		cliente.codiceFiscaleCliente = 'non fornito';
 		$scope.codiceFiscaleClienteNotValid = true;
 		if ($scope.codiceFiscaleCliente) {
 			if (checkIfCodiceFiscaleClienteIsValid($scope.codiceFiscaleCliente)) {
 				$scope.codiceFiscaleClienteNotValid = false;
+				cliente.codiceFiscaleCliente = $scope.codiceFiscaleCliente;
 			}
 		}
 
 		if ($scope.codiceFiscaleCliente === '') {
 			$scope.codiceFiscaleClienteNotValid = false;
+			cliente.codiceFiscaleCliente = 'non fornito';
 		}
 	}
 

@@ -134,9 +134,11 @@
 			<div class="row">
 				<div class="col-md-9 py-5 mx-auto">
 					<div class="" id="divSelectDistributore">
-						<select class="" name="selectDistributore" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
-							<option value="">NESSUN DISTRIBUTORE</option>
-						</select>
+						<div class="select-style">
+							<select class="" name="selectDistributore" ng-model="selectedDistributore" ng-options="x as x.Nome for x in distributori" ng-change="getSelectedDistributore(selectedDistributore)">
+								<option value="">NESSUN DISTRIBUTORE</option>
+							</select>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -616,13 +618,16 @@
 			<!--Body-->
 			<div class="modal-body">
 				<form name="customizedProductForm">
-					<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct" required>
-						<option disabled selected value="">Seleziona una categoria</option>
-						<option value="0">Prodotti Hardware</option>
-						<option value="1">Licenze</option>
-						<option value="2">Local</option>
-						<option value="3">Canoni</option>
-					</select>
+
+					<div class="select-style">
+						<select class="" name="categoriaCustomizedProduct" ng-model="categoriaCustomizedProduct" required>
+							<option disabled selected value="">Seleziona una categoria</option>
+							<option value="0">Prodotti Hardware</option>
+							<option value="1">Licenze</option>
+							<option value="2">Local</option>
+							<option value="3">Canoni</option>
+						</select>
+					</div>
 
 					<div class="md-form form-sm">
 						<i id="codiceProdottoIcon" class="fa fa-tag prefix"></i>

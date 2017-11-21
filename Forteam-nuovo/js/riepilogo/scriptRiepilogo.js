@@ -4,9 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-19T21:07:07+01:00
  */
+
  var app = angular.module('myApp', []);
  //varibile contenente tutti i dati provenienti dalla pagina preventivo in formato {obj assoc}
  var allDataFromPreventivi = JSON.parse(localStorage.getItem("allDataFromPreventivi"));
@@ -120,8 +119,9 @@
   app.controller('allTabDataFromPreventivi', function($scope) {
 
   	if (allDataFromPreventivi["cliente"]) {
-  		$scope.azienda = cliente;
+		$scope.azienda = cliente;
   	}
+
     console.log(distributoreSelected);
   	if (allDataFromPreventivi["distributoreSelected"]) {
   		var checkIfDistributoreExist = Object.keys(distributoreSelected).length;
@@ -302,6 +302,7 @@
        $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
        $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+	
     $scope.changeScontoLicenze = function(sconto, codice) {
         //setting changes on Licenze
         $scope.licenze = calcoloScontoRicavoGuadagno(sconto, codice, licenzeSelected);
@@ -353,6 +354,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+
     $scope.changeScontoLocal = function(sconto, codice) {
         //setting changes on canoni
         $scope.canoni = calcoloScontoRicavoGuadagno(sconto, codice, localSelected);
@@ -378,6 +380,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+
     $scope.changeInputIVA = function(iva) {
         totalItemsSelected.ivaPercentage = iva;
         var percentualeIva = (totalItemsSelected.overallTotalAllItemsSelected * totalItemsSelected.ivaPercentage) / 100;
@@ -385,6 +388,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+
     $scope.noteAggiuntiveAziendali = function() {
         noteAggiuntive.aziendali = $scope.noteAziendali;
     }
@@ -392,4 +396,5 @@
     $scope.noteAggiuntiveCliente = function() {
         noteAggiuntive.cliente = $scope.noteCliente;
     }
+
   });
