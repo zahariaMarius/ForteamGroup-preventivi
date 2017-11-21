@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-21T11:23:53+01:00
+ * @Last modified time: 2017-11-21T14:45:07+01:00
 */
 
 "use strict";
@@ -719,42 +719,47 @@ app.controller('preventivoController', function($scope, $http) {
 		var allCategory = [prodottiHardware, licenze, local, canoni];
 		var customizedProductData = [categoriaCustomizedProduct, codiceCustomizedProduct, nomeCustomizedProduct, descrizioneCustomizedProduct, prezzoAcquistoCustomizedProduct, prezzoListinoCustomizedProduct]
 		//check if codice already exist
-		if (!checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, codiceCustomizedProduct, allCategory)) {
-			//create the new customized product
-			var customizedProduct = {
-				Codice: customizedProductData[1],
-				Descrizione: customizedProductData[3],
-				Prezzo_acquisto: customizedProductData[4],
-				Prezzo_listino: customizedProductData[5]
-			}
 
-			//push the new customized product into specified table
-			switch (customizedProductData[0]) {
-				case '0':
+		if ($scope.customizedProductForm.$valid) {
+			if (!checkIfCodiceCustomizedProductAlreadyExist(categoriaCustomizedProduct, codiceCustomizedProduct, allCategory)) {
+
+				//create the new customized product
+				var customizedProduct = {
+					Codice: customizedProductData[1],
+					Descrizione: customizedProductData[3],
+					Prezzo_acquisto: customizedProductData[4],
+					Prezzo_listino: customizedProductData[5]
+				}
+
+				//push the new customized product into specified table
+				switch (customizedProductData[0]) {
+					case '0':
 					customizedProduct.Nome = customizedProductData[2];
 					$scope.prodottiHardware.push(customizedProduct);
 					break;
-				case '1':
+					case '1':
 					customizedProduct.Tipologia = customizedProductData[2];
 					$scope.licenze.push(customizedProduct);
 					break;
-				case '2':
+					case '2':
 					customizedProduct.Tipologia = customizedProductData[2];
 					$scope.local.push(customizedProduct);
 					break;
-				case '3':
+					case '3':
 					customizedProduct.Tipologia = customizedProductData[2];
 					$scope.canoni.push(customizedProduct);
 					break;
+				}
+
+				//hide the modal
+				$('#modalCustomizeProduct').modal('hide');
+				//clear the form
+			}else {
+				//messaggio di errore che il codice esiste già
+				console.log("esiste");
+				$("i[id='codiceProdottoIcon']").addClass('red-text');
 			}
 
-			//hide the modal
-			$('#modalCustomizeProduct').modal('hide');
-			//clear the form
-		}else {
-			//messaggio di errore che il codice esiste già
-			console.log("esiste");
-			$("i[id='codiceProdottoIcon']").addClass('red-text');
 		}
 	}
 

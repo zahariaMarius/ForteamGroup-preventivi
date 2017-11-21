@@ -3,8 +3,13 @@
  * @Date:   2017-10-31T17:31:40+01:00
  * @Email:  toqir.nasir@edu.itspiemonte.it
  * @Filename: component.css
+<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
  * @Last modified time: 2017-11-21T15:40:33+01:00
+=======
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-21T15:29:32+01:00
+>>>>>>> 711617092dabedbb9afb43ed8231f4e45f0eebbb
  */
 .centerFooter{
 	width: 100%;
@@ -42,6 +47,7 @@
 #footerTd{
 	border-top: 0px !important;
 }
+
 .footer {
 	text-align: center;
 	padding-top: 4%;
