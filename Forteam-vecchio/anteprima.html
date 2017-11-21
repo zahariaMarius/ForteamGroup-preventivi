@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ForteamGroup - Preventivi</title>
-		<link rel="stylesheet" type="text/css" href="css/anteprima/anteprimaStyle.css">
-		<link rel="stylesheet" type="text/css" href="css/anteprima/StyleAnteprima.css" />
-		<script src="js/anteprima/modernizr.custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/anteprimaStyle.css">
+		<link rel="stylesheet" type="text/css" href="css/StyleAnteprima.css" />
+		<script src="js/modernizr.custom.js"></script>
 		<!-- librerie CDN -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 							<header class="onlyprint">
 								<div class="col" id="centerLogo">
 										<div class="headerLogo text-center">
-											<img src="img/Logo.png" alt="logo azienda">
+											<img src="images/Logo.png" alt="logo azienda">
 										</div>
 
 								</div>
@@ -42,21 +42,19 @@
 									<div class="col col-9">
 										<table class="table table-responsive cliente">
 											<thead>
-												<tr class="row">
-													<th class="col">NOME</th>
-													<th class="col">INDIRIZZO</th>
-													<th class="col">EMAIL</th>
-													<th class="col">PARTITA IVA</th>
-													<th class="col">CODICE FISCALE</th>
+												<tr>
+													<th>NOME</th>
+													<th>INDIRIZZO</th>
+													<th>PARTITA IVA</th>
+													<th>CODICE FISCALE</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="row" ng-repeat="x in cliente">
-													<td class="col">{{x.nomeCliente | uppercase}}</td>
-													<td class="col">{{x.indirizzoCliente | uppercase}}</td>
-													<td class="col">{{x.emailCliente | uppercase}}</td>
-													<td class="col">{{x.partitaIVACliente | uppercase}}</td>
-													<td class="col">{{x.codiceFiscaleCliente | uppercase}}</td>
+												<tr ng-repeat="x in azienda">
+													<td style="width: 25%">{{x.Nome_azienda | uppercase}}</td>
+													<td style="width: 25%">{{x.Indirizzo | uppercase}}</td>
+													<td style="width: 25%">{{x.Partita_iva | uppercase}}</td>
+													<td style="width: 25%">{{x.Codice_fiscale | uppercase}}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -87,9 +85,9 @@
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Prezzo_listino_quantita| currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
@@ -122,24 +120,24 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="x in hardware">
+											<tr ng-repeat="x in accessori">
 												<td>{{x.Codice}}</td>
 												<td>{{x.Nome}}</td>
 												<td>{{x.Quantita}}</td>
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavoo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
 												<th colspan="6">TOTALE</th>
-												<th id="priceCardAccessori">{{totalProdottiHardwareSelected | currency:"€"}}</th>
-												<th ng-class='{guadagno: prodottiHardwareSelectedRevenue >= 0, perdita: prodottiHardwareSelectedRevenue < 0}' id="priceCardAccessori">{{prodottiHardwareSelectedRevenue | currency:"€"}}</th>
-												<th ng-class='{guadagno: prodottiHardwareSelectedPercentageRevenue >= 0, perdita: prodottiHardwareSelectedPercentageRevenue < 0}' id="priceCardAccessori">%{{prodottiHardwareSelectedPercentageRevenue | number}}</th>
+												<th id="priceCardAccessori">{{Ricavo_accessori | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_accessori >= 0, perdita: Guadagno_accessori < 0}' id="priceCardAccessori">{{Guadagno_accessori | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_accessori_percentuale >= 0, perdita: Guadagno_accessori_percentuale < 0}' id="priceCardAccessori">%{{Guadagno_accessori_percentuale | number}}</th>
 											</tr>
 										</tfoot>
 									</table>
@@ -163,24 +161,24 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="x in licenze">
+											<tr ng-repeat="x in software">
 												<td>{{x.Codice}}</td>
 												<td>{{x.Tipologia}}</td>
 												<td>{{x.Quantita}}</td>
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavoo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
 												<th colspan="6">TOTALE</th>
-												<th id="priceCardSoftware">{{totalLicenzeSelected | currency:"€"}}</th>
-												<th ng-class='{guadagno: licenzeSelectedRevenue >= 0, perdita: licenzeSelectedRevenue < 0}' id="priceCardSoftware">{{licenzeSelectedRevenue | currency:"€"}}</th>
-												<th ng-class='{guadagno: licenzeSelectedPercentageRevenue >= 0, perdita: licenzeSelectedPercentageRevenue < 0}' id="priceCardSoftware">%{{licenzeSelectedPercentageRevenue | number}}</th>
+												<th id="priceCardSoftware">{{Ricavo_software | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_software >= 0, perdita: Guadagno_software < 0}' id="priceCardSoftware">{{Guadagno_software | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_software_percentuale >= 0, perdita: Guadagno_software_percentuale < 0}' id="priceCardSoftware">%{{Guadagno_software_percentuale | number}}</th>
 											</tr>
 										</tfoot>
 									</table>
@@ -204,24 +202,24 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="x in canoni">
+											<tr ng-repeat="x in licenze">
 												<td>{{x.Codice}}</td>
 												<td>{{x.Tipologia}}</td>
 												<td>{{x.Quantita}}</td>
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavoo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
 												<th colspan="6">TOTALE</th>
-												<th id="priceCardLicenze">{{totalCanoniSelected | currency:"€"}}</th>
-												<th ng-class='{guadagno: canoniSelectedRevenue >= 0, perdita: canoniSelectedRevenue < 0}' id="priceCardLicenze">{{canoniSelectedRevenue | currency:"€"}}</th>
-												<th ng-class='{guadagno: canoniSelectedPercentageRevenue >= 0, perdita: canoniSelectedPercentageRevenue < 0}' id="priceCardLicenze">%{{canoniSelectedPercentageRevenue | number}}</th>
+												<th id="priceCardLicenze">{{Ricavo_licenze | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_licenze >= 0, perdita: Guadagno_licenze < 0}' id="priceCardLicenze">{{Guadagno_licenze | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_licenze_percentuale >= 0, perdita: Guadagno_licenze_percentuale < 0}' id="priceCardLicenze">%{{Guadagno_licenze_percentuale | number}}</th>
 											</tr>
 										</tfoot>
 									</table>
@@ -245,24 +243,24 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="x in local">
+											<tr ng-repeat="x in servizi">
 												<td>{{x.Codice}}</td>
 												<td>{{x.Tipologia}}</td>
 												<td>{{x.Quantita}}</td>
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavoo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
+												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
 												<th colspan="6">TOTALE</th>
-												<th id="priceCardServizi">{{totalLocalSelected | currency:"€"}}</th>
-												<th ng-class='{guadagno: localSelectedRevenue >= 0, perdita: localSelectedRevenue < 0}' id="priceCardServizi">{{localSelectedRevenue | currency:"€"}}</th>
-												<th ng-class='{guadagno: localSelectedPercentageRevenue >= 0, perdita: localSelectedPercentageRevenue < 0}' id="priceCardServizi">%{{localSelectedPercentageRevenue | number}}</th>
+												<th id="priceCardServizi">{{Ricavo_servizi | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_servizi >= 0, perdita: Guadagno_servizi < 0}' id="priceCardServizi">{{Guadagno_servizi | currency:"€"}}</th>
+												<th ng-class='{guadagno: Guadagno_servizi_percentuale >= 0, perdita: Guadagno_servizi_percentuale < 0}' id="priceCardServizi">%{{Guadagno_servizi_percentuale | number}}</th>
 											</tr>
 										</tfoot>
 									</table>
@@ -299,9 +297,9 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td style="width: 33%"><h2>{{overallTotalAllItemsSelected | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
-												<td style="width: 33%" ng-class='{guadagno: overallRevenueAllItemsSelected >= 0, perdita: overallRevenueAllItemsSelected < 0}'><h2>{{overallRevenueAllItemsSelected | currency:'€'}}</h2></td>
-												<td style="width: 33%" ng-class='{guadagno: overallPercentageRevenueAllItemsSelected >= 0, perdita: overallPercentageRevenueAllItemsSelected < 0}'><h2>%{{overallPercentageRevenueAllItemsSelected | number}}</h2></td>
+												<td style="width: 33%"><h2>{{Ricavo_totale | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
+												<td style="width: 33%" ng-class='{guadagno: Guadagno_totale >= 0, perdita: Guadagno_totale < 0}'><h2>{{Guadagno_totale | currency:'€'}}</h2></td>
+												<td style="width: 33%" ng-class='{guadagno: Guadagno_totale_percentuale >= 0, perdita: Guadagno_totale_percentuale < 0}'><h2>%{{Guadagno_totale_percentuale | number}}</h2></td>
 											</tr>
 										</tbody>
 									</table>
@@ -336,31 +334,58 @@
 					</div>
 					<div class="bl-content">
 						<div class="padding-anteprima" id="anteprimaUtente">
+				            <!-- <div class="col">
+				                <div class="headerLogo text-center">
+				                        <img src="images/Logo.png" alt="logo azienda">
+				                </div>
+				            </div> -->
+
+				            <!-- <div class="row">
+				                <div class="col col-9">
+				                    <table class="table table-responsive cliente">
+				                        <thead>
+				                            <tr>
+				                                <th>NOME</th>
+				                                <th>INDIRIZZO</th>
+				                                <th>PARTITA IVA</th>
+				                                <th>CODICE FISCALE</th>
+				                            </tr>
+				                        </thead>
+				                        <tbody>
+				                            <tr ng-repeat="x in azienda">
+				                                <td style="width: 25%">{{x.Nome_azienda | uppercase}}</td>
+				                                <td style="width: 25%">{{x.Indirizzo | uppercase}}</td>
+				                                <td style="width: 25%">{{x.Partita_iva | uppercase}}</td>
+				                                <td style="width: 25%">{{x.Codice_fiscale | uppercase}}</td>
+				                            </tr>
+				                        </tbody>
+				                    </table>
+				                </div>
+				            </div> -->
+
 
 				            <div class="row">
 				                <div class="col col-9">
-				                    <table class="table" id="table-distributore">
+				                    <table class="table table-responsive" id="table-distributore">
 				                        <thead>
 											<tr>
 												<th colspan="8">
 													<div class="headerLogo text-center">
-									         			<img src="img/Logo.png" alt="logo azienda">
+									                        <img src="images/Logo.png" alt="logo azienda">
 									                </div>
 												</th>
 											</tr>
 											<tr>
-				                                <th>NOME</th>
-				                                <th>INDIRIZZO</th>
-												<th>EMAIL</th>
-				                                <th>PARTITA IVA</th>
-				                                <th>CODICE FISCALE</th>
+				                                <th colspan="2">NOME</th>
+				                                <th colspan="2">INDIRIZZO</th>
+				                                <th colspan="2">PARTITA IVA</th>
+				                                <th colspan="2">CODICE FISCALE</th>
 				                            </tr>
-											<tr ng-repeat="x in cliente">
-				                                <td >{{x.nomeCliente | uppercase}}</td>
-				                                <td >{{x.indirizzoCliente | uppercase}}</td>
-												<td >{{x.emailCliente | uppercase}}</td>
-				                                <td >{{x.partitaIVACliente | uppercase}}</td>
-				                                <td>{{x.codiceFiscaleCliente | uppercase}}</td>
+											<tr ng-repeat="x in azienda">
+				                                <td colspan="2" style="width: 25%">{{x.Nome_azienda | uppercase}}</td>
+				                                <td colspan="2" style="width: 25%">{{x.Indirizzo | uppercase}}</td>
+				                                <td colspan="2" style="width: 25%">{{x.Partita_iva | uppercase}}</td>
+				                                <td colspan="2" style="width: 25%">{{x.Codice_fiscale | uppercase}}</td>
 				                            </tr>
 				                            <tr>
 				                                <th style="width: 5%">Codice</th>
@@ -369,6 +394,8 @@
 				                                <th>Quantità</th>
 				                                <th>Prezzo listino</th>
 				                                <th>Totale</th>
+				                                <th>Sconto</th>
+				                                <th>Totale scontato</th>
 				                            </tr>
 				                        </thead>
 
@@ -379,15 +406,29 @@
 				                                <td>{{x.Descrizione}}</td>
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
+				                                <td>%{{x.Sconto + 0}}</td>
+				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
-											<tr ng-repeat="x in hardware">
+											<tr ng-repeat="x in accessori">
 				                                <td>{{x.Codice}}</td>
 				                                <td>{{x.Nome}}</td>
 				                                <td>{{x.Descrizione}}</td>
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-												<td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				                                <td>{{x.Totale | currency:"€"}}</td>
+				                                <td>%{{x.Sconto + 0}}</td>
+				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
+				                            </tr>
+											<tr ng-repeat="x in software">
+				                                <td>{{x.Codice}}</td>
+				                                <td>{{x.Tipologia}}</td>
+				                                <td>{{x.Descrizione}}</td>
+				                                <td>{{x.Quantita}}</td>
+				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
+				                                <td>{{x.Totale | currency:"€"}}</td>
+				                                <td>%{{x.Sconto + 0}}</td>
+				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
 											<tr ng-repeat="x in licenze">
 				                                <td>{{x.Codice}}</td>
@@ -395,36 +436,32 @@
 				                                <td>{{x.Descrizione}}</td>
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				                                <td>{{x.Totale | currency:"€"}}</td>
+				                                <td>%{{x.Sconto + 0}}</td>
+				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
-											<tr ng-repeat="x in canoni">
+											<tr ng-repeat="x in servizi">
 				                                <td>{{x.Codice}}</td>
 				                                <td>{{x.Tipologia}}</td>
 				                                <td>{{x.Descrizione}}</td>
 				                                <td>{{x.Quantita}}</td>
 				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                               <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+				                                <td>{{x.Totale | currency:"€"}}</td>
+				                                <td>%{{x.Sconto + 0}}</td>
+				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Ricavo_scontato | currency:"€"}}</td>
 				                            </tr>
-											<tr ng-repeat="x in local">
-				                                <td>{{x.Codice}}</td>
-				                                <td>{{x.Tipologia}}</td>
-				                                <td>{{x.Descrizione}}</td>
-				                                <td>{{x.Quantita}}</td>
-				                                <td>{{x.Prezzo_listino | currency:"€"}}</td>
-				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
-				                            </tr>
-											<tr>
-												<th>Totale imponibile</th>
-												<th>Percentuale IVA</th>
-												<th>Totale preventivo</th>
-											</tr>
-											<tr>
-												<td><h2>{{Totale_imponibile | currency:'€'}}</h2></td>
-												<td><h2>%{{Percentuale_iva | number}}</h2></td>
-												<td><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
-											</tr>
 				                        </tbody>
 										<tfoot>
+											<tr>
+				                                <th>Totale imponibile</th>
+				                                <th>Percentuale IVA</th>
+				                                <th>Totale preventivo</th>
+				                            </tr>
+											<tr>
+				                                <td style="width: 33%"><h2>{{Totale_imponibile | currency:'€'}}</h2></td>
+				                                <td style="width: 33%"><h2>%{{Percentuale_iva | number}}</h2></td>
+				                                <td style="width: 33%"><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
+				                            </tr>
 											<tr>
 												<td colspan="8" id="footerTd">
 													<div class="footer">
@@ -438,8 +475,8 @@
 				                    </table>
 				                </div>
 				            </div>
-<!-- 
-				             <div class="row">
+
+				            <!-- <div class="row">
 				                <div class="col col-9">
 				                    <table class="table note" id="tableCliente-note">
 				                        <thead>
@@ -455,7 +492,7 @@
 				                    </table>
 
 				                </div>
-				            </div>  -->
+				            </div> -->
 
 				            <!-- <div class="row">
 				                <div class="col col-9">
@@ -486,11 +523,11 @@
 			</div>
 		</div><!-- /container -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="js/anteprima/boxlayout.js"></script>
-		<script src="js/anteprima/classie.js"></script>
+		<script src="js/boxlayout.js"></script>
+		<script src="js/classie.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/anteprima/scriptAnteprima.js"></script>
+		<script src="js/scriptAnteprima.js"></script>
 		<script>
 			$(function() {
 				Boxlayout.init();
