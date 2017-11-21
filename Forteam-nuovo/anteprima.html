@@ -32,7 +32,7 @@
 							<header class="onlyprint">
 								<div class="col" id="centerLogo">
 										<div class="headerLogo text-center">
-											<img src="images/Logo.png" alt="logo azienda">
+											<img src="img/Logo.png" alt="logo azienda">
 										</div>
 
 								</div>
@@ -85,9 +85,9 @@
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
+												<td>{{x.Prezzo_listino_quantita| currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Ricavo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
@@ -120,16 +120,16 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="x in accessori">
+											<tr ng-repeat="x in hardware">
 												<td>{{x.Codice}}</td>
 												<td>{{x.Nome}}</td>
 												<td>{{x.Quantita}}</td>
 												<td>{{x.Prezzo_acquisto | currency:"€"}}</td>
 												<td>{{x.Prezzo_listino | currency:"€"}}</td>
 												<td>%{{x.Sconto + 0}}</td>
-												<td>{{x.Ricavo_scontato | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Guadagno >= 0, perdita: x.Guadagno < 0}'>{{x.Guadagno | currency:"€"}}</td>
-												<td ng-class='{guadagno: x.Guadagno_percentuale >= 0, perdita: x.Guadagno_percentuale < 0}'>%{{x.Guadagno_percentuale | number}}</td>
+												<td>{{x.Prezzo_listino_quantita | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Ricavoo >= 0, perdita: x.Ricavo < 0}'>{{x.Ricavo | currency:"€"}}</td>
+												<td ng-class='{guadagno: x.Ricavo_percentuale >= 0, perdita: x.Ricavo_percentuale < 0}'>%{{x.Ricavo_percentuale | number}}</td>
 											</tr>
 										</tbody>
 										<tfoot>
@@ -371,7 +371,7 @@
 											<tr>
 												<th colspan="8">
 													<div class="headerLogo text-center">
-									                        <img src="images/Logo.png" alt="logo azienda">
+									                        <img src="img/Logo.png" alt="logo azienda">
 									                </div>
 												</th>
 											</tr>

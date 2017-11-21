@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-09T13:50:46+01:00
+ * @Last modified time: 2017-11-21T12:00:10+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -13,12 +13,12 @@ var dataFromRiepilogo = JSON.parse(localStorage.getItem("allDataFromRiepilogo"))
 
 //salavataggio di tutti i dati in varie variabili
 //var azienda = dataFromRiepilogo["azienda"];
-var distributore = dataFromRiepilogo["distributore"];
-var accessori = dataFromRiepilogo["accessori"];
+var distributore = dataFromRiepilogo["distributoreSelected"];
+var prodottiHardwareSelected = dataFromRiepilogo["prodottiHardwareSelected"];
 var software = dataFromRiepilogo["software"];
 var licenze = dataFromRiepilogo["licenze"];
 var servizi = dataFromRiepilogo["servizi"];
-var totali = dataFromRiepilogo["totale"];
+var totalItemsSelected = dataFromRiepilogo["totalItemsSelected"];
 var noteAggiuntive = dataFromRiepilogo["noteAggiuntive"];
 
 //inizialmente tutte le tabelle dell'antepirma cliente non sono visibili
@@ -61,21 +61,24 @@ console.log(dataFromRiepilogo);
 	//}
 
 	// scope dati distributore
-	if (distributore[0].Codice != null) {
-		document.querySelectorAll('[id=table-distributore]')[0].style.display = 'table';
-		document.querySelectorAll('[id=table-distributore]')[1].style.display = 'table';
-		$scope.distributore = distributore;
-		$scope.Ricavo_distributore = distributore[0].Ricavo_scontato;
-		$scope.Guadagno_distributore = distributore[0].Guadagno;
-		$scope.Guadagno_distributore_percentuale = distributore[0].Guadagno_percentuale;
-	}
+
+/*	if(distributore != undefined){
+    	if (distributore[0].Codice != null) {
+    		document.querySelectorAll('[id=table-distributore]')[0].style.display = 'table';
+    		document.querySelectorAll('[id=table-distributore]')[1].style.display = 'table';
+    		$scope.distributore = distributore;
+            $scope.Ricavo_distributore = totalItemsSelected.totalDistributoreSelected;
+            $scope.Guadagno_distributore = totalItemsSelected.distributoreSelectedRevenue
+            $scope.Guadagno_distributore_percentuale = totalItemsSelected.distributoreSelectedPercentageRevenue;
+    	}
+    }*/
 
 	// scope dati accessori
-	if (accessori) {
-		if (Object.keys(accessori).length != 0) {
+	if (prodottiHardwareSelected) {
+		if (Object.keys(prodottiHardwareSelected).length != 0) {
 			document.querySelectorAll('[id=table-accessori]')[0].style.display = 'table';
 			//document.querySelectorAll('[id=table-accessori]')[1].style.display = 'table';
-			$scope.accessori = accessori;
+			$scope.hardware = prodottiHardwareSelected;
 			$scope.Ricavo_accessori = totali.Ricavo_accessori;
 			$scope.Guadagno_accessori = totali.Guadagno_accessori;
 			$scope.Guadagno_accessori_percentuale = totali.Guadagno_accessori_percentuale;
@@ -119,7 +122,7 @@ console.log(dataFromRiepilogo);
 	}
 
 	// scope dati totale complessivo azienda
-	if (totali.Ricavo_totale_iva > totali.Ricavo_totale) {
+/*	if (totali.Ricavo_totale_iva > totali.Ricavo_totale) {
 		$scope.Ricavo_totale = totali.Ricavo_totale + (totali.Ricavo_totale_iva - totali.Ricavo_totale);
 	}else {
 		$scope.Ricavo_totale = totali.Ricavo_totale
@@ -155,5 +158,5 @@ console.log(dataFromRiepilogo);
 	    .then(function (response) {
 	     $scope.distributori = response.data;
 	    });
-	}
+	}*/
 });
