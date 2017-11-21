@@ -5,7 +5,7 @@
  * @Project: kebabCase
  * @Filename: cssPreventivo.css
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-21T11:28:51+01:00
+ * @Last modified time: 2017-11-21T14:23:30+01:00
  */
 
  .view {
@@ -158,8 +158,7 @@
 }
 
 .select-style select:focus {
-    border: 2px solid red;
-    outline-color: red;
+	outline: none;
 }
 
 
