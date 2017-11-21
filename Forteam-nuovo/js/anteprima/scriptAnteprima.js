@@ -4,13 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
-<<<<<<< HEAD
  * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-21T12:40:02+01:00
-=======
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-21T12:13:07+01:00
->>>>>>> dd38c5ca94e43f23db18e8e8da2a33c667b59aae
+ * @Last modified time: 2017-11-21T12:41:11+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
@@ -81,8 +76,7 @@ console.log(dataFromRiepilogo);
             $scope.Guadagno_distributore = totalItemsSelected.distributoreSelectedRevenue
             $scope.Guadagno_distributore_percentuale = totalItemsSelected.distributoreSelectedPercentageRevenue;
     	}
-<<<<<<< HEAD
-    }*/
+    }
 
 	// scope dati prodotti hardware
 	if (prodottiHardwareSelected) {
@@ -127,57 +121,6 @@ console.log(dataFromRiepilogo);
             $scope.localSelectedPercentageRevenue = totalItemsSelected.localSelectedPercentageRevenue;
         }
 	}
-=======
-    }
-
-	// // scope dati accessori
-	// if (prodottiHardwareSelected) {
-	// 	if (Object.keys(prodottiHardwareSelected).length != 0) {
-	// 		document.querySelectorAll('[id=table-accessori]')[0].style.display = 'table';
-	// 		//document.querySelectorAll('[id=table-accessori]')[1].style.display = 'table';
-	// 		$scope.hardware = prodottiHardwareSelected;
-	// 		$scope.Ricavo_accessori = totali.Ricavo_accessori;
-	// 		$scope.Guadagno_accessori = totali.Guadagno_accessori;
-	// 		$scope.Guadagno_accessori_percentuale = totali.Guadagno_accessori_percentuale;
-	// 	}
-	// }
-	//
-	// // scope dati software
-	// if (software) {
-	// 	if (Object.keys(software).length) {
-	// 		document.querySelectorAll('[id=table-software]')[0].style.display = 'table';
-	// 		//document.querySelectorAll('[id=table-software]')[1].style.display = 'table';
-	// 		$scope.software = software;
-	// 		$scope.Ricavo_software = totali.Ricavo_software;
-	// 		$scope.Guadagno_software = totali.Guadagno_software;
-	// 		$scope.Guadagno_software_percentuale = totali.Guadagno_software_percentuale;
-	// 	}
-	// }
-	//
-	// // scope dati licenze
-	// if (licenze) {
-	// 	if (Object.keys(licenze).length) {
-	// 		document.querySelectorAll('[id=table-licenze]')[0].style.display = 'table';
-	// 		//document.querySelectorAll('[id=table-licenze]')[1].style.display = 'table';
-	// 		$scope.licenze = licenze
-	// 		$scope.Ricavo_licenze = totali.Ricavo_licenze;
-	// 		$scope.Guadagno_licenze = totali.Guadagno_licenze;
-	// 		$scope.Guadagno_licenze_percentuale = totali.Guadagno_licenze_percentuale;
-	// 	}
-	// }
-	//
-	// // scope dati servizi
-	// if (servizi) {
-	// 	if (Object.keys(servizi).length) {
-	// 		document.querySelectorAll('[id=table-servizi]')[0].style.display = 'table';
-	// 		//document.querySelectorAll('[id=table-servizi]')[1].style.display = 'table';
-	// 		$scope.servizi = servizi
-	// 		$scope.Ricavo_servizi = totali.Ricavo_servizi;
-	// 		$scope.Guadagno_servizi = totali.Guadagno_servizi;
-	// 		$scope.Guadagno_servizi_percentuale = totali.Guadagno_servizi_percentuale;
-	// 	}
-	// }
->>>>>>> dd38c5ca94e43f23db18e8e8da2a33c667b59aae
 
 	// scope dati totale complessivo azienda
 	if (totalItemsSelected.ivaTotalElemensselected > totalItemsSelected.overallTotalAllItemsSelected) {
