@@ -4,11 +4,6 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
-<<<<<<< HEAD
-=======
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-19T21:07:07+01:00
->>>>>>> 5a461fe85b3aaa280db67c4042b355873866de8d
  */
 
  var app = angular.module('myApp', []);
@@ -307,6 +302,7 @@
        $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
        $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+	
     $scope.changeScontoLicenze = function(sconto, codice) {
         //setting changes on Licenze
         $scope.licenze = calcoloScontoRicavoGuadagno(sconto, codice, licenzeSelected);
@@ -358,6 +354,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+
     $scope.changeScontoLocal = function(sconto, codice) {
         //setting changes on canoni
         $scope.canoni = calcoloScontoRicavoGuadagno(sconto, codice, localSelected);
@@ -391,7 +388,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
-	
+
     $scope.noteAggiuntiveAziendali = function() {
         noteAggiuntive.aziendali = $scope.noteAziendali;
     }
