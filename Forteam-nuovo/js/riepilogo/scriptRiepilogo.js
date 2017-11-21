@@ -26,11 +26,16 @@
  	cliente: ""
  }
 
- //actionlistener sul link per andare all'anteprima
- var link = document.getElementById("linkToAnteprima");
+//actionlistener sul link per andare all'anteprima
+var link1 = document.querySelectorAll('[id=linkToAnteprima]')[0];
+var link2 = document.querySelectorAll('[id=linkToAnteprima]')[1];
 
- if (link) {
- 	link.addEventListener("click", goToAnteprima, false);
+ if (link1) {
+ 	link1.addEventListener("click", goToAnteprima, false);
+ }
+
+ if (link2) {
+ 	link2.addEventListener("click", goToAnteprima, false);
  }
 
  function goToAnteprima() {
@@ -38,6 +43,7 @@
  	localStorage.setItem("allDataFromRiepilogo", JSON.stringify(allDataFromRiepilogo));
  	var local = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
  	console.log(local);
+	location.href = 'anteprima.html';
  }
 
  /**
@@ -302,7 +308,7 @@
        $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
        $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
-	
+
     $scope.changeScontoLicenze = function(sconto, codice) {
         //setting changes on Licenze
         $scope.licenze = calcoloScontoRicavoGuadagno(sconto, codice, licenzeSelected);
@@ -357,7 +363,7 @@
 
     $scope.changeScontoLocal = function(sconto, codice) {
         //setting changes on canoni
-        $scope.canoni = calcoloScontoRicavoGuadagno(sconto, codice, localSelected);
+        $scope.local = calcoloScontoRicavoGuadagno(sconto, codice, localSelected);
         //calculate and assign to array the total overall of selected items
         totalItemsSelected["totalLocalSelected"] = calculateTotalItemsSelected(localSelected);
         //calculate and assign to array the total revenue of selected items
