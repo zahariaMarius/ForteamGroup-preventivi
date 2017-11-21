@@ -37,7 +37,7 @@
 								<div class="img-wrap"><img src="img/2.jpg" alt="img2"/></div>
 								<h2>Riepilogo Azienda
 									<span>L'anteprima del riepilogo completo per visualizzare il tuo guadagno</span>
-									<span><a id="linkToAnteprima" href="anteprima.html">Visualizza l'anteprima aziendale</a></span>
+									<span><a id="linkToAnteprima" href="anteprima.html">Visualizza l'anteprima</a></span>
 								</h2>
 								<button class="content-switch">Read more</button>
 							</div>
@@ -45,7 +45,7 @@
 								<div class="img-wrap"><img src="img/1.jpg" alt="img1"/></div>
 								<h2>Riepilogo Cliente
 									<span>L'anteprima del riepilogo del tuo cliente</span>
-									<span><a id="linkToAnteprima" href="anteprima.html">Visualizza l'anteprima del cliente</a></span>
+									<span><a id="linkToAnteprima" href="anteprima.html">Visualizza l'anteprima</a></span>
 								</h2>
 								<button class="content-switch">Read more</button>
 							</div>
@@ -63,18 +63,20 @@
 											<table class="table table-hover table-responsive">
 												<thead>
 													<tr class="row">
-														<th class="col-sm-3">Nome</th>
-														<th class="col-sm-3">Indirizzo</th>
-														<th class="col-sm-3">Partita IVA</th>
-														<th class="col-sm-3">Codice fiscale</th>
+														<th class="col">Nome</th>
+														<th class="col">Indirizzo</th>
+														<th class="col">Email</th>
+														<th class="col">Partita IVA</th>
+														<th class="col">Codice fiscale</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr class="row" ng-repeat="x in azienda">
-														<td class="col-sm-3">{{x.Nome_azienda | uppercase}}</td>
-														<td class="col-sm-3">{{x.Indirizzo | uppercase}}</td>
-														<td class="col-sm-3">{{x.Partita_iva | uppercase}}</td>
-														<td class="col-sm-3">{{x.Codice_fiscale | uppercase}}</td>
+														<td class="col">{{x.nomeCliente | uppercase}}</td>
+														<td class="col">{{x.indirizzoCliente | uppercase}}</td>
+														<td class="col">{{x.emailCliente | uppercase}}</td>
+														<td class="col">{{x.partitaIVACliente | uppercase}}</td>
+														<td class="col">{{x.codiceFiscaleCliente | uppercase}}</td>
 													</tr>
 												</tbody>
 											</table>
@@ -378,18 +380,20 @@
 										<table class="table table-hover table-responsive">
 											<thead>
 												<tr class="row">
-													<th class="col-sm-3">Nome</th>
-													<th class="col-sm-3">Indirizzo</th>
-													<th class="col-sm-3">Partita IVA</th>
-													<th class="col-sm-3">Codice fiscale</th>
+													<th class="col">Nome</th>
+													<th class="col">Indirizzo</th>
+													<th class="col">Email</th>
+													<th class="col">Partita IVA</th>
+													<th class="col">Codice fiscale</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr class="row" ng-repeat="x in azienda">
-													<td class="col-sm-3">{{x.Nome_azienda | uppercase}}</td>
-													<td class="col-sm-3">{{x.Indirizzo | uppercase}}</td>
-													<td class="col-sm-3">{{x.Partita_iva | uppercase}}</td>
-													<td class="col-sm-3">{{x.Codice_fiscale | uppercase}}</td>
+													<td class="col">{{x.nomeCliente | uppercase}}</td>
+													<td class="col">{{x.indirizzoCliente | uppercase}}</td>
+													<td class="col">{{x.emailCliente | uppercase}}</td>
+													<td class="col">{{x.partitaIVACliente | uppercase}}</td>
+													<td class="col">{{x.codiceFiscaleCliente | uppercase}}</td>
 												</tr>
 											</tbody>
 										</table>

@@ -4,19 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptRiepilogo.js
-<<<<<<< HEAD
-<<<<<<< HEAD
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-19T20:26:01+01:00
-
-
-
->>>>>>> 1e8ee5e814b4d572534e4ce5fff0dd0559b45637
-=======
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-18T16:30:45+01:00
->>>>>>> a87293d5292270e592b213ae4b887ea399c9257b
  */
+
  var app = angular.module('myApp', []);
  //varibile contenente tutti i dati provenienti dalla pagina preventivo in formato {obj assoc}
  var allDataFromPreventivi = JSON.parse(localStorage.getItem("allDataFromPreventivi"));
@@ -130,8 +119,9 @@
   app.controller('allTabDataFromPreventivi', function($scope) {
 
   	if (allDataFromPreventivi["cliente"]) {
-  		$scope.azienda = cliente;
+		$scope.azienda = cliente;
   	}
+
     console.log(distributoreSelected);
   	if (allDataFromPreventivi["distributoreSelected"]) {
   		var checkIfDistributoreExist = Object.keys(distributoreSelected).length;
@@ -388,6 +378,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+
     $scope.changeInputIVA = function(iva) {
         totalItemsSelected.ivaPercentage = iva;
         var percentualeIva = (totalItemsSelected.overallTotalAllItemsSelected * totalItemsSelected.ivaPercentage) / 100;
@@ -395,6 +386,7 @@
         $scope.Percentuale_iva = totalItemsSelected.ivaPercentage;
         $scope.ivaTotalElemensselected = totalItemsSelected.ivaTotalElemensselected;
     }
+	
     $scope.noteAggiuntiveAziendali = function() {
         noteAggiuntive.aziendali = $scope.noteAziendali;
     }
@@ -402,4 +394,5 @@
     $scope.noteAggiuntiveCliente = function() {
         noteAggiuntive.cliente = $scope.noteCliente;
     }
+
   });
