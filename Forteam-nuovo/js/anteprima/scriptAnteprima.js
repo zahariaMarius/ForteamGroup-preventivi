@@ -4,14 +4,15 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: kebabCase
  * @Filename: scriptAnteprima.js
- * @Last modified by:   Toqir Nasir
- * @Last modified time: 2017-11-21T12:41:11+01:00
+ * @Last modified by:   Zaharia Laurentiu Jr Marius
+ * @Last modified time: 2017-11-22T09:32:53+01:00
  */
 
 //richiamo di tutti i dati dalla pagina di riepilogo
 var dataFromRiepilogo = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
 
 //salavataggio di tutti i dati in varie variabili
+var user = dataFromRiepilogo["user"][0];
 var azienda = dataFromRiepilogo["cliente"];
 var distributore = dataFromRiepilogo["distributoreSelected"];
 var prodottiHardwareSelected = dataFromRiepilogo["prodottiHardwareSelected"];
@@ -23,7 +24,6 @@ var noteAggiuntive = dataFromRiepilogo["noteAggiuntive"];
 
 //inizialmente tutte le tabelle dell'antepirma cliente non sono visibili
 document.querySelectorAll('[id=table-distributore]')[0].style.display = 'none';
-document.querySelectorAll('[id=table-distributore]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-accessori]')[0].style.display = 'none';
 //document.querySelectorAll('[id=table-accessori]')[1].style.display = 'none';
 document.querySelectorAll('[id=table-software]')[0].style.display = 'none';
@@ -51,26 +51,17 @@ var app = angular.module('myApp', []);
 
 app.controller('stampa', function($scope, $http) {
 
-console.log(dataFromRiepilogo);
+	//scope nome cognome dello user che h acreato il preventivo
+	$scope.userCognomeNome = user.Cognome + " " + user.Nome;
 
-
-	// scope dati azienda
-	// if (azienda[0].Codice_fiscale === undefined) {
-	// 	azienda[0].Codice_fiscale = "NON FORNITO";
-	// 	$scope.azienda = azienda;
-	// }
-
-	console.log(azienda);
-
+	//scope dati cliente
 	$scope.cliente = azienda;
 
 
 	// scope dati distributore
-
 	if(distributore.length != 0){
     	if (distributore[0].Codice != null) {
     		document.querySelectorAll('[id=table-distributore]')[0].style.display = 'table';
-    		document.querySelectorAll('[id=table-distributore]')[1].style.display = 'table';
     		$scope.distributore = distributore;
             $scope.Ricavo_distributore = totalItemsSelected.totalDistributoreSelected;
             $scope.Guadagno_distributore = totalItemsSelected.distributoreSelectedRevenue
@@ -139,7 +130,7 @@ console.log(dataFromRiepilogo);
 	}else {
 		$scope.Totale_preventivo = totalItemsSelected.overallTotalAllItemsSelected;
 	}
-/*
+
 	//scope note aggiuntive aziendali
 	if (noteAggiuntive.aziendali) {
 		document.getElementById("tableAzienda-note").style.display = 'table';
@@ -151,13 +142,4 @@ console.log(dataFromRiepilogo);
 		//document.getElementById("tableCliente-note").style.display = 'table';
 		$scope.Note_aggiuntive_cliente = noteAggiuntive.cliente;
 	}
-
-	$scope.db = function() {
-		var data = localStorage.getItem("allDataFromRiepilogo");
-		console.log(azienda);
-		$http.post('DBMUpdate.php', {azienda: azienda, distributore: distributore, accessori: accessori, software: software, licenze: licenze, servizi: servizi, noteAggiuntive: noteAggiuntive})
-	    .then(function (response) {
-	     $scope.distributori = response.data;
-	    });
-	}*/
 });

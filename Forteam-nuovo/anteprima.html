@@ -311,6 +311,7 @@
 							<div class="row">
 								<div class="col col9">
 									<div class="footer">
+										<p><b>PREVENTIVO CREATO DA {{userCognomeNome | uppercase}}</b></p>
 										<p>FOTREAM GROUP SRL</p>
 										<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
 										<p>Telefono: +39 011 0015516 | Partita IVA & Codice fiscale: 03601010048-N | REA: CN-302892</p>
@@ -339,7 +340,7 @@
 
 				            <div class="row">
 				                <div class="col col-9">
-				                    <table class="table" id="table-distributore">
+				                    <table class="table">
 				                        <thead>
 											<tr>
 												<th colspan="8">
@@ -353,14 +354,14 @@
 				                                <th>INDIRIZZO</th>
 												<th>EMAIL</th>
 				                                <th>PARTITA IVA</th>
-				                                <th>CODICE FISCALE</th>
+				                                <th colspan="2">CODICE FISCALE</th>
 				                            </tr>
 											<tr ng-repeat="x in cliente">
 				                                <td >{{x.nomeCliente | uppercase}}</td>
 				                                <td >{{x.indirizzoCliente | uppercase}}</td>
 												<td >{{x.emailCliente | uppercase}}</td>
 				                                <td >{{x.partitaIVACliente | uppercase}}</td>
-				                                <td>{{x.codiceFiscaleCliente | uppercase}}</td>
+				                                <td colspan="2">{{x.codiceFiscaleCliente | uppercase}}</td>
 				                            </tr>
 				                            <tr>
 				                                <th style="width: 5%">Codice</th>
@@ -423,11 +424,18 @@
 												<td><h2>%{{Percentuale_iva | number}}</h2></td>
 												<td><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
 											</tr>
+											<!-- <tr>
+												<th>Note aggiuntive</th>
+											</tr>
+											<tr>
+												<td>{{Note_aggiuntive_cliente}}</td>
+											</tr> -->
 				                        </tbody>
 										<tfoot>
 											<tr>
 												<td colspan="8" id="footerTd">
 													<div class="footer">
+														<p><b>PREVENTIVO CREATO DA {{userCognomeNome | uppercase}}</b></p>
 														<p>FOTREAM GROUP SRL</p>
 														<p>Sede legale: Corso Barolo, 47 - 12051 Alba (CN) | Sede operativa: Via F. Santi 3/6 - 10042 Nichelino (TO)</p>
 														<p>Telefono: +39 011 0015516 | Partita IVA & Codice fiscale: 03601010048-N | REA: CN-302892</p>
@@ -438,49 +446,8 @@
 				                    </table>
 				                </div>
 				            </div>
-							<!-- 
-				             <div class="row">
-				                <div class="col col-9">
-				                    <table class="table note" id="tableCliente-note">
-				                        <thead>
-				                            <tr>
-				                                <th>Note aggiuntive</th>
-				                            </tr>
-				                        </thead>
-				                        <tbody>
-				                            <tr>
-				                                <td>{{Note_aggiuntive_cliente}}</td>
-				                            </tr>
-				                        </tbody>
-				                    </table>
-
-				                </div>
-				            </div>  -->
-
-				            <!-- <div class="row">
-				                <div class="col col-9">
-				                    <table class="table table-totali">
-				                        <thead>
-				                            <tr>
-				                                <th>Totale imponibile</th>
-				                                <th>Percentuale IVA</th>
-				                                <th>Totale preventivo</th>
-				                            </tr>
-				                        </thead>
-				                        <tbody>
-				                            <tr>
-				                                <td style="width: 33%"><h2>{{Totale_imponibile | currency:'€'}}</h2></td>
-				                                <td style="width: 33%"><h2>%{{Percentuale_iva | number}}</h2></td>
-				                                <td style="width: 33%"><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
-				                            </tr>
-				                        </tbody>
-				                    </table>
-				                </div>
-				            </div> -->
 				        </div>
 					</div>
-					<!-- <input type="button" name="db" value="db" ng-click="db()"> -->
-
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 			</div>

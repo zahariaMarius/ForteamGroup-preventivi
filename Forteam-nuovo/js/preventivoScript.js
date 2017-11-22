@@ -5,7 +5,7 @@
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
  * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-21T14:45:07+01:00
+ * @Last modified time: 2017-11-22T14:23:05+01:00
 */
 
 "use strict";
@@ -827,10 +827,8 @@ app.controller('preventivoController', function($scope, $http) {
  */
 app.controller('clienteFormValidation', function($scope) {
 
-
-
-
-	// document.getElementById('tabelleProdotti').style.display = 'none';
+	//hide the table section if the form is not valid
+	document.getElementById('tabelleProdotti').style.display = 'none';
 
 
 	/**
