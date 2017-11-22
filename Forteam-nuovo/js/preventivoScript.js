@@ -4,8 +4,8 @@
  * @Email:  laurentiu.zaharia@edu.itspiemonte.it
  * @Project: ForteamGroup - Preventivi
  * @Filename: script.js
- * @Last modified by:   Zaharia Laurentiu Jr Marius
- * @Last modified time: 2017-11-22T14:23:05+01:00
+ * @Last modified by:   Toqir Nasir
+ * @Last modified time: 2017-11-22T15:53:19+01:00
 */
 
 "use strict";
@@ -15,7 +15,6 @@
  * @type {Object}
  */
 var user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
 /**
  * [cliente contain all cliente Objects from inputForm]
  * @type {[Object]}
@@ -115,7 +114,6 @@ function calculatePrezzoListinoForQuantityAndRevenueAndPercentageRevenue(item) {
 	item.Ricavo = (item.Prezzo_listino - item.Prezzo_acquisto) * item.Quantita;
 	item.Ricavo_percentuale = (item.Ricavo * 100) / item.Prezzo_listino_quantita;
 	item.Sconto = 0;
-	console.log(item);
 }
 
 /**
@@ -140,7 +138,6 @@ function addRemoveItemsFromArrayOfSelectedItem(selectedItems, item) {
 			}
 		}
 	}
-	console.log(selectedItems);
 }
 
 /**
@@ -170,11 +167,7 @@ function addRemoveDistributoreFromDistributoriSelected(distributore) {
 		totalItemsSelected["totalDistributoreSelected"] = 0;
 		totalItemsSelected["distributoreSelectedRevenue"] = 0;
 		totalItemsSelected["distributoreSelectedPercentageRevenue"] = 0;
-		console.log("non esiste");
 	}
-
-
-	console.log(totalItemsSelected);
 }
 
 /**

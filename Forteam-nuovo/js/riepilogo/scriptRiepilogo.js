@@ -39,7 +39,18 @@ var link2 = document.querySelectorAll('[id=linkToAnteprima]')[1];
  }
 
  function goToAnteprima() {
- 	var allDataFromRiepilogo = {user, cliente, distributoreSelected, prodottiHardwareSelected, licenzeSelected, canoniSelected, localSelected, totalItemsSelected, noteAggiuntive};
+
+ 	var allDataFromRiepilogo = {
+        user,
+        cliente ,
+        distributoreSelected ,
+        prodottiHardwareSelected ,
+        licenzeSelected ,
+         canoniSelected ,
+         localSelected ,
+         totalItemsSelected ,
+         noteAggiuntive
+     };
  	localStorage.setItem("allDataFromRiepilogo", JSON.stringify(allDataFromRiepilogo));
  	var local = JSON.parse(localStorage.getItem("allDataFromRiepilogo"));
  	console.log(local);
