@@ -415,6 +415,12 @@
 				                                <td ng-class="{guadagno: x.Sconto > 0}">{{x.Prezzo_listino_quantita | currency:"€"}}</td>
 				                            </tr>
 											<tr>
+												<th class="text-center" colspan="8">Note aggiuntive</th>
+											</tr>
+											<tr>
+												<td class="text-center" colspan="8">{{Note_aggiuntive_cliente}}</td>
+											</tr>
+											<tr>
 												<th>Totale imponibile</th>
 												<th>Percentuale IVA</th>
 												<th>Totale preventivo</th>
@@ -424,12 +430,6 @@
 												<td><h2>%{{Percentuale_iva | number}}</h2></td>
 												<td><h2>{{Totale_preventivo | currency:'€'}}<small style="font-size: 25%"> IVA Incl.</small></h2></td>
 											</tr>
-											<!-- <tr>
-												<th>Note aggiuntive</th>
-											</tr>
-											<tr>
-												<td>{{Note_aggiuntive_cliente}}</td>
-											</tr> -->
 				                        </tbody>
 										<tfoot>
 											<tr>
